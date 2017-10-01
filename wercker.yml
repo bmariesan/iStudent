@@ -1,0 +1,35 @@
+box:
+  id: ubuntu
+  env:
+      SBT_OPTS: "-XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -XX:PermSize=256M -XX:MaxPermSize=512M"
+      IVY_CACHE_DIR: "$WERCKER_CACHE_DIR/ivy"
+
+build:
+  steps:
+    - script:
+      name: build
+      code: |
+        # Install Java 8
+        sudo rm /var/lib/apt/lists/* -vrf
+        sudo apt-get update
+        sudo apt-get install software-properties-common python-software-properties curl wget -y
+        sudo add-apt-repository ppa:webupd8team/java -y
+        sudo apt-get update
+        echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
+        sudo apt-get install oracle-java8-installer -qq
+        sudo apt-get install oracle-java8-set-default -y
+        # Install Gradle
+        sudo add-apt-repository ppa:cwchien/gradle -y
+        sudo apt-get update
+        sudo apt-get install gradle -y
+        # Install GIT
+        sudo apt-get update
+        sudo apt-get install git -y
+        # We should have ant and ivy available
+        type gradle || { echo "No gradle command found...aborting"; exit 1; }
+    # A step that executes `gradle build` command
+    - script:
+      name: run gradle
+      code: |
+        gradle build
+#        gradle --full-stacktrace -q --project-cache-dir=$WERCKER_CACHE_DIR build
