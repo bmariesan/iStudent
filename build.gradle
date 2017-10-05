@@ -3,16 +3,24 @@ buildscript {
         springBootVersion = '1.5.7.RELEASE'
     }
     repositories {
+        mavenLocal()
         mavenCentral()
+        jcenter()
+        maven { url "http://maven.oracle.com/" }
+        maven { url "http://repo.spring.io/plugins-release" }
+        maven { url "http://repo.spring.io/milestone" }
+        maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0'
     }
 }
 
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'war'
+apply plugin: 'org.junit.platform.gradle.plugin'
 
 group = 'ro.ubb'
 version = '0.0.1-SNAPSHOT'
@@ -49,4 +57,21 @@ dependencies {
     testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.1")
     testCompile("org.junit.platform:junit-platform-launcher:1.0.0")
     testCompile("com.github.sbrannen:spring-test-junit5:1.0.0")
+}
+
+junitPlatform {
+    // platformVersion '1.0.0'
+    filters {
+        engines {
+            include 'junit-jupiter'
+        }
+
+        tags {
+            // include 'fast'
+            // exclude 'slow'
+        }
+        includeClassNamePattern '.*Test'
+    }
+    enableStandardTestTask false
+    reportsDir = file("$buildDir/test-results/test")
 }
