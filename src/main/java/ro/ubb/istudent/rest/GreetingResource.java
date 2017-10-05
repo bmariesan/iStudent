@@ -14,14 +14,14 @@ import java.net.URISyntaxException;
 
 @RequestMapping("/api")
 @RestController
-public class GreetingController {
+public class GreetingResource {
 
     private static final String GREETING_CONTROLLER_MAPPING = "/greeting";
-    private static final Logger LOG = LoggerFactory.getLogger(GreetingController.class);
+    private static final Logger LOG = LoggerFactory.getLogger(GreetingResource.class);
     private final GreetingService service;
     private final String baseUrl;
 
-    public GreetingController(GreetingService service, @Value("${application.base-url}") String baseUrl) {
+    public GreetingResource(GreetingService service, @Value("${application.base-url}") String baseUrl) {
         this.service = service;
         this.baseUrl = baseUrl;
     }
