@@ -1,3 +1,8 @@
+package ro.ubb.samples.behavioral.state.sourcemaking_08_chain;
+
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 abstract class State {
     public void pull(Chain wrapper) {
         wrapper.setState(new Off());

@@ -1,3 +1,8 @@
+package ro.ubb.samples.behavioral.chain_of_responsibility.purchase_power;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 class CheckAuthority {
 
     public static void main(String[] args) {

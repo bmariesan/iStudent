@@ -1,3 +1,5 @@
+package ro.ubb.samples.behavioral.state.sourcemaking_06_fsm_distributed;
+
 // 1. The "wrapper"
 class FSM {
     // 2. States array

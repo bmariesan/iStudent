@@ -1,11 +1,17 @@
+package ro.ubb.samples.behavioral.state.sourcemaking_02_before;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 interface State {
-    void pull(CeilingFanPullChain wrapper);
+    void pull(CeilingFanPullChainAfter wrapper);
 }
 
-class CeilingFanPullChain {
+class CeilingFanPullChainAfter {
     private State currentState;
 
-    public CeilingFanPullChain() {
+    public CeilingFanPullChainAfter() {
         currentState = new Off();
     }
 
@@ -19,36 +25,36 @@ class CeilingFanPullChain {
 }
 
 class Off implements State {
-    public void pull(CeilingFanPullChain wrapper) {
+    public void pull(CeilingFanPullChainAfter wrapper) {
         wrapper.set_state(new Low());
         System.out.println("low speed");
     }
 }
 
 class Low implements State {
-    public void pull(CeilingFanPullChain wrapper) {
+    public void pull(CeilingFanPullChainAfter wrapper) {
         wrapper.set_state(new Medium());
         System.out.println("medium speed");
     }
 }
 
 class Medium implements State {
-    public void pull(CeilingFanPullChain wrapper) {
+    public void pull(CeilingFanPullChainAfter wrapper) {
         wrapper.set_state(new High());
         System.out.println("high speed");
     }
 }
 
 class High implements State {
-    public void pull(CeilingFanPullChain wrapper) {
+    public void pull(CeilingFanPullChainAfter wrapper) {
         wrapper.set_state(new Off());
         System.out.println("turning off");
     }
 }
 
-public class StateDemo {
+public class StateDemoAfter {
     public static void main(String[] args) {
-        CeilingFanPullChain chain = new CeilingFanPullChain();
+        CeilingFanPullChainAfter chain = new CeilingFanPullChainAfter();
         while (true) {
             System.out.print("Press ENTER");
             getLine();

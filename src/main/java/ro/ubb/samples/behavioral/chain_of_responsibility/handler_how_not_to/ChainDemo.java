@@ -1,3 +1,7 @@
+package ro.ubb.samples.behavioral.chain_of_responsibility.handler_how_not_to;
+
+import java.util.Random;
+
 class Handler {
  private static final Random RANDOM = new Random();
  private static int nextID = 1;

@@ -1,3 +1,8 @@
+package ro.ubb.samples.behavioral.command.simple_command_02;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 class SimpleCommand {
     private int state;
 

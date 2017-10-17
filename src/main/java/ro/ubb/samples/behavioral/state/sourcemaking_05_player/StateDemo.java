@@ -1,3 +1,5 @@
+package ro.ubb.samples.behavioral.state.sourcemaking_05_player;
+
 class Player {
     private String name;
     private int money;

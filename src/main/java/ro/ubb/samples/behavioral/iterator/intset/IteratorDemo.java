@@ -1,3 +1,9 @@
+package ro.ubb.samples.behavioral.iterator.intset;
+
+import java.util.Enumeration;
+import java.util.Hashtable;
+import java.util.NoSuchElementException;
+
 class IntSet {
     private Hashtable ht = new Hashtable();
 

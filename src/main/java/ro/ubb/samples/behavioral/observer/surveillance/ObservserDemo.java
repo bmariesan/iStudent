@@ -1,3 +1,8 @@
+package ro.ubb.samples.behavioral.observer.surveillance;
+
+import java.util.Enumeration;
+import java.util.Vector;
+
 interface AlarmListener {
     void alarm();
 }

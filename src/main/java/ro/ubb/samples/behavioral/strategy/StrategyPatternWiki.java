@@ -1,3 +1,5 @@
+package ro.ubb.samples.behavioral.strategy;
+
 import java.util.ArrayList;
 import java.util.List;
 

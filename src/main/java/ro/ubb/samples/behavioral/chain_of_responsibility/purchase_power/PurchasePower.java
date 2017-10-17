@@ -1,3 +1,5 @@
+package ro.ubb.samples.behavioral.chain_of_responsibility.purchase_power;
+
 abstract class PurchasePower {
 
  protected static final double BASE = 500;

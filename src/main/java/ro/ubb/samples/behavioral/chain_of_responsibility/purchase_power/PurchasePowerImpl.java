@@ -1,3 +1,4 @@
+package ro.ubb.samples.behavioral.chain_of_responsibility.purchase_power;
 
 class ManagerPPower extends PurchasePower {
 

@@ -1,3 +1,9 @@
+package ro.ubb.samples.behavioral.iterator.demo_before;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 class IntegerBox {
     private final List<Integer> list = new ArrayList<>();
 
@@ -10,7 +16,7 @@ class IntegerBox {
     }
 }
 
-public class IteratorDemo {
+class IteratorDemo {
     public static void main(String[] args) {
         IntegerBox box = new IntegerBox();
         for (int i = 9; i > 0; --i) {

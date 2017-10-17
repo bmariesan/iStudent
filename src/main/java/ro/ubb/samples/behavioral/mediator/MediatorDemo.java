@@ -1,3 +1,9 @@
+package ro.ubb.samples.behavioral.mediator;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 // 1. The "intermediary"
 class Mediator {
     // 4. The Mediator arbitrates

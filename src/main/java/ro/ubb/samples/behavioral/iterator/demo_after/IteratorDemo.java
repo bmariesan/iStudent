@@ -1,3 +1,9 @@
+package ro.ubb.samples.behavioral.iterator.demo_after;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
+
 class IntegerBox {
     private List<Integer> list = new ArrayList<>();
 
@@ -41,7 +47,7 @@ class IntegerBox {
     }
 }
 
-public class IteratorDemo {
+class IteratorDemo {
     public static void main(String[] args) {
         IntegerBox integerBox = new IntegerBox();
         for (int i = 9; i > 0; --i) {

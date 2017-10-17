@@ -1,3 +1,5 @@
+package ro.ubb.samples.behavioral.strategy;
+
 // 1. Define the interface of the algorithm
 interface Strategy {
     void solve();

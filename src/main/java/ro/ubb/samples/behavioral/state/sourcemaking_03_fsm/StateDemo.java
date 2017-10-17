@@ -1,3 +1,5 @@
+package ro.ubb.samples.behavioral.state.sourcemaking_03_fsm;
+
 // 1. Create a "wrapper" class that models the state machine
 class FSM {
     // 2. states

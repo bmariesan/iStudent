@@ -1,3 +1,8 @@
+package ro.ubb.samples.behavioral.state.sourcemaking_04_button;
+
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 // 1. The "wrapper" class
 class Button {
     // 2. The "current" state object

@@ -1,3 +1,8 @@
+package ro.ubb.samples.behavioral.state.sourcemaking_07_chain;
+
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 class Chain {
     private int state;
 

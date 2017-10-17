@@ -1,9 +1,13 @@
-// Not good: unwieldy "case" statement
+package ro.ubb.samples.behavioral.state.sourcemaking_02_before;// Not good: unwieldy "case" statement
 
-class CeilingFanPullChain {
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+class CeilingFanPullChainBefore {
     private int currentState;
 
-    public CeilingFanPullChain() {
+    public CeilingFanPullChainBefore() {
         currentState = 0;
     }
 
@@ -24,9 +28,9 @@ class CeilingFanPullChain {
     }
 }
 
-public class StateDemo {
+public class StateDemoBefore {
     public static void main(String[] args) {
-        CeilingFanPullChain chain = new CeilingFanPullChain();
+        CeilingFanPullChainBefore chain = new CeilingFanPullChainBefore();
         while (true) {
             System.out.print("Press ENTER");
             getLine();

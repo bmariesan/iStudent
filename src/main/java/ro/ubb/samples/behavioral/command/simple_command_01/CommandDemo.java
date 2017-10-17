@@ -1,3 +1,8 @@
+package ro.ubb.samples.behavioral.command.simple_command_01;
+
+import java.util.ArrayList;
+import java.util.List;
+
 interface Command {
     void execute();
 }
