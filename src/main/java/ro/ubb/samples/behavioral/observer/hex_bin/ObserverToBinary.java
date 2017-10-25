@@ -1,7 +1,7 @@
 package ro.ubb.samples.behavioral.observer.hex_bin;
 
-class BinObserver extends Observer {
-    public BinObserver(Subject subject) {
+class ObserverToBinary extends Observer {
+    public ObserverToBinary(Subject subject) {
         this.subject = subject;
         this.subject.add(this);
     }

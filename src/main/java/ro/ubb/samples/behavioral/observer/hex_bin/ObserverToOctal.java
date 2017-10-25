@@ -1,7 +1,7 @@
 package ro.ubb.samples.behavioral.observer.hex_bin;
 
-class OctObserver extends Observer {
-    public OctObserver(Subject subject) {
+class ObserverToOctal extends Observer {
+    public ObserverToOctal(Subject subject) {
         this.subject = subject;
         this.subject.add( this );
     }
