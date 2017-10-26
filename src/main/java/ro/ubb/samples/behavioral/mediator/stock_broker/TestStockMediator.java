@@ -1,10 +1,8 @@
 package ro.ubb.samples.behavioral.mediator.stock_broker;
 
 public class TestStockMediator{
-
     public static void main(String[] args){
         StockMediator nyse = new StockMediator();
-
         StockBroker broker = new StockBroker("Gordon", nyse);
         StockBroker broker2 = new StockBroker("Daniel", nyse);
 
@@ -16,8 +14,6 @@ public class TestStockMediator{
 
         broker.buyOffer("NRG", 10);
 
-        nyse.getstockOfferings();
-
+        nyse.getStockOfferings();
     }
-
 }
