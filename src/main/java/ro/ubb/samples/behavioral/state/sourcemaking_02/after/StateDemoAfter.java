@@ -1,4 +1,4 @@
-package ro.ubb.samples.behavioral.state.sourcemaking_02_before;
+package ro.ubb.samples.behavioral.state.sourcemaking_02.after;
 
 import java.io.BufferedReader;
 import java.io.IOException;
