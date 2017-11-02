@@ -1,6 +1,11 @@
 # iStudent
 Design Patterns Course UBB 2017-2018
 
+1. User management & Course subscriptions
+2. Assignments, tests and gradings/ & Test/Assignment design
+3. Analytics & Reporting
+4. University Blog - push notifications etc.
+
 # Build Status
 [![wercker status](https://app.wercker.com/status/158f0fee4804c3da09b80f23ca8f29d6/m/master "wercker status")](https://app.wercker.com/project/byKey/158f0fee4804c3da09b80f23ca8f29d6)
 
