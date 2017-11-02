@@ -22,12 +22,12 @@ public class GreetingService {
     }
 
     @Transactional(readOnly = true)
-    public Optional<GreetingDto> findGreetingById(Long greetingId) {
+    public Optional<GreetingDto> findGreetingById(String greetingId) {
         return repository.findGreetingEntityById(greetingId)
                 .map(this::greetingToGreetingDTO);
     }
 
-    public void updateGreetingWithId(Long greetingId, GreetingDto request) {
+    public void updateGreetingWithId(String greetingId, GreetingDto request) {
         Optional<GreetingEntity> optionalGreetingEntity = repository.findGreetingEntityById(greetingId);
         if (optionalGreetingEntity.isPresent()) {
             optionalGreetingEntity.get().setMessage(request.getMessage());
@@ -36,7 +36,7 @@ public class GreetingService {
         }
     }
 
-    public void deleteGreetingById(Long greetingId) {
+    public void deleteGreetingById(String greetingId) {
         Optional<GreetingEntity> optionalGreetingEntity = repository.findGreetingEntityById(greetingId);
         if (optionalGreetingEntity.isPresent()) {
             repository.delete(optionalGreetingEntity.get());
@@ -51,7 +51,7 @@ public class GreetingService {
 
     private GreetingDto greetingToGreetingDTO(GreetingEntity entity) {
         GreetingDto dto = new GreetingDto();
-        dto.setId(entity.getId());
+        dto.setId(entity.getId().toHexString());
         dto.setMessage(entity.getMessage());
         return dto;
     }

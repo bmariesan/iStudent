@@ -1,11 +1,12 @@
 package ro.ubb.istudent.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.bson.types.ObjectId;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import ro.ubb.istudent.domain.GreetingEntity;
 
 import java.util.Optional;
 
-public interface GreetingRepository extends CrudRepository<GreetingEntity, Long> {
+public interface GreetingRepository extends MongoRepository<GreetingEntity, ObjectId> {
 
-    Optional<GreetingEntity> findGreetingEntityById(Long greetingId);
+    Optional<GreetingEntity> findGreetingEntityById(String greetingId);
 }

@@ -32,7 +32,7 @@ class GreetingServiceTest {
         GreetingDto savedGreeting = service.createGreeting(createGreetingDto("We come in peace!"));
         Assertions.assertAll("Saving greetings should work",
                 () -> assertNotNull(savedGreeting, "Greeting creation failed"),
-                () -> assertTrue(savedGreeting.getId() > 0, "Greeting is not saved"),
+                () -> assertNotNull(savedGreeting.getId(), "Greeting is not saved"),
                 () -> assertEquals("We come in peace!", savedGreeting.getMessage(), "Invalid greeting message"));
     }
 
