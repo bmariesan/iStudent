@@ -1,4 +1,4 @@
-package ro.ubb.samples.creational.factory;
+package ro.ubb.samples.creational.factory.maze_game;
 
 class Room {
     void connect(Room otherRoom) {
