@@ -1,4 +1,4 @@
-package ro.ubb.samples.misc.person.base;
+package ro.ubb.samples.misc.person.model;
 
 import org.springframework.core.style.ToStringCreator;
 

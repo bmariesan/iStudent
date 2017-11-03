@@ -1,10 +1,10 @@
-package ro.ubb.samples.misc.person;
+package ro.ubb.samples.misc.person.service;
 
-class ServiceManager {
+public class ServiceManager {
 
     private static Service INSTANCE;
 
-    static Service getService() {
+    public static Service getService() {
         if (INSTANCE == null) {
             INSTANCE = new ServiceImpl();
         }

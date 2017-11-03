@@ -1,9 +1,15 @@
-package ro.ubb.samples.misc.person.monitor;
+package ro.ubb.samples.misc.person.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.style.ToStringCreator;
-import ro.ubb.samples.misc.person.base.Person;
+import ro.ubb.samples.misc.person.model.Person;
+
+public class AdapterService {
+
+    Person wrapPerson(Person p) {
+        return new MonitoredPerson(p);
+    }
+}
 
 /**
  * TODO Q: Why does it have to also extend Person?
@@ -17,6 +23,7 @@ class MonitoredPerson extends Person {
 
     /**
      * TODO: Q: notice the visibility level of the constructor
+     *
      * @param person
      */
     MonitoredPerson(Person person) {

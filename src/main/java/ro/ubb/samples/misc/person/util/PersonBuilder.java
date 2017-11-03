@@ -1,11 +1,10 @@
-package ro.ubb.samples.misc.person.creational;
+package ro.ubb.samples.misc.person.util;
 
-import ro.ubb.samples.misc.person.base.Person;
-import ro.ubb.samples.misc.person.university.Professor;
-import ro.ubb.samples.misc.person.university.Secretary;
-import ro.ubb.samples.misc.person.university.Student;
+import ro.ubb.samples.misc.person.model.Person;
+import ro.ubb.samples.misc.person.model.university.Professor;
+import ro.ubb.samples.misc.person.model.university.Secretary;
+import ro.ubb.samples.misc.person.model.university.Student;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;

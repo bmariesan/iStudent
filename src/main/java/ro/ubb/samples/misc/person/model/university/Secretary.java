@@ -1,8 +1,8 @@
-package ro.ubb.samples.misc.person.company;
+package ro.ubb.samples.misc.person.model.university;
 
-import ro.ubb.samples.misc.person.base.Person;
+import ro.ubb.samples.misc.person.model.Person;
 
-class Worker extends Person {
+public class Secretary extends Person {
 
     private int salary;
 
