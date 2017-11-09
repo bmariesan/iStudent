@@ -1,6 +1,6 @@
-package ro.ubb.samples.misc.person.university;
+package ro.ubb.samples.misc.person.model.university;
 
-import ro.ubb.samples.misc.person.base.Person;
+import ro.ubb.samples.misc.person.model.Person;
 
 import java.time.Year;
 

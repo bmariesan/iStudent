@@ -1,8 +1,8 @@
-package ro.ubb.samples.misc.person.university;
+package ro.ubb.samples.misc.person.model.company;
 
-import ro.ubb.samples.misc.person.base.Person;
+import ro.ubb.samples.misc.person.model.Person;
 
-public class Professor extends Person {
+public class Manager extends Person {
 
     private String title;
     private int salary;

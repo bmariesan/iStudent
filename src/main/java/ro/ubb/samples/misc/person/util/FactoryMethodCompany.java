@@ -1,9 +1,10 @@
-package ro.ubb.samples.misc.person.company;
+package ro.ubb.samples.misc.person.util;
 
 import org.thymeleaf.util.StringUtils;
-import ro.ubb.samples.misc.person.base.NullPerson;
-import ro.ubb.samples.misc.person.base.Person;
-import ro.ubb.samples.misc.person.creational.FactoryMethodAbstr;
+import ro.ubb.samples.misc.person.model.NullPerson;
+import ro.ubb.samples.misc.person.model.Person;
+import ro.ubb.samples.misc.person.model.company.Manager;
+import ro.ubb.samples.misc.person.model.company.Worker;
 
 public class FactoryMethodCompany extends FactoryMethodAbstr {
 

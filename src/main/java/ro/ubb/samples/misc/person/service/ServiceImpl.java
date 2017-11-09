@@ -1,11 +1,11 @@
-package ro.ubb.samples.misc.person;
+package ro.ubb.samples.misc.person.service;
 
-import ro.ubb.samples.misc.person.base.NullPerson;
-import ro.ubb.samples.misc.person.base.Person;
-import ro.ubb.samples.misc.person.company.FactoryMethodCompany;
-import ro.ubb.samples.misc.person.creational.FactoryMethodAbstr;
-import ro.ubb.samples.misc.person.creational.FactorySimple;
-import ro.ubb.samples.misc.person.university.FactoryMethodUniversity;
+import ro.ubb.samples.misc.person.model.NullPerson;
+import ro.ubb.samples.misc.person.model.Person;
+import ro.ubb.samples.misc.person.util.FactoryMethodCompany;
+import ro.ubb.samples.misc.person.util.FactoryMethodAbstr;
+import ro.ubb.samples.misc.person.util.FactorySimple;
+import ro.ubb.samples.misc.person.util.FactoryMethodUniversity;
 
 public class ServiceImpl implements Service {
 
