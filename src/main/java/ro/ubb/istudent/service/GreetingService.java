@@ -3,7 +3,6 @@ package ro.ubb.istudent.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ro.ubb.istudent.domain.GreetingEntity;
 import ro.ubb.istudent.dto.GreetingDto;
 import ro.ubb.istudent.repository.GreetingRepository;
@@ -11,7 +10,6 @@ import ro.ubb.istudent.repository.GreetingRepository;
 import java.util.Optional;
 
 @Service
-@Transactional
 public class GreetingService {
 
     private static final Logger LOG = LoggerFactory.getLogger(GreetingService.class);
@@ -21,7 +19,6 @@ public class GreetingService {
         this.repository = repository;
     }
 
-    @Transactional(readOnly = true)
     public Optional<GreetingDto> findGreetingById(String greetingId) {
         return repository.findGreetingEntityById(greetingId)
                 .map(this::greetingToGreetingDTO);

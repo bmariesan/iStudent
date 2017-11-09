@@ -20,7 +20,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = IStudentApplication.class)
 @DisplayName("Greeting service integration tests")
-@Transactional
 class GreetingServiceTest {
 
     @Autowired
