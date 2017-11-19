@@ -22,7 +22,7 @@ public class WithRedistributionStrategy implements RedistributionStrategy {
 
     private List<Component> redistributePercentage(final Double usedPercentage, final List<Component> components) {
         return components.stream()
-                .map(component -> component.adjustPercentageWith(getLowPriorityPercentage(usedPercentage, components)))
+                .map(component -> component.adjustPercentageWith(getLowestImportancePercentage(usedPercentage, components)))
                 .collect(Collectors.toList());
     }
 
@@ -31,9 +31,9 @@ public class WithRedistributionStrategy implements RedistributionStrategy {
      * @implNote - reminderPercentage / sumOfPriorityValues
      * (e.g. 1 High + 2 Medium = 4 Low + 2 * 2 Low = 8 Low = 8 as a sum of priorities)
      */
-    private Double getLowPriorityPercentage(final Double usedPercentage, final List<Component> components) {
+    private Double getLowestImportancePercentage(final Double usedPercentage, final List<Component> components) {
         return (100.0 - usedPercentage) / components.stream()
-                .map(component -> component.getPriority().getValue())
+                .map(component -> component.getImportance().getValue())
                 .reduce((acc, priority) -> acc + priority).orElse(0);
     }
 }
