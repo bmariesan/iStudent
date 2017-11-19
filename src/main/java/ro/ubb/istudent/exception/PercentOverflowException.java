@@ -7,7 +7,7 @@ package ro.ubb.istudent.exception;
 
 public class PercentOverflowException extends RuntimeException {
 
-    public PercentOverflowException(final Double value) {
-        super("The grading criteria's percentage of " + value + " is over the 100% limit");
+    public PercentOverflowException() {
+        super("The grading criteria's percentage is over the 100% limit");
     }
 }

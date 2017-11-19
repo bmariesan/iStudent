@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import ro.ubb.istudent.domain.Component;
 import ro.ubb.istudent.domain.GradingCriteria;
 import ro.ubb.istudent.exception.PercentOverflowException;
+import ro.ubb.istudent.util.grading.criteria.GradingCriteriaBuilder;
 
 import java.util.Random;
 import java.util.function.Function;
@@ -12,7 +13,7 @@ import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static ro.ubb.istudent.domain.ComponentPriority.*;
+import static ro.ubb.istudent.domain.ComponentImportance.*;
 import static ro.ubb.istudent.domain.ComponentType.*;
 
 /**
@@ -40,6 +41,23 @@ class GradingCriteriaBuilderTest {
     }
 
     @Test
+    @DisplayName("Building Grading Criteria With No Redistribution")
+    void isBuildingTrivialCriteriaNoRedistribution() {
+        // when:
+        GradingCriteriaBuilder builder = new GradingCriteriaBuilder()
+                .addComponent(new Component(FINAL_EXAM, 50.0))
+                .addComponent(new Component(PARTIAL_EXAM, 10.0))
+                .addComponent(new Component(PARTIAL_EXAM, 25.0))
+                .withoutRedistribution();
+        // when:
+        PercentOverflowException actual =
+                assertThrows(PercentOverflowException.class, builder::build);
+        // then:
+        assertThat(actual.getMessage()).contains("over the 100% limit");
+    }
+
+
+    @Test
     @DisplayName("Building Grading Criteria With Adjusted Percentage")
     void isBuildingAdjustedCriteria() {
         // when:
@@ -65,7 +83,8 @@ class GradingCriteriaBuilderTest {
                 .addComponent(expected)
                 .addComponent(expected);
         // when:
-        PercentOverflowException actual = assertThrows(PercentOverflowException.class, builder::build);
+        PercentOverflowException actual =
+                assertThrows(PercentOverflowException.class, builder::build);
         // then:
         assertThat(actual.getMessage()).contains("over the 100% limit");
     }
