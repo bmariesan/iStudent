@@ -1,10 +1,10 @@
 package ro.ubb.istudent.domain;
 
-import java.util.List;
-
-import static ro.ubb.istudent.domain.ComponentImportance.HIGH;
-
+/**
+ * @author Alexandru Arnautu
+ * @version 1.0
+ */
 
 public interface Exercise {
-    Integer getScore();
+    Double getScore();
 }
