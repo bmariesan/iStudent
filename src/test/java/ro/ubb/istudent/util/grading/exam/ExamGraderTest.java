@@ -2,10 +2,7 @@ package ro.ubb.istudent.util.grading.exam;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ro.ubb.istudent.domain.CompletedExercise;
-import ro.ubb.istudent.domain.Exam;
-import ro.ubb.istudent.domain.Exercise;
-import ro.ubb.istudent.domain.Question;
+import ro.ubb.istudent.domain.*;
 import ro.ubb.istudent.exception.NoRightAnswer;
 
 import java.util.List;
@@ -23,17 +20,15 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ExamGraderTest {
 
-    private <T> Exam<Exercise> provideExamBasedOn(Question<T> question, T answer) {
-        return new Exam<>(singletonList(new CompletedExercise<>(question, answer)));
+    private <T> Exam<Exercise> provideExamBasedOn(Question<T> choiceQuestion, T answer) {
+        return new Exam<>(singletonList(new CompletedExercise<>(choiceQuestion, answer)));
     }
 
     @Test
     @DisplayName("Is Grading Text Exams?")
     void isGradingTextExams() {
-        Question<List<String>> question = new QuestionBuilder<List<String>>()
-                .withText("Unit-Tests?")
-                .build();
-        Exam<Exercise> exam = provideExamBasedOn(question, null);
+        TextQuestion textQuestion = new TextQuestion("Unit-Tests?", 100.0);
+        Exam<Exercise> exam = provideExamBasedOn(textQuestion, null);
         // when:
         NoRightAnswer actual =
                 assertThrows(NoRightAnswer.class, exam::getTotalScore);
@@ -45,12 +40,12 @@ class ExamGraderTest {
     @DisplayName("Is Grading Multiple Choice Exams?")
     void isGradingMultipleChoiceExams() {
         // declaration:
-        Question<List<String>> question = new QuestionBuilder<List<String>>()
+        ChoiceQuestion<List<String>> choiceQuestion = new ChoiceQuestionBuilder<List<String>>()
                 .withText("Unit-Tests?")
                 .withPossibleAnswers(asList("yes", "obviously", "no"))
                 .withRightAnswer(asList("yes", "obviously"))
                 .build();
-        Exam<Exercise> exam = provideExamBasedOn(question, asList("yes", "obviously"));
+        Exam<Exercise> exam = provideExamBasedOn(choiceQuestion, asList("yes", "obviously"));
         // then:
         assertEquals((double)exam.getTotalScore(), 100.0);
     }
@@ -59,12 +54,12 @@ class ExamGraderTest {
     @DisplayName("Is Grading Single Choice Exams?")
     void isGradingSingleChoiceExams() {
         // declaration:
-        Question<String> question = new QuestionBuilder<String>()
+        ChoiceQuestion<String> choiceQuestion = new ChoiceQuestionBuilder<String>()
                 .withText("Unit-Tests?")
                 .withPossibleAnswers(asList("yes", "no"))
                 .withRightAnswer("yes")
                 .build();
-        Exam<Exercise> exam = provideExamBasedOn(question, "yes");
+        Exam<Exercise> exam = provideExamBasedOn(choiceQuestion, "yes");
         // then:
         assertEquals((double)exam.getTotalScore(), 100.0);
     }
