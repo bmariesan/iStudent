@@ -1,6 +1,5 @@
 package ro.ubb.istudent.domain;
-
-import com.sun.org.glassfish.external.statistics.Statistic;
+import ro.ubb.istudent.dto.Dto;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -8,15 +7,15 @@ import java.util.HashMap;
 /**
  * Created by usr on 22.11.2017.
  */
-public class Statistics implements Serializable {
+public class Statistics implements Dto {
 
     private HashMap<String,Integer> result;
     private Integer year;
-
-    public Statistics(HashMap<String, Integer> result, Integer year) {
-        this.result = result;
-        this.year = year;
-    }
+//
+//    public Statistics(HashMap<String, Integer> result, Integer year) {
+//        this.result = result;
+//        this.year = year;
+//    }
 
     public HashMap<String, Integer> getResult() {
         return result;

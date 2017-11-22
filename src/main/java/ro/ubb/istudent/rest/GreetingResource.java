@@ -51,5 +51,4 @@ public class GreetingResource {
         GreetingDto savedGreeting = service.createGreeting(greeting);
         return ResponseEntity.created(new URI(baseUrl + GREETING_CONTROLLER_MAPPING + "/" + savedGreeting.getId())).build();
     }
-
 }
