@@ -5,17 +5,21 @@ import ro.ubb.istudent.repository.StudentRepository;
 
 import java.util.Map;
 
-public class AverageStatistic implements IStatistic {
+public class CourseStatistic implements IStatistic {
     private Map<String, Integer> studentAverageMap;
 
 
-    public AverageStatistic(CourseRepository courseRepository, StudentRepository studentRepository){
+    public CourseStatistic(CourseRepository courseRepository, StudentRepository studentRepository){
 
     }
 
-
     @Override
     public IStatistic generateStatistic() {
+        return null;
+    }
+
+    @Override
+    public Map<String, Float> getData() {
         return null;
     }
 }
