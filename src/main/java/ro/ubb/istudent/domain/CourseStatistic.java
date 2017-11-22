@@ -2,9 +2,14 @@ package ro.ubb.istudent.domain;
 
 import java.util.Map;
 
-public class AgeStatistic implements IStatistic {
+public class CourseStatistic implements IStatistic {
+    private Map<String, Float> studentAverage;
 
-    private Map<String,Float> ageAverage;
+
+    public CourseStatistic(){
+
+    }
+
 
     @Override
     public IStatistic generateStatistic() {
@@ -15,4 +20,6 @@ public class AgeStatistic implements IStatistic {
     public Map<String, Float> getData() {
         return null;
     }
+
+
 }

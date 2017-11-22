@@ -1,12 +1,12 @@
-package ro.ubb.istudent;
+package ro.ubb.istudent.StatisticFactory;
 
 import ro.ubb.istudent.domain.*;
 
-public class StatisticFactory {
+public class StatisticFactory implements IStatisticFactory{
 
-    public static IStatistic getStatistic(String criteria){
-        if ( criteria.equals("average") )
-            return new AverageStatistic();
+    public  IStatistic getStatistic(String criteria){
+        if ( criteria.equals("course") )
+            return new CourseStatistic();
         else if ( criteria.equals("age") )
             return new AgeStatistic();
         else if ( criteria.equals("country") )
