@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 @Controller
 public class ReportController {
 
-    IReportService service = new ReportService();
 
     @RequestMapping(value = "/report", method = RequestMethod.GET)
     public String home() {
