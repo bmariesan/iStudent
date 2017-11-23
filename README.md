@@ -47,6 +47,7 @@ Enjoy coding :)
 - __[Course 4](https://docs.google.com/presentation/d/1fzrjC-HwMg7WEsOtEXUHubnNU1c8CU1OaFyv4UXRJfA): Behavioral Patterns (State, Strategy, Template)__
 - __[Course 5](https://docs.google.com/presentation/d/1ST44IKG6YdCsIeFgGLhVFe7AAfv3q2Bbc5qe_WgXDQM): Recap (Factory, Builder, Singleton, Adapter, Composite, Proxy)__
 - __[Course 6](https://docs.google.com/presentation/d/13_ti3b6dvfMjiNsu3JwDoGHoYVfboajH-log6ltRf3Q): Architectural Patterns (MVVM, MVP, MVC), JS Module Pattern__
+- __[Course 7](https://docs.google.com/presentation/d/1Ve1qciit3QQGJtPLZeckjccqrAInAdheE9_R5_geVuE): Enterprise Integration Patterns__
 
 ## __[Attendance status](https://docs.google.com/spreadsheets/d/1lzO3BhkjEk6xRPxoFb3Yq5RtlE43MPsmJ1ofIl_kk9M/edit?usp=sheets_home&ths=true)__ of students
 
