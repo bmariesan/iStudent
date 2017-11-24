@@ -52,3 +52,30 @@ Enjoy coding :)
 ## __[Attendance status](https://docs.google.com/spreadsheets/d/1lzO3BhkjEk6xRPxoFb3Yq5RtlE43MPsmJ1ofIl_kk9M/edit?usp=sheets_home&ths=true)__ of students
 
 ## __[Self-scheduling for labs](https://docs.google.com/spreadsheets/d/16gnOL0lQRFnXmxHOGag_XkTWqVXekKKYTLMFK_mtWec/edit#gid=0)__, for a more balanced number of students at each laboratory
+
+
+# Laboratory presentation requirements __[scheduling and buzzwords](https://docs.google.com/spreadsheets/d/16gnOL0lQRFnXmxHOGag_XkTWqVXekKKYTLMFK_mtWec/edit#gid=199462140)__
+- Each group can have 1 or 2 people presenting per laboratory.
+-- 1 person has a 10min timeslot for presenting.
+-- 2 people have a 20min timeslot for presenting.
+- If few people are presenting, the timeslots can vary.
+
+## Each presentation (for each person) must have the following:
+1) Production usage of a Design Pattern 
+From repositories such as:
+- Spring Framework
+- JUnit framework
+- Any project dependencies used
+- [GitHub trending repos](https://github.com/trending/java)
+- Your code at work (if it is allowed)
+
+2) Buzzword
+- Each buzzword can be presented by a maximum of 2 people, __from different groups__
+- The spreadsheet linked in the title header has the list of buzzwords, you can write your name to one to reserve it
+
+3) Current project progress
+- Any design patterns used
+- Progress of functionality
+- Code explanations
+
+
