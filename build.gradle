@@ -48,6 +48,13 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-data-mongodb')
     compile("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security'
+    compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.7.0'
+    compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.6.1'
+    compile group: 'org.springframework', name: 'spring-aspects'
+
+    compileOnly 'org.projectlombok:lombok:1.16.18'
+
     compile group: 'com.rabbitmq', name: 'amqp-client', version: '5.0.0'
 
     runtime('com.h2database:h2')
