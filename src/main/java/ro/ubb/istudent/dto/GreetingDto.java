@@ -1,8 +1,12 @@
 package ro.ubb.istudent.dto;
 
-public class GreetingDto implements Dto {
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+public class GreetingDto {
 
     private String id;
+
     private String message;
 
     public String getId() {
