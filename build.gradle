@@ -46,6 +46,7 @@ configurations {
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile('net.sourceforge.nekohtml:nekohtml:1.9.21')
     compile('org.springframework.boot:spring-boot-starter-data-mongodb')
     compile("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-security'
