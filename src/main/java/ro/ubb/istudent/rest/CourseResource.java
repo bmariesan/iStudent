@@ -35,4 +35,5 @@ public class CourseResource {
         List<CourseDto> courses = service.findAll();
         return new ResponseEntity<List<CourseDto>>(courses, HttpStatus.OK);
     }
+
 }

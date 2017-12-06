@@ -7,5 +7,5 @@ import ro.ubb.istudent.domain.CourseEntity;
 import java.util.Optional;
 
 public interface CourseRepository extends MongoRepository<CourseEntity, ObjectId> {
-    Optional<CourseEntity> findCourseEntityById(String greetingId);
+    Optional<CourseEntity> findCourseEntityById(String courseId);
 }
