@@ -1,8 +1,6 @@
-package ro.ubb.istudent.domain;
+package domain;
 
 /**
- * Database template entity for exams.
- *
  * @author Alexandru Arnautu
  * @version 1.0
  */
@@ -11,7 +9,6 @@ public class NotCompletedExercise<T> implements Exercise {
 
     private final Question<T> question;
 
-    // TODO: Improve based on real representation.
     public NotCompletedExercise(final Question<T> question) {
         this.question = question;
     }

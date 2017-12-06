@@ -1,4 +1,4 @@
-package ro.ubb.istudent.domain;
+package domain;
 
 import java.util.Optional;
 
@@ -8,6 +8,6 @@ import java.util.Optional;
  */
 
 public interface Question<T> {
-    public Optional<T> getAnswer();
-    public Double getPoints();
+    Optional<T> getAnswer();
+    Double getPoints();
 }

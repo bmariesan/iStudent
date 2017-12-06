@@ -1,21 +1,13 @@
-package ro.ubb.istudent.util.grading.criteria;
+package grading;
 
 import com.google.common.collect.ImmutableList;
-import ro.ubb.istudent.domain.Component;
-import ro.ubb.istudent.domain.GradingCriteria;
-import ro.ubb.istudent.exception.PercentOverflowException;
+import domain.Component;
+import domain.GradingCriteria;
+import exception.PercentOverflowException;
 
 import java.util.List;
 
 /**
- * <p>Builds a grading criteria (GradingCriteria)</p>
- * <p>
- * The helper makes sure that the result criteria has the total percentage equal with 100.0%
- * If the given components have a total percentage over 100%, the builder will throw a PercentOverflowException.
- * If the given components have a total percentage under 100%,
- * the helper will adjust the value of the component's percentage to match the 100% limit.
- * </p>
- *
  * @author Alexandru Stoica
  * @version 1.0
  */
@@ -46,11 +38,6 @@ public class GradingCriteriaBuilder {
         return this;
     }
 
-    /**
-     * @throws PercentOverflowException - if the total percentage of the grading criteria > 100% or
-     *                                  if the total percentage of the grading criteria != 100 and
-     *                                  the redistribution is deactivated.
-     */
     public GradingCriteria build() throws PercentOverflowException {
         return new GradingCriteria(strategy.redistribute(getUsedPercentage(), components));
     }

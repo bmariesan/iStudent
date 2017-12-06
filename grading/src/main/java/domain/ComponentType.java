@@ -1,4 +1,4 @@
-package ro.ubb.istudent.domain;
+package domain;
 
 /**
  * @author Alexandru Stoica

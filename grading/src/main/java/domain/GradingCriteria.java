@@ -1,10 +1,8 @@
-package ro.ubb.istudent.domain;
+package domain;
 
 import java.util.List;
 
 /**
- * <p>Describes how the final grade will be calculated.</p>
- *
  * @author Alexandru Stoica
  * @version 1.0
  */

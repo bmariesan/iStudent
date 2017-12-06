@@ -1,17 +1,18 @@
-package ro.ubb.istudent.util.grading.exam;
+package grading;
 
+import domain.*;
+import exam.ChoiceQuestionBuilder;
+import exception.NoRightAnswer;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ro.ubb.istudent.domain.*;
-import ro.ubb.istudent.exception.NoRightAnswer;
 
 import java.util.List;
 
 import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * @author Alexandru Stoica
@@ -31,9 +32,9 @@ class ExamGraderTest {
         Exam<Exercise> exam = provideExamBasedOn(textQuestion, null);
         // when:
         NoRightAnswer actual =
-                assertThrows(NoRightAnswer.class, exam::getTotalScore);
+                Assertions.assertThrows(NoRightAnswer.class, exam::getTotalScore);
         // then:
-        assertThat(actual.getMessage()).contains("There are no right answers to wrong questions");
+        assertThat(actual.getMessage(), containsString("There are no right answers to wrong questions"));
     }
 
     @Test
@@ -47,7 +48,7 @@ class ExamGraderTest {
                 .build();
         Exam<Exercise> exam = provideExamBasedOn(choiceQuestion, asList("yes", "obviously"));
         // then:
-        assertEquals((double)exam.getTotalScore(), 100.0);
+        Assertions.assertEquals((double)exam.getTotalScore(), 100.0);
     }
 
     @Test
@@ -61,6 +62,6 @@ class ExamGraderTest {
                 .build();
         Exam<Exercise> exam = provideExamBasedOn(choiceQuestion, "yes");
         // then:
-        assertEquals((double)exam.getTotalScore(), 100.0);
+        Assertions.assertEquals((double)exam.getTotalScore(), 100.0);
     }
 }

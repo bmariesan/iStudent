@@ -1,20 +1,24 @@
-package ro.ubb.istudent.util;
+package grading;
 
+import domain.Component;
+import domain.GradingCriteria;
+import exception.PercentOverflowException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ro.ubb.istudent.domain.Component;
-import ro.ubb.istudent.domain.GradingCriteria;
-import ro.ubb.istudent.exception.PercentOverflowException;
-import ro.ubb.istudent.util.grading.criteria.GradingCriteriaBuilder;
 
 import java.util.Random;
 import java.util.function.Function;
 import java.util.stream.IntStream;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-import static ro.ubb.istudent.domain.ComponentImportance.*;
-import static ro.ubb.istudent.domain.ComponentType.*;
+import static domain.ComponentImportance.HIGH;
+import static domain.ComponentImportance.LOW;
+import static domain.ComponentImportance.MEDIUM;
+import static domain.ComponentType.ASSIGNMENT;
+import static domain.ComponentType.FINAL_EXAM;
+import static domain.ComponentType.PARTIAL_EXAM;
+import static org.assertj.core.api.Java6Assertions.assertThat;
+
 
 /**
  * @author Alexandru Stoica
@@ -37,7 +41,7 @@ class GradingCriteriaBuilderTest {
                 .addComponent(new Component(PARTIAL_EXAM, 25.0))
                 .build();
         // then:
-        assertEquals(100.0, (double) getTotalPercentageFromCriteria(actual));
+        Assertions.assertEquals(100.0, (double) getTotalPercentageFromCriteria(actual));
     }
 
     @Test
@@ -51,7 +55,7 @@ class GradingCriteriaBuilderTest {
                 .withoutRedistribution();
         // when:
         PercentOverflowException actual =
-                assertThrows(PercentOverflowException.class, builder::build);
+                Assertions.assertThrows(PercentOverflowException.class, builder::build);
         // then:
         assertThat(actual.getMessage()).contains("over the 100% limit");
     }
@@ -67,11 +71,11 @@ class GradingCriteriaBuilderTest {
                 .addComponent(new Component(PARTIAL_EXAM, MEDIUM, 10.0))
                 .build();
         // then:
-        assertAll("Is Adjusting Percentages",
-                () -> assertEquals(65.0, (double) actual.getComponents().get(0).getPercent()),
-                () -> assertEquals(17.5, (double) actual.getComponents().get(1).getPercent()),
-                () -> assertEquals(17.5, (double) actual.getComponents().get(2).getPercent()),
-                () -> assertEquals(100.0, (double) getTotalPercentageFromCriteria(actual)));
+        Assertions.assertAll("Is Adjusting Percentages",
+                () -> Assertions.assertEquals(65.0, (double) actual.getComponents().get(0).getPercent()),
+                () -> Assertions.assertEquals(17.5, (double) actual.getComponents().get(1).getPercent()),
+                () -> Assertions.assertEquals(17.5, (double) actual.getComponents().get(2).getPercent()),
+                () -> Assertions.assertEquals(100.0, (double) getTotalPercentageFromCriteria(actual)));
     }
 
     @Test
@@ -84,7 +88,7 @@ class GradingCriteriaBuilderTest {
                 .addComponent(expected);
         // when:
         PercentOverflowException actual =
-                assertThrows(PercentOverflowException.class, builder::build);
+                Assertions.assertThrows(PercentOverflowException.class, builder::build);
         // then:
         assertThat(actual.getMessage()).contains("over the 100% limit");
     }
@@ -103,7 +107,7 @@ class GradingCriteriaBuilderTest {
                 .addComponent(new Component(ASSIGNMENT, LOW, generatePercentage.apply(20)))
                 .build();
         // then:
-        assertEquals(100.0, (double) getTotalPercentageFromCriteria(actual));
+        Assertions.assertEquals(100.0, (double) getTotalPercentageFromCriteria(actual));
     }
 
     private Double getTotalPercentageFromCriteria(GradingCriteria actual) {
