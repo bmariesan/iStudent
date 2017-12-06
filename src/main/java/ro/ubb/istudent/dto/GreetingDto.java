@@ -1,7 +1,6 @@
 package ro.ubb.istudent.dto;
 
 public class GreetingDto implements Dto {
-
     private String id;
     private String message;
 
