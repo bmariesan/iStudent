@@ -1,7 +1,7 @@
-package ro.ubb.istudent.util.grading.criteria;
+package grading;
 
-import ro.ubb.istudent.domain.Component;
-import ro.ubb.istudent.exception.PercentOverflowException;
+import domain.Component;
+import exception.PercentOverflowException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,11 +26,6 @@ public class WithRedistributionStrategy implements RedistributionStrategy {
                 .collect(Collectors.toList());
     }
 
-    /**
-     * @return - the percentage addition value of a low priority component.
-     * @implNote - reminderPercentage / sumOfPriorityValues
-     * (e.g. 1 High + 2 Medium = 4 Low + 2 * 2 Low = 8 Low = 8 as a sum of priorities)
-     */
     private Double getLowestImportancePercentage(final Double usedPercentage, final List<Component> components) {
         return (100.0 - usedPercentage) / components.stream()
                 .map(component -> component.getImportance().getValue())

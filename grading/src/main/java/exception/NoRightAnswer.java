@@ -1,4 +1,4 @@
-package ro.ubb.istudent.exception;
+package exception;
 
 /**
  * @author Alexandru Arnautu
@@ -6,7 +6,6 @@ package ro.ubb.istudent.exception;
  */
 
 public class NoRightAnswer extends RuntimeException {
-
     public NoRightAnswer() {
         super("There are no right answers to wrong questions! :)");
     }
