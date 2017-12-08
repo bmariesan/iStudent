@@ -1,4 +1,4 @@
-package domain;
+package ro.ubb.istudent.grading.domain;
 
 /**
  * <p>Describes the importance of a component from the grading criteria.</p>

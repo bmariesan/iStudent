@@ -1,6 +1,6 @@
-package domain;
+package ro.ubb.istudent.grading.domain;
 
-import exception.NoRightAnswer;
+import ro.ubb.istudent.grading.exception.NoRightAnswer;
 
 public class CompletedExercise<T> implements Exercise {
 

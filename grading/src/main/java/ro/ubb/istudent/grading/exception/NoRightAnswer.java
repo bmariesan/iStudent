@@ -1,4 +1,4 @@
-package exception;
+package ro.ubb.istudent.grading.exception;
 
 /**
  * @author Alexandru Arnautu
