@@ -1,7 +1,7 @@
-package exam;
+package ro.ubb.istudent.grading.exam;
 
 
-import domain.ChoiceQuestion;
+import ro.ubb.istudent.grading.domain.ChoiceQuestion;
 import java.util.List;
 import static java.util.Collections.emptyList;
 

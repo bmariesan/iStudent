@@ -1,6 +1,6 @@
-package domain;
+package ro.ubb.istudent.grading.domain;
 
-import static domain.ComponentImportance.HIGH;
+import static ro.ubb.istudent.grading.domain.ComponentImportance.HIGH;
 
 /**
  * <p>An object with represents a member of the grading criteria.</p>

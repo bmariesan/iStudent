@@ -1,4 +1,4 @@
-package domain;
+package ro.ubb.istudent.grading.domain;
 
 /**
  * @author Alexandru Arnautu

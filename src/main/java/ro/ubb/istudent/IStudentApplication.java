@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @EnableAutoConfiguration
 public class IStudentApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(IStudentApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(IStudentApplication.class, args);
+    }
 }
