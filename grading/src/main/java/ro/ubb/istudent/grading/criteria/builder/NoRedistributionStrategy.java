@@ -1,6 +1,6 @@
-package ro.ubb.istudent.grading.criteria;
+package ro.ubb.istudent.grading.criteria.builder;
 
-import ro.ubb.istudent.grading.domain.Component;
+import ro.ubb.istudent.grading.criteria.component.Component;
 import ro.ubb.istudent.grading.exception.PercentOverflowException;
 
 import java.util.List;
@@ -13,8 +13,9 @@ import java.util.List;
 public class NoRedistributionStrategy implements RedistributionStrategy {
 
     @Override
-    public List<Component> redistribute(final Double usedPercentage,
-                                        final List<Component> components) throws PercentOverflowException {
+    public List<Component> redistribute(
+            final Double usedPercentage,
+            final List<Component> components) throws PercentOverflowException {
         if (usedPercentage != 100.0)
             throw new PercentOverflowException();
         return components;

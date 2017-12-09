@@ -1,6 +1,11 @@
-package ro.ubb.istudent.grading.domain;
+package ro.ubb.istudent.grading.criteria.component;
 
-import static ro.ubb.istudent.grading.domain.ComponentImportance.HIGH;
+import jdk.nashorn.internal.ir.annotations.Immutable;
+
+import java.util.Objects;
+
+import static ro.ubb.istudent.grading.criteria.component.ComponentImportance.HIGH;
+import static ro.ubb.istudent.grading.criteria.component.ComponentType.FINAL_EXAM;
 
 /**
  * <p>An object with represents a member of the grading criteria.</p>
@@ -14,6 +19,7 @@ import static ro.ubb.istudent.grading.domain.ComponentImportance.HIGH;
  * @version 1.0
  */
 
+@Immutable
 public class Component {
 
     private final ComponentType type;
@@ -30,6 +36,10 @@ public class Component {
 
     public Component(final ComponentType type, final Double percent) {
         this(type, HIGH, percent);
+    }
+
+    public Component() {
+        this(FINAL_EXAM, HIGH, 100.0);
     }
 
     public ComponentType getType() {
@@ -50,7 +60,7 @@ public class Component {
      */
     public Component adjustPercentageWith(final Double lowestImportancePercentage) {
         return new Component(type, importance,
-                normalizeValueOf(lowestImportancePercentage * importance.getValue() + percent));
+                normalizeValueOf(lowestImportancePercentage * importance.value() + percent));
     }
 
     /**
@@ -59,5 +69,20 @@ public class Component {
      */
     private double normalizeValueOf(final double value) {
         return (value - (long) value == 0.5) ? value : (double) Math.round(value);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Component)) return false;
+        Component component = (Component) o;
+        return getType() == component.getType() &&
+                getImportance() == component.getImportance() &&
+                Objects.equals(getPercent(), component.getPercent());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getType(), getImportance(), getPercent());
     }
 }

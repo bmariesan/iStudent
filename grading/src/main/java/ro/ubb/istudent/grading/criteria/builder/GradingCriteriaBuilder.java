@@ -1,8 +1,8 @@
-package ro.ubb.istudent.grading.criteria;
+package ro.ubb.istudent.grading.criteria.builder;
 
 import com.google.common.collect.ImmutableList;
-import ro.ubb.istudent.grading.domain.Component;
-import ro.ubb.istudent.grading.domain.GradingCriteria;
+import ro.ubb.istudent.grading.criteria.GradingCriteria;
+import ro.ubb.istudent.grading.criteria.component.Component;
 import ro.ubb.istudent.grading.exception.PercentOverflowException;
 
 import java.util.List;
