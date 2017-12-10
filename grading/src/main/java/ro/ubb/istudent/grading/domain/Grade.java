@@ -1,5 +1,8 @@
 package ro.ubb.istudent.grading.domain;
 
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+
 import java.util.Date;
 
 /**
@@ -7,6 +10,8 @@ import java.util.Date;
  */
 public class Grade {
 
+    @Id
+    public String id;
     public Double value;
     public Date date;
     public Teacher teacher;
