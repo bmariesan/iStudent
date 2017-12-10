@@ -1,4 +1,4 @@
-package ro.ubb.main;
+package main;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
