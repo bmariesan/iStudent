@@ -1,4 +1,4 @@
-package ro.ubb.istudent.grading.domain;
+package ro.ubb.istudent.grading.criteria.component;
 
 /**
  * <p>Describes the importance of a component from the grading criteria.</p>
@@ -17,7 +17,7 @@ public enum ComponentImportance {
         this.value = value;
     }
 
-    public Integer getValue() {
+    public Integer value() {
         return value;
     }
 }

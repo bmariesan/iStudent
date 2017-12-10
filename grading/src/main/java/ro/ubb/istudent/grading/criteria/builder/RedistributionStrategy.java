@@ -1,6 +1,6 @@
-package ro.ubb.istudent.grading.criteria;
+package ro.ubb.istudent.grading.criteria.builder;
 
-import ro.ubb.istudent.grading.domain.Component;
+import ro.ubb.istudent.grading.criteria.component.Component;
 import ro.ubb.istudent.grading.exception.PercentOverflowException;
 import java.util.List;
 

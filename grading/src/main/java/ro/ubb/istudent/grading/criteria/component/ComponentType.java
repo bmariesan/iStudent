@@ -1,4 +1,4 @@
-package ro.ubb.istudent.grading.domain;
+package ro.ubb.istudent.grading.criteria.component;
 
 /**
  * @author Alexandru Stoica

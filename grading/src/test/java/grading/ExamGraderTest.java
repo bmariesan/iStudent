@@ -1,11 +1,11 @@
 package grading;
 
-import domain.*;
-import exam.ChoiceQuestionBuilder;
-import exception.NoRightAnswer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import ro.ubb.istudent.grading.domain.*;
+import ro.ubb.istudent.grading.exam.ChoiceQuestionBuilder;
+import ro.ubb.istudent.grading.exception.NoRightAnswer;
 
 import java.util.List;
 
