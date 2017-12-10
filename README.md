@@ -55,28 +55,74 @@ Enjoy coding :)
 ## __[Self-scheduling for labs](https://docs.google.com/spreadsheets/d/16gnOL0lQRFnXmxHOGag_XkTWqVXekKKYTLMFK_mtWec/edit#gid=0)__, for a more balanced number of students at each laboratory
 
 
-# Laboratory presentation requirements __[scheduling and buzzwords](https://docs.google.com/spreadsheets/d/16gnOL0lQRFnXmxHOGag_XkTWqVXekKKYTLMFK_mtWec/edit#gid=199462140)__
-- Each group can have 1 or 2 people presenting per laboratory.
--- 1 person has a 10min timeslot for presenting.
--- 2 people have a 20min timeslot for presenting.
-- If few people are presenting, the timeslots can vary.
+# Grading options:
+Option 1:
+- 50% individual presentations, during the semester
+- 50% final presentation, with the whole project team (max 6 people), at the end of the semester, before the exam period, in the "Presesiune" period
 
-## Each presentation (for each person) must have the following:
-1) Production usage of a Design Pattern 
-From repositories such as:
-- Spring Framework
-- JUnit framework
-- Any project dependencies used
-- [GitHub trending repos](https://github.com/trending/java)
-- Your code at work (if it is allowed)
+Option 2 (date to be decided), in case a student is uneligible for the first option, receives a grade under 5 on the first option, or is caught cheating at the first option:
+- written exam at the end of the semester, in the "Sesiune" period
 
-2) Buzzword
-- Each buzzword can be presented by a maximum of 2 people, __from different groups__
-- The spreadsheet linked in the title header has the list of buzzwords, you can write your name to one to reserve it
+Option 3 (20 feb), in case the student fails first options:
+- written exam after the exam period, in the "Restante" period
 
-3) Current project progress
-- Any design patterns used
-- Progress of functionality
-- Code explanations
+Bonus given for course attendance: max 2 points divided to the number of course attendances, added to the final exam grade and rounded up (ceiling rounding).
+
+# 1. Option 1: 
+
+## 1.1. Option 1, first half: Individual presentation during the semester requirements:
+
+## 1.1.1. Requirements __[scheduling and buzzwords](https://docs.google.com/spreadsheets/d/16gnOL0lQRFnXmxHOGag_XkTWqVXekKKYTLMFK_mtWec/edit#gid=199462140)__
+ - Each group can have 1 or 2 people presenting per laboratory.
+ -- 1 person has a 10min timeslot for presenting.
+ -- 2 people have a 20min timeslot for presenting.
+ - If few people are presenting, the timeslots can vary.
+ 
+## 1.1.2. Each presentation (for each person) must have the following:
+### 1.1.2.1. Production usage of a Design Pattern 
+ From repositories such as:
+ - Spring Framework
+ - JUnit framework
+ - Any project dependencies used
+ - [GitHub trending repos](https://github.com/trending/java)
+ - Your code at work (if it is allowed)
+ 
+### 1.1.2.2. Buzzword
+ - Each buzzword can be presented by a maximum of 2 people, __from different groups__
+ - The spreadsheet linked in the title header has the list of buzzwords, you can write your name to one to reserve it
+
+### 1.1.2.3. Current project progress
+ - Any design patterns used
+ - Progress of functionality
+ - Code explanations
 
 
+# 1.2. Option 1, second half: Final presentation, with the whole team (max 6 people)
+If a person from the team does not participate, that person will be graded using Option 2 (written exam)
+
+## 1.2.1. Presentation requirements for the team
+- Overall implementation of team task
+
+## 1.2.2. Presentation requirements for each team member:
+- Code contribution
+- Used Design Patterns
+- Purpose and added value of used Design Pattern
+- Git statistics shown for contributions brought
+
+# 2. Option 2: Written exam (sesiune)
+Exam will be given across multiple rows of students to prevent fraud.
+
+## 2.1. Exercise 1: Student is presented with a Basic Design Pattern
+### 2.1.1. Draw UML diagram
+### 2.1.2. Code example
+
+## 2.2. Exercise 2: Student is given a business use case:
+### 2.2.1. Name a Basic Design Pattern which can be used to solve this business use case
+### 2.2.2. Give reason and benefits for usage of this Pattern 
+
+## 2.3. Exercise 3: Student is given an Enterprise business use case:
+### 2.2.1. Name an Enterprise Integration Pattern which can be used to improve the messaging system
+### 2.2.2. Explain (drawing+text) information flow with given Enterprise Integration Pattern
+### 2.2.3. Give reason and benefits for usage of this Pattern
+
+# 3. Option 3: Written exam (restanta) - same requirements as Option 2)
