@@ -54,6 +54,7 @@ Enjoy coding :)
 
 ## __[Self-scheduling for labs](https://docs.google.com/spreadsheets/d/16gnOL0lQRFnXmxHOGag_XkTWqVXekKKYTLMFK_mtWec/edit#gid=0)__, for a more balanced number of students at each laboratory
 
+## __[Exams scheduling](https://goo.gl/forms/9ewYvWvFT6N06WlP2 ), to be filled out by 19th dec, end-of-day__
 
 # Grading options:
 Option 1:
@@ -112,7 +113,7 @@ If a person from the team does not participate, that person will be graded using
 # 2. Option 2: Written exam (sesiune)
 Exam will be given across multiple rows of students to prevent fraud.
 
-## 2.1. Exercise 1: Student is presented with a Basic Design Pattern
+## 2.1. Exercise 1: Student is presented with a Non-Enterprise Design Pattern
 ### 2.1.1. Draw UML class diagram
 ### 2.1.2. Provide use cases (minimum 2 but will be specified on each exam variant)
 ### 2.1.3. Pseudocode implementation
