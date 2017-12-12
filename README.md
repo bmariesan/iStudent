@@ -113,12 +113,16 @@ If a person from the team does not participate, that person will be graded using
 Exam will be given across multiple rows of students to prevent fraud.
 
 ## 2.1. Exercise 1: Student is presented with a Basic Design Pattern
-### 2.1.1. Draw UML diagram
+### 2.1.1. Draw UML class diagram
 ### 2.1.2. Code example
+### 2.1.3. Provide use cases (minimum 2 but will be specified on each exam variant)
+### 2.1.4. Pseudocode implementation
 
 ## 2.2. Exercise 2: Student is given a business use case:
-### 2.2.1. Name a Basic Design Pattern which can be used to solve this business use case
+### 2.2.1. Name a Design Pattern which can be used to solve this business use case
 ### 2.2.2. Give reason and benefits for usage of this Pattern 
+### 2.2.3. Draw UML class diagram
+### 2.1.4. Pseudocode implementation
 
 ## 2.3. Exercise 3: Student is given an Enterprise business use case:
 ### 2.2.1. Name an Enterprise Integration Pattern which can be used to improve the messaging system
