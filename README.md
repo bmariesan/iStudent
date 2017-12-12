@@ -60,10 +60,10 @@ Option 1:
 - 50% individual presentations, during the semester
 - 50% final presentation, with the whole project team (max 6 people), at the end of the semester, before the exam period, in the "Presesiune" period
 
-Option 2 (date to be decided), in case a student is uneligible for the first option, receives a grade under 5 on the first option, or is caught cheating at the first option:
+Option 2 (date to be decided), in case a student is uneligible for the first option, or receives a grade under 5 on the first option:
 - written exam at the end of the semester, in the "Sesiune" period
 
-Option 3 (20 feb), in case the student fails first options:
+Option 3 (20 feb), in case the student fails first options or is caught cheating at Option 1:
 - written exam after the exam period, in the "Restante" period
 
 Bonus given for course attendance: max 2 points divided to the number of course attendances, added to the final exam grade and rounded up (ceiling rounding).
@@ -114,9 +114,8 @@ Exam will be given across multiple rows of students to prevent fraud.
 
 ## 2.1. Exercise 1: Student is presented with a Basic Design Pattern
 ### 2.1.1. Draw UML class diagram
-### 2.1.2. Code example
-### 2.1.3. Provide use cases (minimum 2 but will be specified on each exam variant)
-### 2.1.4. Pseudocode implementation
+### 2.1.2. Provide use cases (minimum 2 but will be specified on each exam variant)
+### 2.1.3. Pseudocode implementation
 
 ## 2.2. Exercise 2: Student is given a business use case:
 ### 2.2.1. Name a Design Pattern which can be used to solve this business use case
