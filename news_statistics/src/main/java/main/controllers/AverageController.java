@@ -21,6 +21,7 @@ public class AverageController {
     public List<AverageDto> getSMA() {
         List<Pair<Date, List<Double>>> mockData = new ArrayList<>();
         mockData.add(new Pair<>(new Date(), Arrays.asList(1.0, 2.3, 5.0, 4.3)));
+        mockData.add(new Pair<>(new Date(), Arrays.asList(1.0, 2.0, 3.0, 4.0)));
         return averagesService.getSimpleMovingAverages(mockData);
 
     }
