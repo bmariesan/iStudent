@@ -9,10 +9,13 @@ import java.util.Date;
 public class AverageDto {
     private Date date;
     private Double average;
+    private Double weight;
 
-    public AverageDto(Date date, Double average) {
-        this.date = date;
-        this.average = average;
+
+    public AverageDto(AverageDtoBuilder builder) {
+        date = builder.date;
+        average = builder.average;
+        weight = builder.weight;
     }
 
     public Date getDate() {
@@ -29,5 +32,44 @@ public class AverageDto {
 
     public void setAverage(Double average) {
         this.average = average;
+    }
+
+    public Double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Double weight) {
+        this.weight = weight;
+    }
+    public static AverageDtoBuilder builder() {
+        return new AverageDtoBuilder();
+    }
+
+    public static class AverageDtoBuilder{
+        private Date date;
+        private Double average;
+        private Double weight;
+
+        public AverageDtoBuilder() {
+
+        }
+        public  AverageDtoBuilder  date(Date date) {
+            this.date = date;
+            return this;
+        }
+
+        public  AverageDtoBuilder average(Double average) {
+            this.average = average;
+            return  this;
+        }
+
+        public AverageDtoBuilder weight(Double weight) {
+            this.weight = weight;
+            return  this;
+        }
+
+        public AverageDto build() {
+            return new AverageDto(this);
+        }
     }
 }
