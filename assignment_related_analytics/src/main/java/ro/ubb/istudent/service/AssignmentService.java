@@ -12,7 +12,7 @@ import ro.ubb.istudent.repository.AssignmentRepository;
 @Transactional
 public class AssignmentService {
 
-    private static final Logger LOG = LoggerFactory.getLogger(GreetingService.class);
+    private static final Logger LOG = LoggerFactory.getLogger(AssignmentService.class);
 
     @Autowired
     private AssignmentRepository assignmentRepository;
