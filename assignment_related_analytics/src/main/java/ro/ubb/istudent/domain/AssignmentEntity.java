@@ -2,7 +2,9 @@ package ro.ubb.istudent.domain;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Document(collection = "assignment")
 public class AssignmentEntity {
@@ -10,23 +12,24 @@ public class AssignmentEntity {
     private Long id;
     private Long studentId;
     private Long courseId;
-    private Long materialId;
+    private List<Long> attachments;
     private FeedbackEntity feedback;
     private Date date;
     private Date deadline;
     private String description;
     private Boolean isCompleted;
 
-    public AssignmentEntity(Long id, Long studentId, Long courseId, Long materialId, FeedbackEntity feedback, Date date, Date deadline, String description) {
+    public AssignmentEntity(Long id, Long studentId, Long courseId, List<Long> attachments, FeedbackEntity feedback, Date date, Date deadline, String description) {
         this.id = id;
         this.studentId = studentId;
         this.courseId = courseId;
-        this.materialId = materialId;
+        this.attachments = attachments;
         this.feedback = feedback;
         this.date = date;
         this.deadline = deadline;
         this.description = description;
     }
+
 
     public Long getId() {
         return id;
@@ -52,14 +55,6 @@ public class AssignmentEntity {
         this.courseId = courseId;
     }
 
-    public Long getMaterialId() {
-        return materialId;
-    }
-
-    public void setMaterialId(Long materialId) {
-        this.materialId = materialId;
-    }
-
     public FeedbackEntity getFeedback() {
         return feedback;
     }
@@ -74,6 +69,14 @@ public class AssignmentEntity {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public void setAttachments(List<Long> attachments) {
+        this.attachments = attachments;
+    }
+
+    public List<Long> getAttachments() {
+        return attachments;
     }
 
     public Date getDeadline() {

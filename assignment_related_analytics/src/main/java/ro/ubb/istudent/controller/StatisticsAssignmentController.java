@@ -19,7 +19,12 @@ public class StatisticsAssignmentController {
 
     @RequestMapping(value = "/statistics/assignment/completed", method = RequestMethod.GET)
     public long getStatisticsForNumberOfCompletedAssignments() {
-        return  assignmentService.getNumberOfCompletedAssignmentsForEachCourse();
+        return assignmentService.getNumberOfCompletedAssignmentsForEachCourse();
+    }
+
+    @RequestMapping(value = "/statistics/assignment/attachements", method = RequestMethod.GET)
+    public long getNumberOfAssignmentsWithAttachements() {
+        return assignmentService.getNumberOfAssignmentsHavingFilesAttached();
     }
 
 }
