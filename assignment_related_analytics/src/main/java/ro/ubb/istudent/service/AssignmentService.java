@@ -24,4 +24,10 @@ public class AssignmentService {
                 .count();
     }
 
+    public Long getNumberOfCompletedAssignmentsForEachCourse() {
+        return assignmentRepository.findAll()
+                .stream()
+                .filter(assignmentEntity -> assignmentEntity.isCompleted())
+                .count();
+    }
 }

@@ -15,6 +15,7 @@ public class AssignmentEntity {
     private Date date;
     private Date deadline;
     private String description;
+    private Boolean isCompleted;
 
     public AssignmentEntity(Long id, Long studentId, Long courseId, Long materialId, FeedbackEntity feedback, Date date, Date deadline, String description) {
         this.id = id;
@@ -89,5 +90,13 @@ public class AssignmentEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Boolean isCompleted() {
+        return isCompleted;
+    }
+
+    public void setIsCompleted(Boolean completed) {
+        isCompleted = completed;
     }
 }
