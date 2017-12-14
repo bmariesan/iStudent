@@ -17,4 +17,9 @@ public class StatisticsAssignmentController {
             return assignmentService.getNumberOfAssignmentsHavingFeedbackFromTeachers();
     }
 
+    @RequestMapping(value = "/statistics/assignment/attachements", method = RequestMethod.GET)
+    public long getNumberOfAssignmentsWithAttachements() {
+        return assignmentService.getNumberOfAssignmentsHavingFilesAttached();
+    }
+
 }

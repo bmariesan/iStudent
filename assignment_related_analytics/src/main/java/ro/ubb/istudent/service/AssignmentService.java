@@ -24,4 +24,13 @@ public class AssignmentService {
                 .count();
     }
 
+    public Long getNumberOfAssignmentsHavingFilesAttached(){
+        return assignmentRepository.findAll()
+                .stream()
+                .filter(assignmentEntity -> !ObjectUtils.isEmpty(!assignmentEntity.getAttachments().isEmpty()))
+                .count();
+    }
+
+
+
 }
