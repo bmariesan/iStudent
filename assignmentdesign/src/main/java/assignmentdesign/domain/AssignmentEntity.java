@@ -25,4 +25,6 @@ public class AssignmentEntity implements Serializable {
     private List<String> attachmentPaths;
 
     private List<String> tips;
+
+    private Integer idFeedback;
 }
