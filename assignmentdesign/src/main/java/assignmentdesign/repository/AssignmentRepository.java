@@ -7,7 +7,9 @@ import java.util.List;
 
 public interface AssignmentRepository extends MongoRepository<AssignmentEntity, Long> {
 
-    <S extends AssignmentEntity> S insert(S entity);
+    <S extends AssignmentEntity> S save(S entity);
 
     List<AssignmentEntity> findAll();
+
+    AssignmentEntity findOne(Long id);
 }

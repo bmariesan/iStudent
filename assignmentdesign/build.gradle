@@ -58,6 +58,8 @@ dependencies {
     runtime('mysql:mysql-connector-java')
     providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
     testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile group: 'commons-io', name: 'commons-io', version: '2.6'
+    compile group: 'org.apache.commons', name: 'commons-collections4', version: '4.1'
 
     compileOnly 'org.projectlombok:lombok:1.16.18'
     apt "org.projectlombok:lombok:1.16.18"

@@ -10,9 +10,7 @@ import java.util.List;
  */
 public interface FeedbackRepository extends MongoRepository<FeedbackEntity, Long> {
 
-    <S extends FeedbackEntity> S insert(S entity);
-
-
+    <S extends FeedbackEntity> S save(S entity);
 
     List<FeedbackEntity> findAll();
 }

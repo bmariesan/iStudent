@@ -32,11 +32,11 @@ public class FeedbackObject {
     public FeedbackDto storeFeedback(Integer assId, FeedbackDto feedbackDto) {
 
         FeedbackEntity feedbackEntity= feedbackMapper.map(feedbackDto, FeedbackEntity.class);
-        FeedbackEntity storedFeedbackEntity= feedbackRepository.insert(feedbackEntity);
+        FeedbackEntity storedFeedbackEntity = feedbackRepository.save(feedbackEntity);
         AssignmentEntity assignmentEntity=assignmentRepository.findOne(Long.valueOf(assId));
 
         assignmentEntity.setIdFeedback(storedFeedbackEntity.getId());
-        assignmentRepository.insert(assignmentEntity);
+        assignmentRepository.save(assignmentEntity);
 
         return feedbackMapper.map(storedFeedbackEntity, FeedbackDto.class);
     }

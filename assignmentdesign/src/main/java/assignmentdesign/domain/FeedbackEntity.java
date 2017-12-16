@@ -20,7 +20,5 @@ public class FeedbackEntity implements Serializable{
 
     private String writtenByType;
     private Integer writtenById;
-    private Integer description;
-
-
+    private String description;
 }

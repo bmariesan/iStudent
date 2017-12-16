@@ -18,4 +18,6 @@ public class AssignmentDto {
     private List<String> attachmentPaths;
 
     private List<String> tips;
+
+    private Integer idFeedback;
 }

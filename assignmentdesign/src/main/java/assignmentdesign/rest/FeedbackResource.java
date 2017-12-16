@@ -28,12 +28,13 @@ public class FeedbackResource {
     private String baseUrl;
 
     private static final String PATH_FEEDBACK = "/feedback";
+    private static final String PATH_PARAM_ASSIGNMENT_ID = "/{assignmentId}";
 
     @Autowired
     private FeedbackService feedbackService;
 
-    @PostMapping(PATH_FEEDBACK+"{assignmentId}")
-    public ResponseEntity postFeedback(@PathParam("assignmentId") Integer assignmentId,@RequestBody FeedbackDto feedbackDto) throws URISyntaxException {
+    @PostMapping(PATH_FEEDBACK + PATH_PARAM_ASSIGNMENT_ID)
+    public ResponseEntity postFeedback(@PathVariable("assignmentId") Integer assignmentId,@RequestBody FeedbackDto feedbackDto) throws URISyntaxException {
 
         log.info("Storing feedback with value: " + feedbackDto);
         FeedbackDto storedFeedback= feedbackService.storeFeedback(assignmentId,feedbackDto);
