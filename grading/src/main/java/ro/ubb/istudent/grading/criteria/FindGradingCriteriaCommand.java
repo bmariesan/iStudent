@@ -1,13 +1,13 @@
-package ro.ubb.istudent.grading.criteria.command;
+package ro.ubb.istudent.grading.criteria;
 
-import ro.ubb.istudent.grading.criteria.GradingCriteria;
 import jdk.nashorn.internal.ir.annotations.Immutable;
+import lombok.ToString;
 import org.bson.types.ObjectId;
 import ro.ubb.istudent.grading.command.Command;
 import ro.ubb.istudent.grading.course.CourseRepository;
-import ro.ubb.istudent.grading.exception.CourseNotFoundException;
 
 @Immutable
+@ToString(of = {"course"})
 public class FindGradingCriteriaCommand
         implements Command<GradingCriteria> {
 
@@ -24,7 +24,7 @@ public class FindGradingCriteriaCommand
     @Override
     public GradingCriteria execute() {
         return repository.findById(course)
-                .orElseThrow(CourseNotFoundException::new)
+                .orElseThrow(GradingCriteriaNotFound::new)
                 .gradingCriteria();
     }
 }

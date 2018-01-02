@@ -11,5 +11,5 @@ import ro.ubb.istudent.grading.criteria.GradingCriteria;
 public interface Course {
     ObjectId getId();
     GradingCriteria gradingCriteria();
-    Course gradingCriteria(GradingCriteria gradingCriteria);
+    Course replaceGradingCriteriaWith(GradingCriteria gradingCriteria);
 }
