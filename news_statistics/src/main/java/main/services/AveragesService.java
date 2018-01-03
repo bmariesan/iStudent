@@ -2,11 +2,13 @@ package main.services;
 
 import main.model.AverageDto;
 import main.model.Pair;
+import main.utils.SortByDateComparator;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
 import java.util.OptionalDouble;
+import java.util.TreeSet;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -32,14 +34,16 @@ public class AveragesService {
         return average.isPresent() ? average.getAsDouble() : 0;
     }
 
-    //values must be sorted by date
-    public List<AverageDto> getExponentialMovingAverages(List<Pair<Date, List<Double>>> ratingsPerDate,
-                                                         Date currentDate) {
-        return ratingsPerDate.stream().map((ratingPerDay) -> {
+    public TreeSet<AverageDto> getExponentialMovingAverages(List<Pair<Date, List<Double>>> ratingsPerDate,
+                                                            Date currentDate) {
+
+        TreeSet sortedByDateResults = new TreeSet(new SortByDateComparator());
+        sortedByDateResults.addAll(ratingsPerDate.stream().map((ratingPerDay) -> {
             double mean = computeMean(ratingPerDay.getY());
             double weight = computeWeight(ratingPerDay, currentDate);
             return AverageDto.builder().average(mean).date(ratingPerDay.getX()).weight(weight).build();
-        }).collect(Collectors.toList());
+        }).collect(Collectors.toSet()));
+        return sortedByDateResults;
     }
 
     private double computeWeight(Pair<Date, List<Double>> ratingPerDay, Date currentDate) {
