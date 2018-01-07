@@ -1,24 +1,41 @@
 package ro.ubb.istudent.grading.domain;
 
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.io.Serializable;
+
 /**
  * @author Alexandru Arnautu
  * @version 1.0
  */
 
-public class NotCompletedExercise<T> implements Exercise {
+@Document(collection = "notcompletedexercise")
+public class NotCompletedExercise implements Exercise, Serializable {
+    @Id
+    private ObjectId id;
 
-    private final Question<T> question;
+    public ObjectId getId() {
+        return id;
+    }
 
-    public NotCompletedExercise(final Question<T> question) {
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
+
+    private final Question question;
+
+    public NotCompletedExercise(final Question question) {
         this.question = question;
     }
 
-    public Question<T> getQuestion() {
+    public Question getQuestion() {
         return question;
     }
 
-    public CompletedExercise<T> complete(final T withAnswer) {
-        return new CompletedExercise<>(question, withAnswer);
+    public CompletedExercise complete(final String withAnswer) {
+        return new CompletedExercise(question, withAnswer);
     }
 
     @Override

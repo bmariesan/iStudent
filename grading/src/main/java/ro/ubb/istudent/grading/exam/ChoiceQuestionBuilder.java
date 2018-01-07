@@ -10,34 +10,34 @@ import static java.util.Collections.emptyList;
  * @version 1.0
  */
 
-public class ChoiceQuestionBuilder<T> {
+public class ChoiceQuestionBuilder {
 
     private String text = "";
     private List possibleAnswers = emptyList();
-    private T rightAnswer = null;
+    private String rightAnswer = null;
     private Double points = 100.0;
 
-    public ChoiceQuestionBuilder<T> withText(final String text) {
+    public ChoiceQuestionBuilder withText(final String text) {
         this.text = text;
         return this;
     }
 
-    public ChoiceQuestionBuilder<T> withPossibleAnswers(final List possibleAnswers) {
+    public ChoiceQuestionBuilder withPossibleAnswers(final List possibleAnswers) {
         this.possibleAnswers = possibleAnswers;
         return this;
     }
 
-    public ChoiceQuestionBuilder<T> withRightAnswer(final T answer) {
+    public ChoiceQuestionBuilder withRightAnswer(final String answer) {
         this.rightAnswer = answer;
         return this;
     }
 
-    public ChoiceQuestionBuilder<T> withPoints(final Double points) {
+    public ChoiceQuestionBuilder withPoints(final Double points) {
         this.points = points;
         return this;
     }
 
-    public ChoiceQuestion<T> build() {
-        return new ChoiceQuestion<>(text, rightAnswer, possibleAnswers, points);
+    public ChoiceQuestion build() {
+        return new ChoiceQuestion(text, rightAnswer, possibleAnswers, points);
     }
 }

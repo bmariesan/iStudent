@@ -7,7 +7,7 @@ import java.util.Optional;
  * @version 1.0
  */
 
-public interface Question<T> {
-    Optional<T> getAnswer();
+public interface Question {
+    Optional<String> getAnswer();
     Double getPoints();
 }

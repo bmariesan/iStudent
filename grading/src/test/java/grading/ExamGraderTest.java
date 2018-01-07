@@ -21,15 +21,15 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 class ExamGraderTest {
 
-    private <T> Exam<Exercise> provideExamBasedOn(Question<T> choiceQuestion, T answer) {
-        return new Exam<>(singletonList(new CompletedExercise<>(choiceQuestion, answer)));
+    private Exam provideExamBasedOn(Question choiceQuestion, String answer) {
+        return new Exam(singletonList(new CompletedExercise(choiceQuestion, answer)));
     }
 
     @Test
     @DisplayName("Is Grading Text Exams?")
     void isGradingTextExams() {
         TextQuestion textQuestion = new TextQuestion("Unit-Tests?", 100.0);
-        Exam<Exercise> exam = provideExamBasedOn(textQuestion, null);
+        Exam exam = provideExamBasedOn(textQuestion, null);
         // when:
         NoRightAnswer actual =
                 Assertions.assertThrows(NoRightAnswer.class, exam::getTotalScore);
@@ -41,12 +41,12 @@ class ExamGraderTest {
     @DisplayName("Is Grading Multiple Choice Exams?")
     void isGradingMultipleChoiceExams() {
         // declaration:
-        ChoiceQuestion<List<String>> choiceQuestion = new ChoiceQuestionBuilder<List<String>>()
+        ChoiceQuestion choiceQuestion = new ChoiceQuestionBuilder()
                 .withText("Unit-Tests?")
                 .withPossibleAnswers(asList("yes", "obviously", "no"))
-                .withRightAnswer(asList("yes", "obviously"))
+                .withRightAnswer("yes")
                 .build();
-        Exam<Exercise> exam = provideExamBasedOn(choiceQuestion, asList("yes", "obviously"));
+        Exam exam = provideExamBasedOn(choiceQuestion, "yes");
         // then:
         Assertions.assertEquals((double)exam.getTotalScore(), 100.0);
     }
@@ -55,12 +55,12 @@ class ExamGraderTest {
     @DisplayName("Is Grading Single Choice Exams?")
     void isGradingSingleChoiceExams() {
         // declaration:
-        ChoiceQuestion<String> choiceQuestion = new ChoiceQuestionBuilder<String>()
+        ChoiceQuestion choiceQuestion = new ChoiceQuestionBuilder()
                 .withText("Unit-Tests?")
                 .withPossibleAnswers(asList("yes", "no"))
                 .withRightAnswer("yes")
                 .build();
-        Exam<Exercise> exam = provideExamBasedOn(choiceQuestion, "yes");
+        Exam exam = provideExamBasedOn(choiceQuestion, "yes");
         // then:
         Assertions.assertEquals((double)exam.getTotalScore(), 100.0);
     }
