@@ -17,7 +17,7 @@ import ro.ubb.istudent.grading.domain.GradingBook;
 public class GradingBookController {
 
     @Autowired
-    MongoRepository<GradingBook, String> repo;
+    GradingBookRepository repo;
 
     @GetMapping("/{id}")
     public String hello(@PathVariable("id") String id) throws JsonProcessingException {

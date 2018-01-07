@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import ro.ubb.istudent.grading.domain.Grade;
+import ro.ubb.istudent.grading.domain.GradingBook;
 
 import java.util.Date;
 import java.util.Enumeration;
@@ -13,10 +14,12 @@ import java.util.Enumeration;
 /**
  * Created by Marius on 10.12.2017.
  */
+
+
 public class ArchivedGradeService extends GradeServiceBase {
 
     @Autowired
-    MongoRepository<Grade, String> repo;
+    GradingRepository repo;
 
     @Override
     public Iterable<Grade> getGrades() {

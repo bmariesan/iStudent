@@ -10,7 +10,7 @@ import ro.ubb.istudent.grading.domain.Grade;
 public class ClassicalGradeSerivce extends GradeServiceBase {
 
     @Autowired
-    MongoRepository<Grade, String> repo;
+    GradingRepository repo;
 
     @Override
     public Iterable<Grade> getGrades() {
