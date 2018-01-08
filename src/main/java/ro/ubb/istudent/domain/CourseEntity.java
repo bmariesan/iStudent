@@ -14,15 +14,25 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Document(collection = "courses")
+@Getter
+@Setter
+@ToString(exclude = {"registeredStudents"}, callSuper = true)
 public class CourseEntity extends BaseEntity {
     @Indexed(unique = true)
     private String name;
 
     private Integer studentLimit;
 
-    @DBRef
+    @DBRef(lazy = true)
     private List<StudentEntity> registeredStudents;
 
     @DBRef
     private TeacherEntity teacher;
+
+    public List<StudentEntity> getRegisteredStudents() {
+        if (registeredStudents == null) {
+            return new ArrayList<>();
+        }
+        return registeredStudents;
+    }
 }

@@ -8,4 +8,5 @@ import java.util.Optional;
 
 public interface CourseRepository extends MongoRepository<CourseEntity, ObjectId> {
     Optional<CourseEntity> findCourseEntityById(String courseId);
+    Optional<CourseEntity> findCourseEntityByName(String name);
 }

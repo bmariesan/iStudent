@@ -7,6 +7,7 @@ import lombok.*;
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class StudentDto extends BaseDto{
+public class StudentDto extends BaseDto {
+    private String username;
     private String name;
 }

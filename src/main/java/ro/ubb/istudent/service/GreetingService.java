@@ -11,8 +11,8 @@ import java.util.Optional;
 
 @Service
 public class GreetingService {
-
     private static final Logger LOG = LoggerFactory.getLogger(GreetingService.class);
+
     private final GreetingRepository repository;
 
     public GreetingService(GreetingRepository repository) {

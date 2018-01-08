@@ -7,7 +7,6 @@ import ro.ubb.istudent.domain.CourseEntity;
 import ro.ubb.istudent.dto.CourseDto;
 import ro.ubb.istudent.repository.CourseRepository;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -15,8 +14,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class CourseService {
-
     private static final Logger LOG = LoggerFactory.getLogger(CourseService.class);
+
     private final CourseRepository repository;
 
     public CourseService(CourseRepository repository) {
