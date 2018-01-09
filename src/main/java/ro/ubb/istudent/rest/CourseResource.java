@@ -22,7 +22,7 @@ public class CourseResource {
     public CourseResource(CourseService service, @Value("${application.base-url}") String baseUrl) {
         this.service = service;
         this.baseUrl = baseUrl;
-        service.createCourse(CourseDto.builder().name("Design Patterns").studentLimit(5).build());
+        service.createCourse(CourseDto.builder().name("Design Patterns").studentLimit(1).build());
         service.createCourse(CourseDto.builder().name("Algebra").studentLimit(10).build());
     }
 

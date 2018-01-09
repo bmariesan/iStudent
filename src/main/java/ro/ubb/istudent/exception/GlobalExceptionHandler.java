@@ -18,6 +18,12 @@ public class GlobalExceptionHandler {
         LOG.error("Entity not found {}", ex);
     }
 
+    @ExceptionHandler(IllegalOperationException.class)
+    @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
+    public void processIllegalOperationException(IllegalOperationException ex) {
+        LOG.error(ex.getLocalizedMessage());
+    }
+
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public void processAllOtherExceptions(Exception ex) {

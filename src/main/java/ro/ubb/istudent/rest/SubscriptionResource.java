@@ -13,12 +13,12 @@ import ro.ubb.istudent.service.SubscriptionService;
  */
 @RequestMapping("/api")
 @RestController
-public class SubscribeResource {
+public class SubscriptionResource {
     private static final Logger LOG = LoggerFactory.getLogger(CourseResource.class);
 
     private final SubscriptionService subscriptionService;
 
-    SubscribeResource(SubscriptionService subscriptionService) {
+    SubscriptionResource(SubscriptionService subscriptionService) {
         this.subscriptionService = subscriptionService;
     }
 

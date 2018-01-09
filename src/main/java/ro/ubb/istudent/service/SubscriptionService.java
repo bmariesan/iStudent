@@ -7,8 +7,10 @@ import ro.ubb.istudent.domain.CourseEntity;
 import ro.ubb.istudent.domain.StudentEntity;
 import ro.ubb.istudent.dto.CourseDto;
 import ro.ubb.istudent.exception.EntityNotFoundException;
+import ro.ubb.istudent.exception.IllegalOperationException;
 import ro.ubb.istudent.repository.CourseRepository;
 import ro.ubb.istudent.repository.StudentRepository;
+import ro.ubb.samples.architectural.mvc.student.model.Student;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,28 +31,29 @@ public class SubscriptionService {
     }
 
     public void subscribeStudentToCourse(String username, CourseDto courseDto) {
+        StudentEntity student = getStudentWithUsername(username);
+        CourseEntity course = getCourseWithName(courseDto.getName());
+
+        student.subscribeToCourse(course);
+        studentRepository.save(student);
+
+        course.registerStudent(student);
+        courseRepository.save(course);
+    }
+
+    private StudentEntity getStudentWithUsername(String username) {
         Optional<StudentEntity> studentOptional = studentRepository.findStudentEntityByUsername(username);
         if (!studentOptional.isPresent()) {
             throw new EntityNotFoundException("A student with the username " + username + " was not found!");
         }
+        return studentOptional.get();
+    }
 
-        String courseName = courseDto.getName();
-        Optional<CourseEntity> courseOptional = courseRepository.findCourseEntityByName(courseName);
+    private CourseEntity getCourseWithName(String name) {
+        Optional<CourseEntity> courseOptional = courseRepository.findCourseEntityByName(name);
         if (!courseOptional.isPresent()) {
-            throw new EntityNotFoundException("A course with the name " + courseName + " was not found!");
+            throw new EntityNotFoundException("A course with the name " + name + " was not found!");
         }
-
-        StudentEntity student = studentOptional.get();
-        CourseEntity course = courseOptional.get();
-
-        List<CourseEntity> registeredCourses = student.getRegisteredCourses();
-        registeredCourses.add(course);
-        student.setRegisteredCourses(registeredCourses);
-        studentRepository.save(student);
-
-        List<StudentEntity> registeredStudents = course.getRegisteredStudents();
-        registeredStudents.add(student);
-        course.setRegisteredStudents(registeredStudents);
-        courseRepository.save(course);
+        return courseOptional.get();
     }
 }

@@ -49,6 +49,10 @@ public class StudentService {
 
     private List<StudentDto> createFromEntities(List<StudentEntity> entities) {
         return entities.stream()
+                .peek(student -> {
+                    System.out.println(student);
+                    student.getRegisteredCourses().forEach(course -> System.out.println(course.getName()));
+                })
                 .map(this::studentToStudentDTO)
                 .collect(Collectors.toList());
     }
