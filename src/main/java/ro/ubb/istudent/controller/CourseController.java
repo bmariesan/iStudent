@@ -7,14 +7,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class CourseController {
 
-    @RequestMapping(value = "/courses", method = RequestMethod.GET)
-    public String course() {
-        return "courses";
-    }
+    @RequestMapping(value = "/allCourses", method = RequestMethod.GET)
+    public String allCourses() { return "allCourses"; }
 
-    @RequestMapping(value = "/history", method = RequestMethod.GET)
-    public String history() {
-        return "history";
+    @RequestMapping(value = "/availableCourses", method = RequestMethod.GET)
+    public String availableCourses() {
+        return "availableCourses";
     }
 
 }
