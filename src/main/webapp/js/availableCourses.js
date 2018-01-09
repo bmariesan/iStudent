@@ -2,7 +2,6 @@ $(document).ready(function () {
     console.log("available")
     getAvailableCourses()
 
-    // DO GET
     function getAvailableCourses() {
         $.ajax({
             type: "GET",
@@ -30,7 +29,7 @@ $(document).ready(function () {
                 var button = document.createElement("button")
                 button.className = "btn btn-primary"
                 button.innerHTML = "Subscribe"
-                button.setAttribute("data-name", course.name);
+                button.setAttribute("data-id", course.name);
                 button.setAttribute("type", "button");
                 button.setAttribute("id", "course-subscribe");
 
@@ -41,8 +40,49 @@ $(document).ready(function () {
                 ul.appendChild(li);
             })
 
+            if(data.length === 0){
+                ul.appendChild(document.createTextNode("No available courses .."))
+            }
+            addEventListener()
         } else {
             $("#available-courses-list").appendChild(document.createTextNode("Can Not Get Data from Server!"));
         }
     }
+
+    function removeCourseList() {
+        document.getElementById("available-courses-list").innerHTML = ""
+    }
+
+
+    function addEventListener() {
+
+        $("#course-subscribe").click(function (event) {
+            event.preventDefault();
+            console.log("SUBSCRIBE")
+            var courseName = $("#course-subscribe").attr('data-id')
+            console.log("course name", courseName)
+
+            var data = {
+                name: courseName,
+                "":""
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "/api/subscribe/dana",
+                data: JSON.stringify(data),
+                dataType: "text",
+                contentType: "application/json; charset=utf-8",
+                success: function (data, status, xhr) {
+                    alert("Subscribed!")
+                    removeCourseList()
+                    getAvailableCourses()
+                },
+                error: function (data, status, xhr) {
+                    alert("Could not subscribe to course!");
+                }
+            });
+        });
+    }
+
 });

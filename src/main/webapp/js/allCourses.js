@@ -2,13 +2,11 @@ $(document).ready(function () {
     console.log("courses")
     getCourses()
 
-    // DO GET
     function getCourses() {
         $.ajax({
             type: "GET",
             url: '/api/courses',
             success: function (data) {
-                // fill data to Modal Body
                 fillCourses(data);
             },
             error: function (e) {
