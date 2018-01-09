@@ -6,14 +6,14 @@ import org.springframework.stereotype.Service;
 import ro.ubb.istudent.domain.CourseEntity;
 import ro.ubb.istudent.domain.StudentEntity;
 import ro.ubb.istudent.dto.CourseDto;
+import ro.ubb.istudent.dto.StudentDto;
 import ro.ubb.istudent.exception.EntityNotFoundException;
-import ro.ubb.istudent.exception.IllegalOperationException;
 import ro.ubb.istudent.repository.CourseRepository;
 import ro.ubb.istudent.repository.StudentRepository;
-import ro.ubb.samples.architectural.mvc.student.model.Student;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Created on 08.01.2018.
@@ -30,7 +30,7 @@ public class SubscriptionService {
         this.courseRepository = courseRepository;
     }
 
-    public void subscribeStudentToCourse(String username, CourseDto courseDto) {
+    public StudentDto subscribeStudentToCourse(String username, CourseDto courseDto) {
         StudentEntity student = getStudentWithUsername(username);
         CourseEntity course = getCourseWithName(courseDto.getName());
 
@@ -39,6 +39,16 @@ public class SubscriptionService {
 
         course.registerStudent(student);
         courseRepository.save(course);
+
+        return StudentDto.createDtoFromEntity(student);
+    }
+
+    public List<CourseDto> getAvailableCoursesForStudent(String username) {
+        StudentEntity student = getStudentWithUsername(username);
+        List<CourseEntity> courses = courseRepository.findAll();
+        return CourseDto.createDtosFromEntities(courses.stream()
+                .filter(course -> course.isAvailableForStudent(student))
+                .collect(Collectors.toList()));
     }
 
     private StudentEntity getStudentWithUsername(String username) {

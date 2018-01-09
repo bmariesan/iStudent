@@ -6,7 +6,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ro.ubb.istudent.dto.CourseDto;
+import ro.ubb.istudent.dto.StudentDto;
 import ro.ubb.istudent.service.SubscriptionService;
+
+import java.util.List;
 
 /**
  * Created on 09.01.2018.
@@ -23,10 +26,15 @@ public class SubscriptionResource {
     }
 
     @PostMapping("/subscribe/{username}")
-    public ResponseEntity<String> attendCourse(
+    public ResponseEntity<StudentDto> attendCourse(
             @PathVariable("username") String username, @RequestBody CourseDto course) {
-        subscriptionService.subscribeStudentToCourse(username, course);
-        //TODO figure out what is the best response for this request.
-        return new ResponseEntity<>("Registered user to the course!", HttpStatus.OK);
+        StudentDto student = subscriptionService.subscribeStudentToCourse(username, course);
+        return new ResponseEntity<>(student, HttpStatus.OK);
+    }
+
+    @GetMapping("/subscribe/courses/available/{username}")
+    public ResponseEntity<List<CourseDto>> getAvailableCoursesForStudent(@PathVariable("username") String username) {
+        List<CourseDto> availableCourses = subscriptionService.getAvailableCoursesForStudent(username);
+        return new ResponseEntity<>(availableCourses, HttpStatus.OK);
     }
 }

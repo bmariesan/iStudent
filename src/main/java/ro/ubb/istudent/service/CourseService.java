@@ -3,14 +3,11 @@ package ro.ubb.istudent.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import ro.ubb.istudent.domain.CourseEntity;
 import ro.ubb.istudent.dto.CourseDto;
 import ro.ubb.istudent.repository.CourseRepository;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class CourseService {
@@ -24,45 +21,16 @@ public class CourseService {
 
     public Optional<CourseDto> findCourseById(String courseId) {
         return repository.findCourseEntityById(courseId)
-                .map(this::courseToCourseDTO);
+                .map(CourseDto::createDtoFromEntity);
     }
 
     public CourseDto createCourse(CourseDto course) {
-        return courseToCourseDTO(repository.save(courseDTOToEntity(course)));
+        return CourseDto.createDtoFromEntity(repository.save(CourseDto.createEntityFromDto(course)));
     }
 
     public List<CourseDto> findAll() {
-        return createFromEntities(repository.findAll());
+        return CourseDto.createDtosFromEntities(repository.findAll());
     }
 
-    private CourseDto courseToCourseDTO(CourseEntity entity) {
-        CourseDto courseDto = CourseDto.builder()
-                .name(entity.getName())
-                .studentLimit(entity.getStudentLimit())
-                .build();
-        courseDto.setId(entity.getId());
-
-        return courseDto;
-    }
-
-    private CourseEntity courseDTOToEntity(CourseDto dto) {
-        CourseEntity courseEntity = CourseEntity.builder()
-                .name(dto.getName())
-                .studentLimit(dto.getStudentLimit())
-                .build();
-        courseEntity.setId(dto.getId());
-
-        return courseEntity;
-    }
-
-    private List<CourseDto> createFromEntities(final Collection<CourseEntity> entities) {
-        return entities.stream()
-                .peek(course -> {
-                    System.out.println(course);
-                    course.getRegisteredStudents().forEach(student -> System.out.println(student.getName()));
-                })
-                .map(this::courseToCourseDTO)
-                .collect(Collectors.toList());
-    }
 
 }
