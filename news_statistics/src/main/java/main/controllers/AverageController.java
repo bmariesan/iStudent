@@ -1,13 +1,12 @@
 package main.controllers;
 
+import main.dummy_data.DummyDataService;
 import main.model.AverageDto;
 import main.services.AveragesService;
-import main.services.DummyDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.text.ParseException;
 import java.util.List;
 import java.util.TreeSet;
 
@@ -22,15 +21,16 @@ public class AverageController {
 
     @GetMapping("sma")
     public List<AverageDto> getSMA()
-            throws ParseException {
+            throws Exception {
 
         return averagesService.getSimpleMovingAverages(dummyDataService.getMockData());
 
     }
 
+    //todo add params
     @GetMapping("ema")
     public TreeSet<AverageDto> getEma()
-            throws ParseException {
+            throws Exception {
         return averagesService.getExponentialMovingAverages(dummyDataService.getMockData(),
                 dummyDataService.getLastDayOfStats());
 

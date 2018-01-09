@@ -38,6 +38,7 @@ public class AveragesService {
                                                             Date currentDate) {
 
         TreeSet sortedByDateResults = new TreeSet(new SortByDateComparator());
+
         sortedByDateResults.addAll(ratingsPerDate.stream().map((ratingPerDay) -> {
             double mean = computeMean(ratingPerDay.getY());
             double weight = computeWeight(ratingPerDay, currentDate);
