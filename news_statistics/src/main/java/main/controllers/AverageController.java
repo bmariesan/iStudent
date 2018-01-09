@@ -27,7 +27,7 @@ public class AverageController {
 
     }
 
-    //todo add params
+
     @GetMapping("ema")
     public TreeSet<AverageDto> getEma()
             throws Exception {
