@@ -5,12 +5,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ro.ubb.istudent.converters.CountryConverter;
 import ro.ubb.istudent.converters.StudentConverter;
+import ro.ubb.istudent.dto.AgeDto;
 import ro.ubb.istudent.dto.CountryDto;
 import ro.ubb.istudent.dto.StudentDto;
-import ro.ubb.istudent.enums.Gender;
+import ro.ubb.istudent.enums.GenderEnum;
 import ro.ubb.istudent.repository.StudentRepository;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,14 +38,23 @@ public class StudentService {
                 .map(studentConverter::createFromEntity);
     }
 
-    public List<StudentDto> findByCountry(CountryDto countryDto) {
+    public Optional<List<StudentDto>> findByCountry(CountryDto countryDto) {
         return repository.findAllByCountry(countryConverter.createFromDto(countryDto))
-                .map(studentConverter::createFromEntities)
-                .orElse(Collections.emptyList());
+                .map(studentConverter::createFromEntities);
     }
 
-    public Optional<List<StudentDto>> findByGender(Gender gender) {
+    public Optional<List<StudentDto>> findByGender(GenderEnum gender) {
         return repository.findAllByGender(gender)
+                .map(studentConverter::createFromEntities);
+    }
+
+    public Optional<List<StudentDto>> findByAgeBetween(AgeDto ageDto) {
+        return repository.findAllByAgeBetween(ageDto.getMinAge(), ageDto.getMaxAge())
+                .map(studentConverter::createFromEntities);
+    }
+
+    public Optional<List<StudentDto>> findByAgeGreaterThanOrEqual(Integer age) {
+        return repository.findAllByAgeGreaterThanEqual(age)
                 .map(studentConverter::createFromEntities);
     }
 

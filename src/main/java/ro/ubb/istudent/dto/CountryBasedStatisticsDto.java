@@ -1,7 +1,6 @@
 package ro.ubb.istudent.dto;
 
 import lombok.*;
-import ro.ubb.istudent.enums.GenderEnum;
 
 import java.util.List;
 
@@ -10,8 +9,8 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class GenderBasedStatisticsDto extends BaseDto {
-    private GenderEnum gender;
+public class CountryBasedStatisticsDto extends BaseDto {
+    private CountryDto country;
 
     private List<StudentDto> graduatedStudents;
 }

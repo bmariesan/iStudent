@@ -21,4 +21,6 @@ public class CourseEntity extends BaseEntity {
 
     private Integer minimumGrade;
 
+    @DBRef
+    private List<TestEntity> tests = new ArrayList<>();
 }

@@ -1,7 +1,7 @@
 package ro.ubb.istudent.dto;
 
 import lombok.*;
-import ro.ubb.istudent.enums.Gender;
+import ro.ubb.istudent.enums.GenderEnum;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ public class StudentDto extends BaseDto {
 
     private String name;
 
-    private Gender gender;
+    private GenderEnum gender;
 
     private Integer age;
 

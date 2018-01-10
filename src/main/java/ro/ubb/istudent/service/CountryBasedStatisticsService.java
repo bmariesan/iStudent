@@ -3,10 +3,10 @@ package ro.ubb.istudent.service;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import ro.ubb.istudent.dto.GenderBasedStatisticsDto;
+import ro.ubb.istudent.dto.CountryBasedStatisticsDto;
+import ro.ubb.istudent.dto.CountryDto;
 import ro.ubb.istudent.dto.StudentDto;
 import ro.ubb.istudent.dto.TestDto;
-import ro.ubb.istudent.enums.GenderEnum;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,22 +15,19 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 @Slf4j
-public class GenderBasedStatisticsService {
+public class CountryBasedStatisticsService {
 
     private StudentService studentService;
 
-    /**
-     * @return List of students which passed all their tests.
-     */
-    public Optional<GenderBasedStatisticsDto> findGraduatedStudentsByGender(GenderEnum gender) {
-        return studentService.findByGender(gender)
-                .flatMap(studentDtos -> buildGenderBasedStatisticDto(studentDtos, gender));
+    public Optional<CountryBasedStatisticsDto> findGraduatedStudentsByCountry(CountryDto countryDto) {
+        return studentService.findByCountry(countryDto)
+                .flatMap(studentDtos -> buildCountryBasedStatisticsDto(studentDtos, countryDto));
     }
 
-    private Optional<GenderBasedStatisticsDto> buildGenderBasedStatisticDto(List<StudentDto> studentList, GenderEnum gender) {
-        GenderBasedStatisticsDto genderBasedStatisticsDto = new GenderBasedStatisticsDto();
+    private Optional<CountryBasedStatisticsDto> buildCountryBasedStatisticsDto(List<StudentDto> studentList, CountryDto countryDto) {
+        CountryBasedStatisticsDto countryBasedStatisticsDto = new CountryBasedStatisticsDto();
 
-        genderBasedStatisticsDto.setGender(gender);
+        countryBasedStatisticsDto.setCountry(countryDto);
 
         List<StudentDto> graduatedStudents = studentList.stream()
                 .filter(studentDto -> checkIfAllTestsArePassed(studentDto.getTests()))
@@ -40,9 +37,9 @@ public class GenderBasedStatisticsService {
             return Optional.empty();
         }
 
-        genderBasedStatisticsDto.setGraduatedStudents(graduatedStudents);
+        countryBasedStatisticsDto.setGraduatedStudents(graduatedStudents);
 
-        return Optional.of(genderBasedStatisticsDto);
+        return Optional.of(countryBasedStatisticsDto);
     }
 
     private boolean checkIfAllTestsArePassed(List<TestDto> tests) {

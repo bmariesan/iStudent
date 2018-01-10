@@ -1,7 +1,6 @@
 package ro.ubb.istudent.mock;
 
 import com.google.common.collect.ImmutableList;
-import com.mongodb.Mongo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ro.ubb.istudent.config.MongoConfig;
@@ -9,7 +8,7 @@ import ro.ubb.istudent.dto.CountryDto;
 import ro.ubb.istudent.dto.CourseDto;
 import ro.ubb.istudent.dto.StudentDto;
 import ro.ubb.istudent.dto.TestDto;
-import ro.ubb.istudent.enums.Gender;
+import ro.ubb.istudent.enums.GenderEnum;
 import ro.ubb.istudent.service.CountryService;
 import ro.ubb.istudent.service.CourseService;
 import ro.ubb.istudent.service.StudentService;
@@ -71,16 +70,16 @@ public class MockData {
 
         // create students
         List<StudentDto> studentDtoList = ImmutableList.of(
-                StudentDto.builder().name("Andrei").age(21).gender(Gender.MALE).countryDto(romania).build(),
-                StudentDto.builder().name("Mihai").age(27).gender(Gender.MALE).countryDto(romania).build(),
-                StudentDto.builder().name("Elena").age(22).gender(Gender.FEMALE).countryDto(romania).build(),
-                StudentDto.builder().name("Iliescu").age(100).gender(Gender.MALE).countryDto(romania).build(),
-                StudentDto.builder().name("Hans").age(28).gender(Gender.MALE).countryDto(germany).build(),
-                StudentDto.builder().name("Aneta").age(34).gender(Gender.FEMALE).countryDto(germany).build(),
-                StudentDto.builder().name("Schmitz").age(40).gender(Gender.MALE).countryDto(germany).build(),
-                StudentDto.builder().name("Beckham").age(45).gender(Gender.MALE).countryDto(england).build(),
-                StudentDto.builder().name("Rooney").age(39).gender(Gender.MALE).countryDto(england).build(),
-                StudentDto.builder().name("Abbey").age(23).gender(Gender.FEMALE).countryDto(england).build()
+                StudentDto.builder().name("Andrei").age(21).gender(GenderEnum.MALE).countryDto(romania).build(),
+                StudentDto.builder().name("Mihai").age(27).gender(GenderEnum.MALE).countryDto(romania).build(),
+                StudentDto.builder().name("Elena").age(22).gender(GenderEnum.FEMALE).countryDto(romania).build(),
+                StudentDto.builder().name("Iliescu").age(100).gender(GenderEnum.MALE).countryDto(romania).build(),
+                StudentDto.builder().name("Hans").age(28).gender(GenderEnum.MALE).countryDto(germany).build(),
+                StudentDto.builder().name("Aneta").age(34).gender(GenderEnum.FEMALE).countryDto(germany).build(),
+                StudentDto.builder().name("Schmitz").age(40).gender(GenderEnum.MALE).countryDto(germany).build(),
+                StudentDto.builder().name("Beckham").age(45).gender(GenderEnum.MALE).countryDto(england).build(),
+                StudentDto.builder().name("Rooney").age(39).gender(GenderEnum.MALE).countryDto(england).build(),
+                StudentDto.builder().name("Abbey").age(23).gender(GenderEnum.FEMALE).countryDto(england).build()
         );
 
         // save students

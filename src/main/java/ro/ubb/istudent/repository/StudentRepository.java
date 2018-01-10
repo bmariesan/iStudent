@@ -2,10 +2,9 @@ package ro.ubb.istudent.repository;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Query;
 import ro.ubb.istudent.domain.CountryEntity;
 import ro.ubb.istudent.domain.StudentEntity;
-import ro.ubb.istudent.enums.Gender;
+import ro.ubb.istudent.enums.GenderEnum;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,7 +14,9 @@ public interface StudentRepository extends MongoRepository<StudentEntity, Object
 
     Optional<List<StudentEntity>> findAllByCountry(CountryEntity countryEntity);
 
-    Optional<List<StudentEntity>> findAllByGender(Gender gender);
+    Optional<List<StudentEntity>> findAllByGender(GenderEnum gender);
 
+    Optional<List<StudentEntity>> findAllByAgeBetween(Integer minAge, Integer maxAge);
 
+    Optional<List<StudentEntity>> findAllByAgeGreaterThanEqual(Integer age);
 }
