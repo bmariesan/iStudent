@@ -49,6 +49,9 @@ Enjoy coding :)
 - __[Course 6](https://docs.google.com/presentation/d/13_ti3b6dvfMjiNsu3JwDoGHoYVfboajH-log6ltRf3Q): Architectural Patterns (MVVM, MVP, MVC), JS Module Pattern__
 - __[Course 7](https://docs.google.com/presentation/d/1Ve1qciit3QQGJtPLZeckjccqrAInAdheE9_R5_geVuE): Enterprise Integration Patterns__
 - __[Course 8](https://docs.google.com/presentation/d/1TOsBMnRkrkTxVZ-2yUKr_jJ1RxCRb8g4koiShp-2lwM): Enterprise Integration Patterns: Messaging__
+- __[Course 9](https://docs.google.com/presentation/d/1LplSGOheaYGORfGCHOalf1TpdKUXOtWuCZuGWPJdiIo): Enterprise Integration Patterns: Message Routing__
+- __[Course 10](https://docs.google.com/presentation/d/1zHaRa3dsuqqpfQrWkPp1KyQ_GpZMj3hjO1rfcreU89k): Enterprise Integration Patterns: Message Translating__
+- __[Course 11](https://docs.google.com/presentation/d/1tGPHgar59Jcl6nsuSKsWKuYFS8s5DUI90zcqzTSt6Yk): Enterprise Integration Patterns: Recap Exercises__
 
 ## __[Attendance status](https://docs.google.com/spreadsheets/d/1lzO3BhkjEk6xRPxoFb3Yq5RtlE43MPsmJ1ofIl_kk9M/edit?usp=sheets_home&ths=true)__ of students
 
