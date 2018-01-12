@@ -1,9 +1,9 @@
-package StatisticFactory;
+package exams.StatisticFactory;
 
 
-import domain.IStatistic;
-import repository.CourseRepository;
-import repository.StudentRepository;
+import exams.domain.IStatistic;
+import exams.repository.CourseRepository;
+import exams.repository.StudentRepository;
 
 /**
  * Created by Teodora on 22/11/2017.

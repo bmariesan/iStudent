@@ -1,6 +1,4 @@
-package domain;
-
-import org.springframework.beans.factory.annotation.Autowired;
+package exams.domain;
 
 import java.util.Map;
 

@@ -1,7 +1,7 @@
-package rest;
+package exams.rest;
 
 import org.springframework.beans.factory.annotation.Value;
-import service.StatisticService;
+import exams.service.StatisticService;
 
 public class StatisticResource {
     private static final String GREETING_CONTROLLER_MAPPING = "/examStatistic";

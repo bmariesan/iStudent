@@ -1,8 +1,8 @@
-package domain;
+package exams.domain;
 
 
-import repository.CourseRepository;
-import repository.StudentRepository;
+import exams.repository.CourseRepository;
+import exams.repository.StudentRepository;
 
 import java.util.Map;
 

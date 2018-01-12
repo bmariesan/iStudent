@@ -1,9 +1,9 @@
-package service;
+package exams.service;
 
-import StatisticFactory.IStatisticFactory;
+import exams.StatisticFactory.IStatisticFactory;
 import org.springframework.stereotype.Service;
-import repository.CourseRepository;
-import repository.StudentRepository;
+import exams.repository.CourseRepository;
+import exams.repository.StudentRepository;
 
 @Service
 public class StatisticService {

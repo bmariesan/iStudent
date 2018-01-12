@@ -1,6 +1,6 @@
-package repository;
+package exams.repository;
 
-import domain.IStatistic;
+import exams.domain.IStatistic;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 

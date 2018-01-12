@@ -1,9 +1,9 @@
-package StatisticFactory;
+package exams.StatisticFactory;
 
 
-import domain.*;
-import repository.CourseRepository;
-import repository.StudentRepository;
+import exams.domain.*;
+import exams.repository.CourseRepository;
+import exams.repository.StudentRepository;
 
 public class StatisticFactory implements IStatisticFactory{
 

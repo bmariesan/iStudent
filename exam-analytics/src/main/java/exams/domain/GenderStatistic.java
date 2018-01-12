@@ -1,7 +1,7 @@
-package domain;
+package exams.domain;
 
 
-import repository.StudentRepository;
+import exams.repository.StudentRepository;
 
 import java.util.Map;
 
