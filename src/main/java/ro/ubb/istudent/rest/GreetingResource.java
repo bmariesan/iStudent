@@ -28,6 +28,8 @@ public class GreetingResource {
 
     @GetMapping("/greeting/{greetingId}")
     public ResponseEntity getHelloWorldGreeting(@PathVariable("greetingId") String greetingId) {
+        System.out.println("what");
+        System.out.println(service.findAllGreetings());
         return ResponseUtil.wrapOrNotFound(service.findGreetingById(greetingId));
     }
 
