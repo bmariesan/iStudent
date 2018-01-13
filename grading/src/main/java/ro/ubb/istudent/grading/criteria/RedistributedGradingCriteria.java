@@ -1,6 +1,6 @@
 package ro.ubb.istudent.grading.criteria;
 
-import jdk.nashorn.internal.ir.annotations.Immutable;
+import javax.annotation.concurrent.Immutable;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 

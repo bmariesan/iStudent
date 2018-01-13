@@ -2,7 +2,7 @@ package ro.ubb.istudent.grading.criteria;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.ImmutableList;
-import jdk.nashorn.internal.ir.annotations.Immutable;
+import javax.annotation.concurrent.Immutable;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
