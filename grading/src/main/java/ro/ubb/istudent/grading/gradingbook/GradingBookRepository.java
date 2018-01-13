@@ -1,9 +1,12 @@
 package ro.ubb.istudent.grading.gradingbook;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import ro.ubb.istudent.grading.domain.Grade;
-import ro.ubb.istudent.grading.domain.GradingBook;
+import org.springframework.stereotype.Repository;
+import java.util.Optional;
 
-interface GradingBookRepository extends MongoRepository<GradingBook, String> {
+@Repository
+public interface GradingBookRepository extends MongoRepository<GradingBook, ObjectId> {
+    Optional<GradingBook> findById(final ObjectId id);
 
 }
