@@ -1,39 +1,44 @@
 package ro.ubb.istudent.grading.criteria;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.collect.ImmutableList;
 import jdk.nashorn.internal.ir.annotations.Immutable;
-import ro.ubb.istudent.grading.criteria.component.Component;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
+import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * @author Alexandru Stoica
- * @version 1.0
  */
 
 @Immutable
-public class GradingCriteria {
+@ToString(of = {"gradingCriteriaComponents"})
+@EqualsAndHashCode
+public class GradingCriteria implements Serializable {
 
-    private final List<Component> components;
+    @JsonProperty
+    private final List<GradingCriteriaComponent> gradingCriteriaComponents;
 
-    public GradingCriteria(final List<Component> components) {
-        this.components = components;
+    public GradingCriteria(
+            final List<GradingCriteriaComponent> gradingCriteriaComponents) {
+        this.gradingCriteriaComponents = gradingCriteriaComponents;
     }
 
-    public List<Component> components() {
-        return components;
+    public GradingCriteria() {
+        this.gradingCriteriaComponents = Collections.emptyList();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof GradingCriteria)) return false;
-        GradingCriteria that = (GradingCriteria) o;
-        return Objects.equals(components, that.components);
+    public List<GradingCriteriaComponent> components() {
+        return ImmutableList.<GradingCriteriaComponent>builder()
+                .addAll(gradingCriteriaComponents).build();
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(components);
+    public Double totalPercentage() {
+        return gradingCriteriaComponents.stream()
+                .mapToDouble(GradingCriteriaComponent::percent)
+                .sum();
     }
 }

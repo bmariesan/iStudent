@@ -1,11 +1,14 @@
 package ro.ubb.istudent.grading.command;
 
+import jdk.nashorn.internal.ir.annotations.Immutable;
+
 /**
  * @author Alexandru Stoica
  * @version 1.0
  */
 
-public class CommandDecorator<T> implements Command<T> {
+@Immutable
+public final class CommandDecorator<T> implements Command<T> {
 
     private final Command<T> command;
 

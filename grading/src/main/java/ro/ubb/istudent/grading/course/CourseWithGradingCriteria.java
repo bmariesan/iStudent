@@ -1,5 +1,6 @@
 package ro.ubb.istudent.grading.course;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jdk.nashorn.internal.ir.annotations.Immutable;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -14,11 +15,14 @@ import ro.ubb.istudent.grading.criteria.GradingCriteria;
 @Document(collection = "course")
 public class CourseWithGradingCriteria implements Course {
 
+    @JsonProperty
     private final ObjectId id;
+
+    @JsonProperty
     private final GradingCriteria criteria;
 
     public CourseWithGradingCriteria() {
-        this(null, null);
+        this(ObjectId.get(), null);
     }
 
     public CourseWithGradingCriteria(final ObjectId id) {
@@ -43,7 +47,7 @@ public class CourseWithGradingCriteria implements Course {
     }
 
     @Override
-    public Course gradingCriteria(GradingCriteria gradingCriteria) {
+    public Course replaceGradingCriteriaWith(GradingCriteria gradingCriteria) {
         return new CourseWithGradingCriteria(id, gradingCriteria);
     }
 }
