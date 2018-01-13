@@ -30,6 +30,9 @@ public class GradingBook implements Serializable {
     private final Calendar createdDate;
 
     @JsonProperty
+    private final Calendar expiryDate;
+
+    @JsonProperty
     private final List<Grade> grades;
 
     @JsonProperty
@@ -51,17 +54,18 @@ public class GradingBook implements Serializable {
         this.id = id;
         this.course = course;
         this.createdDate = Calendar.getInstance();
+        this.expiryDate = Calendar.getInstance().add(Calendar.YEAR, 1);
         this.grades = grades;
         this.teachers = teachers;
     }
 
-    public ObjectId id() {
+    public ObjectId getId() {
         return id;
     }
-    public Course course(){
+    public Course getCourse(){
         return course;
     }
-    public Calendar calendar(){
+    public Calendar getCreatedDate(){
         return createdDate;
     }
     public List<Grade> getGrades(){
@@ -70,5 +74,7 @@ public class GradingBook implements Serializable {
     public List<Teacher> getTeachers(){
         return teachers;
     }
-
+    public Calendar getExpiryDate() {
+        return expiryDate;
+    }
 }

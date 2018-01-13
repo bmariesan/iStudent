@@ -12,4 +12,5 @@ public interface Course {
     ObjectId getId();
     GradingCriteria gradingCriteria();
     Course replaceGradingCriteriaWith(GradingCriteria gradingCriteria);
+    GradingBook getGradingBook();
 }

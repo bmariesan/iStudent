@@ -23,21 +23,24 @@ public class GradingBookController {
     }
 
     @ResponseBody
-    @GetMapping("/{id}")
-    public ResponseEntity getByCourseId(
-            @PathVariable ObjectId id) {
-        Optional<GradingBook> gradingBook=service.getByID(id);
-        if(Calendar.getInstance().compareTo(gradingBook.get().calendar()) > 0/*&& userType==Student*/)
-            return new ResponseEntity<>(service.getByID(id),HttpStatus.ACCEPTED);
-        else
-            return ResponseEntity.ok().build();
-    }
-
-    @ResponseBody
     @PostMapping("")
     public ResponseEntity insert(
             @RequestBody GradingBook gradingBook) {
         return new ResponseEntity<>(service.save(gradingBook), HttpStatus.OK);
+    }
+
+    @ResponseBody
+    @GetMapping("/{id}")
+    public ResponseEntity studentGetByCourseId(
+            @PathVariable ObjectId id) {
+        return new ResponseEntity<>(service.getByID(id, true), HttpStatus.ACCEPTED)
+    }
+
+    @ResponseBody
+    @GetMapping("/{id}")
+    public ResponseEntity teacherGetByCourseId(
+            @pathVariable ObjectId id) {
+        return new ResponseEntity<>(service.getByID(id, false), HttpStatus.ACCEPTED)
     }
 
 }

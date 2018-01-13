@@ -16,7 +16,14 @@ public class GradingBookService {
         return gradingBookRepository.save(gradingBook);
     }
 
-    public Optional<GradingBook> getByID(ObjectId id) {
-        return gradingBookRepository.findById(id);
+    public Optional<GradingBook> getByID(ObjectId id, boolean isStudent = false) {
+
+        GradingBook gradingBook = gradingBookRepository.findById(id);
+        if (isStudent && gradingBook.expiryDate.compareTo(Calendar.newInstance()) > 0) {
+            return gradingBook;
+        }
+        return null;
+
     }
+
 }

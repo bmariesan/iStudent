@@ -26,6 +26,8 @@ public class GradingCriteriaService implements
 
     @Override
     public Course insert(final GradingCriteria criteria, final ObjectId courseId) {
+
+
         return save(criteria, courseId);
     }
 
