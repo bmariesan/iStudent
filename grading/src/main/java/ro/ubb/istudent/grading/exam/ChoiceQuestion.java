@@ -2,7 +2,7 @@ package ro.ubb.istudent.grading.exam;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jdk.nashorn.internal.ir.annotations.Immutable;
+import javax.annotation.concurrent.Immutable;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.bson.types.ObjectId;
@@ -50,6 +50,7 @@ public class ChoiceQuestion implements Question {
         this(ObjectId.get(), text, rightAnswers, possibleAnswers, points);
     }
 
+
     public ChoiceQuestion(
             final ObjectId id,
             final String text,
@@ -88,4 +89,10 @@ public class ChoiceQuestion implements Question {
     public Double points() {
         return points;
     }
+
+    @Override
+    public List<String> allAnswers() {
+        return possibleAnswers;
+    }
+
 }

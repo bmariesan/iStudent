@@ -1,6 +1,6 @@
 package ro.ubb.istudent.grading.command;
 
-import jdk.nashorn.internal.ir.annotations.Immutable;
+import javax.annotation.concurrent.Immutable;
 
 /**
  * @author Alexandru Stoica

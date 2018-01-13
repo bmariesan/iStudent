@@ -23,9 +23,11 @@ import java.util.List;
 import static java.util.Arrays.asList;
 import static java.util.Arrays.sort;
 import static java.util.Collections.singletonList;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * @author Alexandru Stoica
@@ -50,6 +52,22 @@ public class GradingExamControllerUnitTest {
         List<String> rightAnswers = singletonList("is good");
         List<String> possibleAnswers = asList("is good", "is not good");
         return new ChoiceQuestion("Text", rightAnswers, possibleAnswers, 10.0);
+    }
+
+    @Test
+    public void whenGettingRightAnswersFromExam_ExamValid_ExpectRightAnswers() throws Exception {
+        // given:
+        List<Exercise> exercises = asList(
+                new CompletedExercise(ObjectId.get(), makeQuestion(), singletonList("is not good")),
+                new CompletedExercise(ObjectId.get(), makeQuestion(), singletonList("is good")));
+        Exam exam = new Exam(ObjectId.get(), exercises);
+        // when:
+        RequestBuilder request = get("/grading-tests/right-answers")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(mapper.writeValueAsString(exercises));
+        // then:
+        mockMvc.perform(request).andDo(print())
+                .andExpect(status().isOk());
     }
 
     @Test

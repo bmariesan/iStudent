@@ -1,9 +1,9 @@
 package ro.ubb.istudent.grading.exam;
 
-import jdk.nashorn.internal.ir.annotations.Immutable;
-
+import javax.annotation.concurrent.Immutable;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Immutable
 public class GradingExamService {
@@ -12,13 +12,8 @@ public class GradingExamService {
         return exam.getTotalScore();
     }
 
-    public List<String> getRightAnswersFromExam(final Exam exam) {
-        // TODO Implement This!
-        return Collections.emptyList();
-    }
-
-    public List<String> getWrongAnswersFromExam(final Exam exam) {
-        // TODO Implement This
-        return Collections.emptyList();
+    public List<Exercise> getRightAnswersFromExam(final Exam exam) {
+        return exam.getCorrectExercises().stream()
+                .map(x -> new VerifiedExercise(x)).collect(Collectors.toList());
     }
 }

@@ -9,6 +9,7 @@ import java.util.List;
 
 public interface Question extends Serializable {
     List<String> answers();
+    List<String> allAnswers();
     Boolean isCorrect(final List<String> answers);
     Double points();
 }

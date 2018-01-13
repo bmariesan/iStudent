@@ -2,13 +2,14 @@ package ro.ubb.istudent.grading.exam;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jdk.nashorn.internal.ir.annotations.Immutable;
+import javax.annotation.concurrent.Immutable;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Immutable
 @Document(collection = "completed-exercise")
@@ -48,8 +49,25 @@ public class CompletedExercise implements Exercise {
     }
 
     @Override
+    public Question getQuestion() {
+        return this.question;
+    }
+
+    @Override
     public Double getScore() {
         return question.isCorrect(answers) ?
                 question.points() : 0.0;
+    }
+
+    @Override
+    public Boolean isRight() {
+        return question.isCorrect(answers);
+    }
+
+    @Override
+    public List<String> getUserAnswers() {
+        return answers.stream()
+                .filter(x -> question.answers().contains(x))
+                .collect(Collectors.toList());
     }
 }

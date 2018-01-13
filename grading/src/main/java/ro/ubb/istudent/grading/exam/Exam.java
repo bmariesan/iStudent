@@ -1,17 +1,17 @@
 package ro.ubb.istudent.grading.exam;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jdk.nashorn.internal.ir.annotations.Immutable;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.annotation.concurrent.Immutable;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Alexandru Arnautu
@@ -47,5 +47,9 @@ public class Exam implements Serializable {
     public Double getTotalScore() {
         return exercises.stream()
                 .mapToDouble(Exercise::getScore).sum();
+    }
+
+    public List<Exercise> getCorrectExercises() {
+        return exercises.stream().filter(x -> x.isRight() == Boolean.TRUE).collect(Collectors.toList());
     }
 }

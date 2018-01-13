@@ -1,10 +1,12 @@
 package ro.ubb.istudent.grading.exam;
 
-import jdk.nashorn.internal.ir.annotations.Immutable;
+import javax.annotation.concurrent.Immutable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @author Alexandru Stoica
@@ -27,6 +29,13 @@ public class GradingExamController {
     @PostMapping("")
     public ResponseEntity<Double> gradeMultipleChoiceExam(@RequestBody Exam exam) {
         return new ResponseEntity<>(service.getTotalScoreFromExam(exam),
+                HttpStatus.OK);
+    }
+
+    @ResponseBody
+    @GetMapping("/right-answers")
+    public ResponseEntity<List<Exercise>> getUsersRightAnswers(@RequestBody Exam exam) {
+        return new ResponseEntity<>(service.getRightAnswersFromExam(exam),
                 HttpStatus.OK);
     }
 }
