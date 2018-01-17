@@ -1,5 +1,17 @@
 var username = "dana";
 
+
+function compareCourses(a, b) {
+    if (a.name < b.name) {
+        return -1;
+    } else if (a.name === b.name) {
+        return 0;
+    } else {
+        return 1;
+    }
+}
+
+
 $(document).ready(function () {
     console.log("available")
     getAvailableCourses()
@@ -22,29 +34,30 @@ $(document).ready(function () {
         if (data != null) {
             var ul = document.getElementById("available-courses-list");
             course_index = 0
-            data.map(function (course) {
-                var li = document.createElement("li");
+            data.sort(compareCourses)
+                .map(function (course) {
+                    var li = document.createElement("li");
 
-                var span = document.createElement("span");
-                span.className = "badge badge-default badge-pill"
-                span.innerHTML = course.numRegisteredStudents + " / " + course.studentLimit
+                    var span = document.createElement("span");
+                    span.className = "badge badge-default badge-pill"
+                    span.innerHTML = course.numRegisteredStudents + " / " + course.studentLimit
 
-                var button = document.createElement("button")
-                button.className = "btn btn-primary"
-                button.innerHTML = "Subscribe"
-                button.setAttribute("data-id", course.name);
-                button.setAttribute("type", "button");
-                button.setAttribute("id", "course-subscribe-" + course_index);
+                    var button = document.createElement("button")
+                    button.className = "btn btn-primary"
+                    button.innerHTML = "Subscribe"
+                    button.setAttribute("data-id", course.name);
+                    button.setAttribute("type", "button");
+                    button.setAttribute("id", "course-subscribe-" + course_index);
 
-                li.appendChild(button)
-                li.appendChild(document.createTextNode(course.name));
-                li.className = "list-group-item justify-content-between"
-                li.appendChild(span)
-                ul.appendChild(li);
+                    li.appendChild(button)
+                    li.appendChild(document.createTextNode(course.name));
+                    li.className = "list-group-item justify-content-between"
+                    li.appendChild(span)
+                    ul.appendChild(li);
 
-                addEventListener(course_index)
-                course_index += 1
-            })
+                    addEventListener(course_index)
+                    course_index += 1
+                })
 
             if (data.length === 0) {
                 ul.appendChild(document.createTextNode("No available courses .."))

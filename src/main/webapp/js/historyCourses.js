@@ -1,13 +1,25 @@
 var username = "dana";
 
-$(document).ready(function () {
-    console.log("available")
-    getAvailableCourses()
 
-    function getAvailableCourses() {
+function compareCourses(a, b) {
+    if (a.name < b.name) {
+        return -1;
+    } else if (a.name === b.name) {
+        return 0;
+    } else {
+        return 1;
+    }
+}
+
+
+$(document).ready(function () {
+    console.log("history")
+    getSubscribedCourses()
+
+    function getSubscribedCourses() {
         $.ajax({
             type: "GET",
-            url: '/api/subscribe/courses/available/' + username,
+            url: '/api/students/' + username + "/courses/",
             success: function (data) {
                 // fill data to Modal Body
                 fillCourses(data);
@@ -20,74 +32,26 @@ $(document).ready(function () {
 
     function fillCourses(data) {
         if (data != null) {
-            var ul = document.getElementById("available-courses-list");
-            course_index = 0
-            data.map(function (course) {
-                var li = document.createElement("li");
+            var ul = document.getElementById("subscribed-courses-list");
+            data.sort(compareCourses)
+                .map(function (course) {
+                    var li = document.createElement("li");
 
-                var span = document.createElement("span");
-                span.className = "badge badge-default badge-pill"
-                span.innerHTML = course.numRegisteredStudents + " / " + course.studentLimit
+                    var span = document.createElement("span");
+                    span.className = "badge badge-default badge-pill"
+                    span.innerHTML = course.numRegisteredStudents + " / " + course.studentLimit
 
-                var button = document.createElement("button")
-                button.className = "btn btn-primary"
-                button.innerHTML = "Subscribe"
-                button.setAttribute("data-id", course.name);
-                button.setAttribute("type", "button");
-                button.setAttribute("id", "course-subscribe-" + course_index);
-
-                li.appendChild(button)
-                li.appendChild(document.createTextNode(course.name));
-                li.className = "list-group-item justify-content-between"
-                li.appendChild(span)
-                ul.appendChild(li);
-
-                addEventListener(course_index)
-                course_index += 1
-            })
+                    li.appendChild(document.createTextNode(course.name));
+                    li.className = "list-group-item justify-content-between"
+                    li.appendChild(span)
+                    ul.appendChild(li);
+                })
 
             if (data.length === 0) {
-                ul.appendChild(document.createTextNode("No available courses .."))
+                ul.appendChild(document.createTextNode("No subscribed courses .."))
             }
         } else {
-            $("#available-courses-list").appendChild(document.createTextNode("Can Not Get Data from Server!"));
+            $("#subscribed-courses-list").appendChild(document.createTextNode("Can Not Get Data from Server!"));
         }
     }
-
-    function removeCourseList() {
-        document.getElementById("available-courses-list").innerHTML = ""
-    }
-
-
-    function addEventListener(course_index) {
-
-        $("#course-subscribe-" + course_index).click(function (event) {
-            event.preventDefault();
-            console.log("SUBSCRIBE")
-            var courseName = $("#course-subscribe-" + course_index).attr('data-id')
-            console.log("course name", courseName)
-
-            var data = {
-                name: courseName,
-                "": ""
-            }
-
-            $.ajax({
-                type: "POST",
-                url: "/api/subscribe/" + username,
-                data: JSON.stringify(data),
-                dataType: "text",
-                contentType: "application/json; charset=utf-8",
-                success: function (data, status, xhr) {
-                    alert("Subscribed!")
-                    removeCourseList()
-                    getAvailableCourses()
-                },
-                error: function (data, status, xhr) {
-                    alert("Could not subscribe to course!");
-                }
-            });
-        });
-    }
-
 });
