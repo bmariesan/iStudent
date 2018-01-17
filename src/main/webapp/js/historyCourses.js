@@ -31,7 +31,7 @@ $(document).ready(function () {
     }
 
     function fillCourses(data) {
-        if (data != null) {
+        if (data !== null) {
             var ul = document.getElementById("subscribed-courses-list");
             data.sort(compareCourses)
                 .map(function (course) {
@@ -45,7 +45,7 @@ $(document).ready(function () {
                     li.className = "list-group-item justify-content-between";
                     li.appendChild(span);
                     ul.appendChild(li);
-                })
+                });
 
             if (data.length === 0) {
                 ul.appendChild(document.createTextNode("No subscribed courses .."));

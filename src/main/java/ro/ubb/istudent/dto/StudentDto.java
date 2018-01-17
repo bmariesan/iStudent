@@ -17,12 +17,13 @@ public class StudentDto extends BaseDto {
     private List<CourseDto> registeredCourses;
 
     public static StudentDto createDtoFromEntity(StudentEntity entity) {
-        StudentDto dto = new StudentDto();
-        dto.setId(entity.getId());
-        dto.setName(entity.getName());
-        dto.setUsername(entity.getUsername());
         List<CourseDto> courseDtos = CourseDto.createDtosFromEntities(entity.getRegisteredCourses());
-        dto.setRegisteredCourses(courseDtos);
+        StudentDto dto = StudentDto.builder()
+                .name(entity.getName())
+                .username(entity.getUsername())
+                .registeredCourses(courseDtos)
+                .build();
+        dto.setId(entity.getId());
         return dto;
     }
 

@@ -23,6 +23,7 @@ public class CourseEntity extends BaseEntity {
     private String name;
 
     private Integer studentLimit;
+    private boolean active;
 
     @DBRef(lazy = true)
     private List<StudentEntity> registeredStudents;

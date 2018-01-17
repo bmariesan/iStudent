@@ -15,12 +15,14 @@ public class CourseDto extends BaseDto {
     private String name;
     private Integer numRegisteredStudents;
     private Integer studentLimit;
+    private boolean active;
 
     public static CourseDto createDtoFromEntity(CourseEntity entity) {
         CourseDto courseDto = CourseDto.builder()
                 .name(entity.getName())
                 .studentLimit(entity.getStudentLimit())
                 .numRegisteredStudents(entity.getRegisteredStudents().size())
+                .active(entity.isActive())
                 .build();
         courseDto.setId(entity.getId());
 

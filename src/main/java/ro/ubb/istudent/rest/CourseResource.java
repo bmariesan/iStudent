@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ro.ubb.istudent.dto.CourseDto;
+import ro.ubb.istudent.exception.EntityNotFoundException;
 import ro.ubb.istudent.service.CourseService;
 
 import java.util.List;
@@ -31,5 +32,16 @@ public class CourseResource {
         List<CourseDto> courses = service.findAll();
         return new ResponseEntity<>(courses, HttpStatus.OK);
     }
+
+    @PostMapping("/courses/{name}/setlimit/{limit}")
+    public void setStudentLimitToCourse(@PathVariable String name, @PathVariable int limit) {
+        try {
+            service.setLimitToCourse(name, limit);
+        } catch (EntityNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 }

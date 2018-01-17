@@ -27,7 +27,7 @@ $(document).ready(function () {
     }
 
     function fillCourses(data) {
-        if (data != null) {
+        if (data !== null) {
             var ul = document.getElementById("courses-list");
             data.sort(compareCourses)
                 .map(function (course) {

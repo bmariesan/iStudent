@@ -3,7 +3,9 @@ package ro.ubb.istudent.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import ro.ubb.istudent.domain.CourseEntity;
 import ro.ubb.istudent.dto.CourseDto;
+import ro.ubb.istudent.exception.EntityNotFoundException;
 import ro.ubb.istudent.repository.CourseRepository;
 
 import java.util.List;
@@ -32,5 +34,17 @@ public class CourseService {
         return CourseDto.createDtosFromEntities(repository.findAll());
     }
 
+    public CourseEntity getCourseWithName(String name) {
+        Optional<CourseEntity> courseOptional = repository.findCourseEntityByName(name);
+        if (!courseOptional.isPresent()) {
+            throw new EntityNotFoundException("A course with the name " + name + " was not found!");
+        }
+        return courseOptional.get();
+    }
 
+    public void setLimitToCourse(String name, int limit) {
+        CourseEntity course = getCourseWithName(name);
+        course.setStudentLimit(limit);
+        repository.save(course);
+    }
 }

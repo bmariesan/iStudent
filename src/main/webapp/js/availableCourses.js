@@ -31,7 +31,7 @@ $(document).ready(function () {
     }
 
     function fillCourses(data) {
-        if (data != null) {
+        if (data !== null) {
             var ul = document.getElementById("available-courses-list");
             course_index = 0;
             data.sort(compareCourses)
@@ -57,7 +57,7 @@ $(document).ready(function () {
 
                     addEventListener(course_index);
                     course_index += 1
-                })
+                });
 
             if (data.length === 0) {
                 ul.appendChild(document.createTextNode("No available courses .."));
@@ -83,7 +83,7 @@ $(document).ready(function () {
             var data = {
                 name: courseName,
                 "": ""
-            }
+            };
 
             $.ajax({
                 type: "POST",
@@ -93,7 +93,7 @@ $(document).ready(function () {
                 contentType: "application/json; charset=utf-8",
                 success: function (data, status, xhr) {
                     // alert("Subscribed!")
-                    removeCourseList()
+                    removeCourseList();
                     getAvailableCourses()
                 },
                 error: function (data, status, xhr) {

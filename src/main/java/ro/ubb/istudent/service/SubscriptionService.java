@@ -7,12 +7,10 @@ import ro.ubb.istudent.domain.CourseEntity;
 import ro.ubb.istudent.domain.StudentEntity;
 import ro.ubb.istudent.dto.CourseDto;
 import ro.ubb.istudent.dto.StudentDto;
-import ro.ubb.istudent.exception.EntityNotFoundException;
 import ro.ubb.istudent.repository.CourseRepository;
 import ro.ubb.istudent.repository.StudentRepository;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -24,15 +22,22 @@ public class SubscriptionService {
 
     private final StudentRepository studentRepository;
     private final CourseRepository courseRepository;
+    private final StudentService studentService;
+    private final CourseService courseService;
 
-    public SubscriptionService(StudentRepository studentRepository, CourseRepository courseRepository) {
+    public SubscriptionService(StudentRepository studentRepository,
+                               CourseRepository courseRepository,
+                               StudentService studentService,
+                               CourseService courseService) {
         this.studentRepository = studentRepository;
         this.courseRepository = courseRepository;
+        this.studentService = studentService;
+        this.courseService = courseService;
     }
 
     public StudentDto subscribeStudentToCourse(String username, CourseDto courseDto) {
-        StudentEntity student = getStudentWithUsername(username);
-        CourseEntity course = getCourseWithName(courseDto.getName());
+        StudentEntity student = studentService.getStudentWithUsername(username);
+        CourseEntity course = courseService.getCourseWithName(courseDto.getName());
 
         student.subscribeToCourse(course);
         studentRepository.save(student);
@@ -44,32 +49,16 @@ public class SubscriptionService {
     }
 
     public List<CourseDto> getAvailableCoursesForStudent(String username) {
-        StudentEntity student = getStudentWithUsername(username);
+        StudentEntity student = studentService.getStudentWithUsername(username);
         List<CourseEntity> courses = courseRepository.findAll();
         return CourseDto.createDtosFromEntities(courses.stream()
-                .filter(course -> course.isAvailableForStudent(student))
+                .filter(course -> course.isAvailableForStudent(student) && course.isActive())
                 .collect(Collectors.toList()));
     }
 
     public List<CourseDto> getRegisteredCoursesForStudent(String username) {
-        StudentEntity student = getStudentWithUsername(username);
+        StudentEntity student = studentService.getStudentWithUsername(username);
         List<CourseEntity> courses = student.getRegisteredCourses();
         return CourseDto.createDtosFromEntities(courses);
-    }
-
-    private StudentEntity getStudentWithUsername(String username) {
-        Optional<StudentEntity> studentOptional = studentRepository.findStudentEntityByUsername(username);
-        if (!studentOptional.isPresent()) {
-            throw new EntityNotFoundException("A student with the username " + username + " was not found!");
-        }
-        return studentOptional.get();
-    }
-
-    private CourseEntity getCourseWithName(String name) {
-        Optional<CourseEntity> courseOptional = courseRepository.findCourseEntityByName(name);
-        if (!courseOptional.isPresent()) {
-            throw new EntityNotFoundException("A course with the name " + name + " was not found!");
-        }
-        return courseOptional.get();
     }
 }

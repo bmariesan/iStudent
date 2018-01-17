@@ -3,7 +3,9 @@ package ro.ubb.istudent.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import ro.ubb.istudent.domain.StudentEntity;
 import ro.ubb.istudent.dto.StudentDto;
+import ro.ubb.istudent.exception.EntityNotFoundException;
 import ro.ubb.istudent.repository.StudentRepository;
 
 import java.util.List;
@@ -32,5 +34,11 @@ public class StudentService {
         return StudentDto.createDtosFromEntities(repository.findAll());
     }
 
-
+    public StudentEntity getStudentWithUsername(String username) {
+        Optional<StudentEntity> studentOptional = repository.findStudentEntityByUsername(username);
+        if (!studentOptional.isPresent()) {
+            throw new EntityNotFoundException("A student with the username " + username + " was not found!");
+        }
+        return studentOptional.get();
+    }
 }
