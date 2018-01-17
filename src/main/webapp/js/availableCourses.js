@@ -21,6 +21,7 @@ $(document).ready(function () {
     function fillCourses(data) {
         if (data != null) {
             var ul = document.getElementById("available-courses-list");
+            course_index = 0
             data.map(function (course) {
                 var li = document.createElement("li");
 
@@ -33,19 +34,21 @@ $(document).ready(function () {
                 button.innerHTML = "Subscribe"
                 button.setAttribute("data-id", course.name);
                 button.setAttribute("type", "button");
-                button.setAttribute("id", "course-subscribe");
+                button.setAttribute("id", "course-subscribe-" + course_index);
 
                 li.appendChild(button)
                 li.appendChild(document.createTextNode(course.name));
                 li.className = "list-group-item justify-content-between"
                 li.appendChild(span)
                 ul.appendChild(li);
+
+                addEventListener(course_index)
+                course_index += 1
             })
 
             if (data.length === 0) {
                 ul.appendChild(document.createTextNode("No available courses .."))
             }
-            addEventListener()
         } else {
             $("#available-courses-list").appendChild(document.createTextNode("Can Not Get Data from Server!"));
         }
@@ -56,12 +59,12 @@ $(document).ready(function () {
     }
 
 
-    function addEventListener() {
+    function addEventListener(course_index) {
 
-        $("#course-subscribe").click(function (event) {
+        $("#course-subscribe-" + course_index).click(function (event) {
             event.preventDefault();
             console.log("SUBSCRIBE")
-            var courseName = $("#course-subscribe").attr('data-id')
+            var courseName = $("#course-subscribe-" + course_index).attr('data-id')
             console.log("course name", courseName)
 
             var data = {
