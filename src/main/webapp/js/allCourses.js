@@ -25,7 +25,7 @@ $(document).ready(function () {
 
                 var span = document.createElement("span");
                 span.className = "badge badge-default badge-pill"
-                span.innerHTML = course.studentLimit
+                span.innerHTML = course.numRegisteredStudents + " / " + course.studentLimit
 
                 li.appendChild(span)
                 ul.appendChild(li);

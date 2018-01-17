@@ -13,12 +13,14 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class CourseDto extends BaseDto {
     private String name;
+    private Integer numRegisteredStudents;
     private Integer studentLimit;
 
     public static CourseDto createDtoFromEntity(CourseEntity entity) {
         CourseDto courseDto = CourseDto.builder()
                 .name(entity.getName())
                 .studentLimit(entity.getStudentLimit())
+                .numRegisteredStudents(entity.getRegisteredStudents().size())
                 .build();
         courseDto.setId(entity.getId());
 
