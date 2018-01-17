@@ -36,14 +36,15 @@ public class CourseResource {
     }
 
     @PostMapping("/courses/{name}/setlimit/{limit}")
-    public void setStudentLimitToCourse(@PathVariable String name, @PathVariable int limit) {
+    public ResponseEntity<Void> setStudentLimitToCourse(@PathVariable String name, @PathVariable int limit) {
         try {
             service.setLimitToCourse(name, limit);
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (EntityNotFoundException e) {
             e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);
         }
     }
-
-
-
 }
