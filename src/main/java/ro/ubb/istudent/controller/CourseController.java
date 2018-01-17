@@ -19,4 +19,8 @@ public class CourseController {
         return "availableCourses";
     }
 
+    @RequestMapping(value = "/historyCourses", method = RequestMethod.GET)
+    public String historyCourses() {
+        return "historyCourses";
+    }
 }
