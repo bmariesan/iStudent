@@ -1,3 +1,5 @@
+var username = "dana";
+
 $(document).ready(function () {
     console.log("available")
     getAvailableCourses()
@@ -5,7 +7,7 @@ $(document).ready(function () {
     function getAvailableCourses() {
         $.ajax({
             type: "GET",
-            url: '/api/subscribe/courses/available/dana',
+            url: '/api/subscribe/courses/available/' + username,
             success: function (data) {
                 // fill data to Modal Body
                 fillCourses(data);
@@ -19,7 +21,7 @@ $(document).ready(function () {
     function fillCourses(data) {
         if (data != null) {
             var ul = document.getElementById("available-courses-list");
-            data.map(function(course) {
+            data.map(function (course) {
                 var li = document.createElement("li");
 
                 var span = document.createElement("span");
@@ -40,7 +42,7 @@ $(document).ready(function () {
                 ul.appendChild(li);
             })
 
-            if(data.length === 0){
+            if (data.length === 0) {
                 ul.appendChild(document.createTextNode("No available courses .."))
             }
             addEventListener()
@@ -64,12 +66,12 @@ $(document).ready(function () {
 
             var data = {
                 name: courseName,
-                "":""
+                "": ""
             }
 
             $.ajax({
                 type: "POST",
-                url: "/api/subscribe/dana",
+                url: "/api/subscribe/" + username,
                 data: JSON.stringify(data),
                 dataType: "text",
                 contentType: "application/json; charset=utf-8",
