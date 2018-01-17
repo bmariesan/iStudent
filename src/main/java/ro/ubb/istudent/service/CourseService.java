@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import ro.ubb.istudent.domain.CourseEntity;
 import ro.ubb.istudent.dto.CourseDto;
 import ro.ubb.istudent.exception.EntityNotFoundException;
-import ro.ubb.istudent.exception.IllegalOperationException;
 import ro.ubb.istudent.repository.CourseRepository;
 
 import java.util.List;
@@ -43,6 +42,7 @@ public class CourseService {
         return courseOptional.get();
     }
 
+    /*
     public void setLimitToCourse(String name, int limit) {
         CourseEntity course = getCourseWithName(name);
         int studNr = course.getRegisteredStudents().size();
@@ -53,4 +53,5 @@ public class CourseService {
         else
             throw new IllegalOperationException("There are already "+studNr+" registered at this course");
     }
+    */
 }

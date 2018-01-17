@@ -35,6 +35,7 @@ public class CourseResource {
         return new ResponseEntity<>(courses, HttpStatus.OK);
     }
 
+    /*
     @PostMapping("/courses/{name}/setlimit/{limit}")
     public ResponseEntity<Void> setStudentLimitToCourse(@PathVariable String name, @PathVariable int limit) {
         try {
@@ -47,4 +48,5 @@ public class CourseResource {
             return new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);
         }
     }
+    */
 }
