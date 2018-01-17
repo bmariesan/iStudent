@@ -7,9 +7,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ro.ubb.istudent.dto.CourseDto;
 import ro.ubb.istudent.dto.StudentDto;
+import ro.ubb.istudent.exception.EntityNotFoundException;
 import ro.ubb.istudent.service.SubscriptionService;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created on 09.01.2018.
@@ -36,5 +39,15 @@ public class SubscriptionResource {
     public ResponseEntity<List<CourseDto>> getAvailableCoursesForStudent(@PathVariable("username") String username) {
         List<CourseDto> availableCourses = subscriptionService.getAvailableCoursesForStudent(username);
         return new ResponseEntity<>(availableCourses, HttpStatus.OK);
+    }
+
+    @GetMapping("/students/{username}/courses")
+    public ResponseEntity<List<CourseDto>> getCoursesOfStudent(@PathVariable String username) {
+        try {
+            List<CourseDto> registeredCourses = subscriptionService.getRegisteredCoursesForStudent(username);
+            return new ResponseEntity<>(registeredCourses, HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            return new ResponseEntity<>(new ArrayList<>(), HttpStatus.BAD_REQUEST);
+        }
     }
 }

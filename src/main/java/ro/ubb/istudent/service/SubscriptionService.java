@@ -51,6 +51,12 @@ public class SubscriptionService {
                 .collect(Collectors.toList()));
     }
 
+    public List<CourseDto> getRegisteredCoursesForStudent(String username) {
+        StudentEntity student = getStudentWithUsername(username);
+        List<CourseEntity> courses = student.getRegisteredCourses();
+        return CourseDto.createDtosFromEntities(courses);
+    }
+
     private StudentEntity getStudentWithUsername(String username) {
         Optional<StudentEntity> studentOptional = studentRepository.findStudentEntityByUsername(username);
         if (!studentOptional.isPresent()) {

@@ -14,12 +14,15 @@ import java.util.stream.Collectors;
 public class StudentDto extends BaseDto {
     private String username;
     private String name;
+    private List<CourseDto> registeredCourses;
 
     public static StudentDto createDtoFromEntity(StudentEntity entity) {
         StudentDto dto = new StudentDto();
         dto.setId(entity.getId());
         dto.setName(entity.getName());
         dto.setUsername(entity.getUsername());
+        List<CourseDto> courseDtos = CourseDto.createDtosFromEntities(entity.getRegisteredCourses());
+        dto.setRegisteredCourses(courseDtos);
         return dto;
     }
 
