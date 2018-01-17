@@ -13,8 +13,8 @@ function compareCourses(a, b) {
 
 
 $(document).ready(function () {
-    console.log("available")
-    getAvailableCourses()
+    console.log("available");
+    getAvailableCourses();
 
     function getAvailableCourses() {
         $.ajax({
@@ -33,34 +33,34 @@ $(document).ready(function () {
     function fillCourses(data) {
         if (data != null) {
             var ul = document.getElementById("available-courses-list");
-            course_index = 0
+            course_index = 0;
             data.sort(compareCourses)
                 .map(function (course) {
                     var li = document.createElement("li");
 
                     var span = document.createElement("span");
-                    span.className = "badge badge-default badge-pill"
-                    span.innerHTML = course.numRegisteredStudents + " / " + course.studentLimit
+                    span.className = "badge progress-bar-success badge-pill";
+                    span.innerHTML = course.numRegisteredStudents + " / " + course.studentLimit;
 
-                    var button = document.createElement("button")
-                    button.className = "btn btn-primary"
-                    button.innerHTML = "Subscribe"
+                    var button = document.createElement("button");
+                    button.className = "btn btn-primary";
+                    button.innerHTML = "Subscribe";
                     button.setAttribute("data-id", course.name);
                     button.setAttribute("type", "button");
                     button.setAttribute("id", "course-subscribe-" + course_index);
 
-                    li.appendChild(button)
+                    li.appendChild(button);
                     li.appendChild(document.createTextNode(course.name));
-                    li.className = "list-group-item justify-content-between"
-                    li.appendChild(span)
+                    li.className = "list-group-item justify-content-between";
+                    li.appendChild(span);
                     ul.appendChild(li);
 
-                    addEventListener(course_index)
+                    addEventListener(course_index);
                     course_index += 1
                 })
 
             if (data.length === 0) {
-                ul.appendChild(document.createTextNode("No available courses .."))
+                ul.appendChild(document.createTextNode("No available courses .."));
             }
         } else {
             $("#available-courses-list").appendChild(document.createTextNode("Can Not Get Data from Server!"));
@@ -68,7 +68,7 @@ $(document).ready(function () {
     }
 
     function removeCourseList() {
-        document.getElementById("available-courses-list").innerHTML = ""
+        document.getElementById("available-courses-list").innerHTML = "";
     }
 
 
@@ -76,9 +76,9 @@ $(document).ready(function () {
 
         $("#course-subscribe-" + course_index).click(function (event) {
             event.preventDefault();
-            console.log("SUBSCRIBE")
-            var courseName = $("#course-subscribe-" + course_index).attr('data-id')
-            console.log("course name", courseName)
+            console.log("SUBSCRIBE");
+            var courseName = $("#course-subscribe-" + course_index).attr('data-id');
+            console.log("course name", courseName);
 
             var data = {
                 name: courseName,
@@ -92,7 +92,7 @@ $(document).ready(function () {
                 dataType: "text",
                 contentType: "application/json; charset=utf-8",
                 success: function (data, status, xhr) {
-                    alert("Subscribed!")
+                    // alert("Subscribed!")
                     removeCourseList()
                     getAvailableCourses()
                 },

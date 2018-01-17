@@ -10,8 +10,8 @@ function compareCourses(a, b) {
 
 
 $(document).ready(function () {
-    console.log("courses")
-    getCourses()
+    console.log("courses");
+    getCourses();
 
     function getCourses() {
         $.ajax({
@@ -32,14 +32,15 @@ $(document).ready(function () {
             data.sort(compareCourses)
                 .map(function (course) {
                     var li = document.createElement("li");
+
                     li.appendChild(document.createTextNode(course.name));
-                    li.className = "list-group-item justify-content-between"
+                    li.className = "list-group-item justify-content-between";
 
                     var span = document.createElement("span");
-                    span.className = "badge badge-default badge-pill"
-                    span.innerHTML = course.numRegisteredStudents + " / " + course.studentLimit
+                    span.className = "badge progress-bar-success badge-pill";
+                    span.innerHTML = course.numRegisteredStudents + " / " + course.studentLimit;
 
-                    li.appendChild(span)
+                    li.appendChild(span);
                     ul.appendChild(li);
                 })
 

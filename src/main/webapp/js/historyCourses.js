@@ -13,8 +13,8 @@ function compareCourses(a, b) {
 
 
 $(document).ready(function () {
-    console.log("history")
-    getSubscribedCourses()
+    console.log("history");
+    getSubscribedCourses();
 
     function getSubscribedCourses() {
         $.ajax({
@@ -38,17 +38,17 @@ $(document).ready(function () {
                     var li = document.createElement("li");
 
                     var span = document.createElement("span");
-                    span.className = "badge badge-default badge-pill"
-                    span.innerHTML = course.numRegisteredStudents + " / " + course.studentLimit
+                    span.className = "badge progress-bar-info badge-pill";
+                    span.innerHTML = course.numRegisteredStudents + " / " + course.studentLimit;
 
                     li.appendChild(document.createTextNode(course.name));
-                    li.className = "list-group-item justify-content-between"
-                    li.appendChild(span)
+                    li.className = "list-group-item justify-content-between";
+                    li.appendChild(span);
                     ul.appendChild(li);
                 })
 
             if (data.length === 0) {
-                ul.appendChild(document.createTextNode("No subscribed courses .."))
+                ul.appendChild(document.createTextNode("No subscribed courses .."));
             }
         } else {
             $("#subscribed-courses-list").appendChild(document.createTextNode("Can Not Get Data from Server!"));
