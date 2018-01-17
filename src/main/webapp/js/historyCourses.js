@@ -2,11 +2,17 @@ var username = "dana";
 
 
 function compareCourses(a, b) {
-    if (a.name < b.name) {
+    if (a.active === b.active) {
+        if (a.name < b.name) {
+            return -1;
+        } else if (a.name === b.name) {
+            return 0;
+        } else {
+            return 1;
+        }
+    } else if (a.active) {
         return -1;
-    } else if (a.name === b.name) {
-        return 0;
-    } else {
+    } else if (b.active) {
         return 1;
     }
 }
@@ -37,9 +43,16 @@ $(document).ready(function () {
                 .map(function (course) {
                     var li = document.createElement("li");
 
+                    var progress_bar = "";
+                    var span_text = "Inactive";
+                    if (course.active) {
+                        progress_bar = "progress-bar-info";
+                        span_text = course.numRegisteredStudents + " / " + course.studentLimit;
+                    }
+
                     var span = document.createElement("span");
-                    span.className = "badge progress-bar-info badge-pill";
-                    span.innerHTML = course.numRegisteredStudents + " / " + course.studentLimit;
+                    span.className = "badge " + progress_bar + " badge-pill";
+                    span.innerHTML = span_text;
 
                     li.appendChild(document.createTextNode(course.name));
                     li.className = "list-group-item justify-content-between";

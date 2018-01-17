@@ -33,6 +33,7 @@ public class CourseDto extends BaseDto {
         CourseEntity courseEntity = CourseEntity.builder()
                 .name(dto.getName())
                 .studentLimit(dto.getStudentLimit())
+                .active(dto.isActive())
                 .build();
         courseEntity.setId(dto.getId());
 

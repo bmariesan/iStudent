@@ -26,6 +26,7 @@ public class SubscriptionResource {
 
     SubscriptionResource(SubscriptionService subscriptionService) {
         this.subscriptionService = subscriptionService;
+        subscriptionService.subscribeStudentToCourse("dana", CourseDto.builder().name("Algebra").studentLimit(10).active(false).build());
     }
 
     @PostMapping("/subscribe/{username}")

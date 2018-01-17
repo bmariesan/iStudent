@@ -23,8 +23,10 @@ public class CourseResource {
     public CourseResource(CourseService service, @Value("${application.base-url}") String baseUrl) {
         this.service = service;
         this.baseUrl = baseUrl;
-        service.createCourse(CourseDto.builder().name("Design Patterns").studentLimit(1).build());
-        service.createCourse(CourseDto.builder().name("Algebra").studentLimit(10).build());
+        service.createCourse(CourseDto.builder().name("Design Patterns").studentLimit(1).active(true).build());
+        service.createCourse(CourseDto.builder().name("Algebra").studentLimit(10).active(false).build());
+        service.createCourse(CourseDto.builder().name("Databases").studentLimit(5).active(false).build());
+        service.createCourse(CourseDto.builder().name("Cryptography").studentLimit(5).active(true).build());
     }
 
     @GetMapping("/courses")
