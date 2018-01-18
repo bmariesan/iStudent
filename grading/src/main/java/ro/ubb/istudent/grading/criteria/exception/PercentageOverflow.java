@@ -1,4 +1,4 @@
-package ro.ubb.istudent.grading.criteria;
+package ro.ubb.istudent.grading.criteria.exception;
 
 /**
  * @author Alexandru Stoica

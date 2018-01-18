@@ -1,4 +1,4 @@
-package ro.ubb.istudent.grading.criteria;
+package ro.ubb.istudent.grading.criteria.service;
 
 import javax.annotation.concurrent.Immutable;
 import org.bson.types.ObjectId;
@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.ubb.istudent.grading.course.Course;
 import ro.ubb.istudent.grading.course.CourseRepository;
+import ro.ubb.istudent.grading.criteria.command.FindGradingCriteriaCommand;
+import ro.ubb.istudent.grading.criteria.domain.GradingCriteriaWithValidatedPercentage;
+import ro.ubb.istudent.grading.criteria.domain.RedistributedGradingCriteria;
+import ro.ubb.istudent.grading.criteria.domain.GradingCriteria;
 
 /**
  * @author Alexandru Stoica
@@ -32,13 +36,13 @@ public class GradingCriteriaService implements
     @Override
     public Course insertWithComponentsRedistribution(
             final GradingCriteria criteria, final ObjectId courseId) {
-        return new ModifyGradingCriteriaCommand(courseRepository, courseId,
+        return new FindGradingCriteriaCommand.ModifyGradingCriteriaCommand(courseRepository, courseId,
                 new RedistributedGradingCriteria(criteria)).execute();
     }
 
     @Override
     public Course delete(final ObjectId courseId) {
-        return new ModifyGradingCriteriaCommand
+        return new FindGradingCriteriaCommand.ModifyGradingCriteriaCommand
                 (courseRepository, courseId, null).execute();
     }
 
@@ -54,7 +58,7 @@ public class GradingCriteriaService implements
     }
 
     private Course save(final GradingCriteria criteria, final ObjectId courseId) {
-        return new ModifyGradingCriteriaCommand(courseRepository, courseId,
+        return new FindGradingCriteriaCommand.ModifyGradingCriteriaCommand(courseRepository, courseId,
                 new GradingCriteriaWithValidatedPercentage(criteria)).execute();
     }
 }

@@ -14,6 +14,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import ro.ubb.istudent.grading.course.Course;
 import ro.ubb.istudent.grading.course.CourseNotFound;
 import ro.ubb.istudent.grading.course.CourseWithGradingCriteria;
+import ro.ubb.istudent.grading.criteria.controller.GradingCriteriaController;
+import ro.ubb.istudent.grading.criteria.domain.GradingCriteria;
+import ro.ubb.istudent.grading.criteria.domain.GradingCriteriaComponent;
+import ro.ubb.istudent.grading.criteria.domain.GradingCriteriaWithValidatedPercentage;
+import ro.ubb.istudent.grading.criteria.exception.GradingCriteriaNotFound;
+import ro.ubb.istudent.grading.criteria.service.GradingCriteriaService;
 
 import java.util.Collections;
 
@@ -31,7 +37,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(GradingCriteriaController.class)
-@ContextConfiguration(classes={GradingCriteriaController.class})
+@ContextConfiguration(classes={GradingCriteriaController.class}) 
 public class GradingCriteriaControllerUnitTest {
 
     @Autowired

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.annotation.concurrent.Immutable;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
-import ro.ubb.istudent.grading.criteria.GradingCriteria;
+import ro.ubb.istudent.grading.criteria.domain.GradingCriteria;
 
 /**
  * @author Alexandru Stoica

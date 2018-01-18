@@ -1,7 +1,7 @@
 package ro.ubb.istudent.grading.course;
 
 import org.bson.types.ObjectId;
-import ro.ubb.istudent.grading.criteria.GradingCriteria;
+import ro.ubb.istudent.grading.criteria.domain.GradingCriteria;
 
 /**
  * @author Alexandru Stoica

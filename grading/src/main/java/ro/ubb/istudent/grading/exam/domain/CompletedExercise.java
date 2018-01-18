@@ -12,9 +12,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Immutable
-@ToString
 @EqualsAndHashCode(of = {"id"})
+@ToString(of = {"id", "question", "answers"})
 @Document(collection = "completed-exercise")
 public class CompletedExercise implements Exercise {
 
@@ -57,20 +56,22 @@ public class CompletedExercise implements Exercise {
     }
 
     @Override
+    @JsonProperty
+    public List<String> rightAnswers() {
+        return question.answers();
+    }
+
+    @Override
+    @JsonProperty
+    public List<String> rightAnswersFromUser() {
+        return question.answers().stream()
+                .filter(answers::contains)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public Double score() {
         return question.isCorrect(answers) ?
                 question.points() : 0.0;
-    }
-
-    @Override
-    public Boolean isRight() {
-        return question.isCorrect(answers);
-    }
-
-    @Override
-    public List<String> userAnswers() {
-        return answers.stream()
-                .filter(x -> question.answers().contains(x))
-                .collect(Collectors.toList());
     }
 }

@@ -1,7 +1,8 @@
-package ro.ubb.istudent.grading.criteria;
+package ro.ubb.istudent.grading.criteria.domain;
 
 import javax.annotation.concurrent.Immutable;
 import lombok.EqualsAndHashCode;
+import ro.ubb.istudent.grading.criteria.exception.PercentageOverflow;
 
 /**
  * @author Alexandru Stoica

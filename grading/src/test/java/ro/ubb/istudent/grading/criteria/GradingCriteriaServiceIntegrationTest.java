@@ -15,7 +15,13 @@ import ro.ubb.istudent.grading.course.Course;
 import ro.ubb.istudent.grading.course.CourseNotFound;
 import ro.ubb.istudent.grading.course.CourseRepository;
 import ro.ubb.istudent.grading.course.CourseWithGradingCriteria;
-import ro.ubb.istudent.grading.criteria.*;
+import ro.ubb.istudent.grading.criteria.domain.GradingCriteria;
+import ro.ubb.istudent.grading.criteria.domain.GradingCriteriaComponent;
+import ro.ubb.istudent.grading.criteria.domain.GradingCriteriaComponentImportance;
+import ro.ubb.istudent.grading.criteria.domain.GradingCriteriaComponentType;
+import ro.ubb.istudent.grading.criteria.exception.GradingCriteriaNotFound;
+import ro.ubb.istudent.grading.criteria.exception.PercentageOverflow;
+import ro.ubb.istudent.grading.criteria.service.GradingCriteriaService;
 
 import static java.util.Collections.singletonList;
 import static org.hamcrest.CoreMatchers.equalTo;

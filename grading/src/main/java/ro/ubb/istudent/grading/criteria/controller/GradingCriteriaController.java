@@ -1,4 +1,4 @@
-package ro.ubb.istudent.grading.criteria;
+package ro.ubb.istudent.grading.criteria.controller;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +7,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ro.ubb.istudent.grading.course.Course;
 import ro.ubb.istudent.grading.course.CourseNotFound;
+import ro.ubb.istudent.grading.criteria.exception.GradingCriteriaNotFound;
+import ro.ubb.istudent.grading.criteria.domain.GradingCriteria;
+import ro.ubb.istudent.grading.criteria.service.GradingCriteriaService;
 
 /**
  * @author Alexandru Stoica

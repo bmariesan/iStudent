@@ -11,9 +11,9 @@ import java.util.List;
  */
 
 public interface Exercise extends Serializable {
+    ObjectId id();
     Double score();
     Question question();
-    List<String> userAnswers();
-    Boolean isRight();
-    ObjectId id();
+    List<String> rightAnswers();
+    List<String> rightAnswersFromUser();
 }

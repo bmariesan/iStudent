@@ -47,7 +47,6 @@ public class ChoiceQuestion implements Question {
         this(ObjectId.get(), text, rightAnswers, possibleAnswers, points);
     }
 
-
     public ChoiceQuestion(
             final ObjectId id,
             final String text,
@@ -86,10 +85,4 @@ public class ChoiceQuestion implements Question {
     public Double points() {
         return points;
     }
-
-    @Override
-    public List<String> allAnswers() {
-        return rightAnswers;
-    }
-
 }

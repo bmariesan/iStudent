@@ -1,4 +1,4 @@
-package ro.ubb.istudent.grading.criteria;
+package ro.ubb.istudent.grading.criteria.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.annotation.concurrent.Immutable;
@@ -7,8 +7,8 @@ import lombok.ToString;
 
 import java.io.Serializable;
 
-import static ro.ubb.istudent.grading.criteria.GradingCriteriaComponentImportance.HIGH;
-import static ro.ubb.istudent.grading.criteria.GradingCriteriaComponentType.FINAL_EXAM;
+import static ro.ubb.istudent.grading.criteria.domain.GradingCriteriaComponentImportance.HIGH;
+import static ro.ubb.istudent.grading.criteria.domain.GradingCriteriaComponentType.FINAL_EXAM;
 
 /**
  * @author Alexandru Stoica
