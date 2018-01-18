@@ -1,4 +1,4 @@
-package ro.ubb.istudent.grading.exam;
+package ro.ubb.istudent.grading.exam.domain;
 
 import java.io.Serializable;
 import java.util.List;

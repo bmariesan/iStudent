@@ -1,16 +1,13 @@
-package ro.ubb.istudent.grading.exam;
+package ro.ubb.istudent.grading.exam.domain;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import javax.annotation.concurrent.Immutable;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.io.Serializable;
-import java.util.Collections;
+import javax.annotation.concurrent.Immutable;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -92,7 +89,7 @@ public class ChoiceQuestion implements Question {
 
     @Override
     public List<String> allAnswers() {
-        return possibleAnswers;
+        return rightAnswers;
     }
 
 }

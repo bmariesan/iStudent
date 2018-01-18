@@ -1,17 +1,20 @@
-package ro.ubb.istudent.grading.exam;
+package ro.ubb.istudent.grading.exam.domain;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import javax.annotation.concurrent.Immutable;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.annotation.concurrent.Immutable;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Immutable
+@ToString
+@EqualsAndHashCode(of = {"id"})
 @Document(collection = "completed-exercise")
 public class CompletedExercise implements Exercise {
 
@@ -44,17 +47,17 @@ public class CompletedExercise implements Exercise {
         this.answers = answers;
     }
 
-    public ObjectId getId() {
+    public ObjectId id() {
         return id;
     }
 
     @Override
-    public Question getQuestion() {
+    public Question question() {
         return this.question;
     }
 
     @Override
-    public Double getScore() {
+    public Double score() {
         return question.isCorrect(answers) ?
                 question.points() : 0.0;
     }
@@ -65,7 +68,7 @@ public class CompletedExercise implements Exercise {
     }
 
     @Override
-    public List<String> getUserAnswers() {
+    public List<String> userAnswers() {
         return answers.stream()
                 .filter(x -> question.answers().contains(x))
                 .collect(Collectors.toList());

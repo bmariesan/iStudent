@@ -1,4 +1,4 @@
-package ro.ubb.istudent.grading.exam;
+package ro.ubb.istudent.grading.exam.domain;
 
 import org.bson.types.ObjectId;
 
@@ -11,9 +11,9 @@ import java.util.List;
  */
 
 public interface Exercise extends Serializable {
-    Double getScore();
-    Question getQuestion();
-    List<String> getUserAnswers();
+    Double score();
+    Question question();
+    List<String> userAnswers();
     Boolean isRight();
-    ObjectId getId();
+    ObjectId id();
 }

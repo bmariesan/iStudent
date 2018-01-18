@@ -1,4 +1,4 @@
-package ro.ubb.istudent.grading.exam;
+package ro.ubb.istudent.grading.exam.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.EqualsAndHashCode;
@@ -46,7 +46,7 @@ public class Exam implements Serializable {
 
     public Double getTotalScore() {
         return exercises.stream()
-                .mapToDouble(Exercise::getScore).sum();
+                .mapToDouble(Exercise::score).sum();
     }
 
     public List<Exercise> getCorrectExercises() {
