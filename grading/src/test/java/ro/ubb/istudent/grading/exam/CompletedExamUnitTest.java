@@ -1,4 +1,4 @@
-package ro.ubb.istudent.grading.criteria;
+package ro.ubb.istudent.grading.exam;
 
 import org.bson.types.ObjectId;
 import org.hamcrest.core.Is;
@@ -30,7 +30,7 @@ class CompletedExamUnitTest {
     @Test
     void whenGradingExam_ExamCompletedByUser_ExpectCorrectScore() {
         // given:
-        List<Exercise> exercises = asList(
+        List<CompletedExercise> exercises = asList(
                 new CompletedExercise(ObjectId.get(), makeQuestion(), singletonList("is not good")),
                 new CompletedExercise(ObjectId.get(), makeQuestion(), singletonList("is good")));
         CompletedExam exam = new ExamWithCompletedExercises(ObjectId.get(), exercises);
@@ -43,11 +43,11 @@ class CompletedExamUnitTest {
     @Test
     void whenAskingForCorrectExercises_WithValidExam_ExpectCorrectExercisesFromExam() {
         // given:
-        List<Exercise> exercises = asList(
+        List<CompletedExercise> exercises = asList(
                 new CompletedExercise(ObjectId.get(), makeQuestion(), singletonList("is not good")),
                 new CompletedExercise(ObjectId.get(), makeQuestion(), singletonList("is good")));
         CompletedExam exam = new ExamWithCompletedExercises(ObjectId.get(), exercises);
-        List<Exercise> expectedCorrectExercisesFromUser = exercises.subList(1, 2);
+        List<CompletedExercise> expectedCorrectExercisesFromUser = exercises.subList(1, 2);
         // when:
         List<Exercise> actualCorrectExercisesFromUser = exam.correctExercises();
         // then:
@@ -58,11 +58,11 @@ class CompletedExamUnitTest {
     @Test
     void whenAskingForPartiallyCorrectExercises_WithValidExam_ExpectPartiallyCorrectExercisesFromExam() {
         // given:
-        List<Exercise> exercises = asList(
+        List<CompletedExercise> exercises = asList(
                 new CompletedExercise(ObjectId.get(), makeQuestion(), singletonList("is not good")),
                 new CompletedExercise(ObjectId.get(), makeQuestion(), asList("is good", "is not good")));
         CompletedExam exam = new ExamWithCompletedExercises(ObjectId.get(), exercises);
-        List<Exercise> expectedPartiallyCorrectExercisesFromUser = exercises.subList(1, 2);
+        List<CompletedExercise> expectedPartiallyCorrectExercisesFromUser = exercises.subList(1, 2);
         // when:
         List<Exercise> actualPartiallyCorrectExercisesFromUser =
                 exam.partiallyCorrectExercises();

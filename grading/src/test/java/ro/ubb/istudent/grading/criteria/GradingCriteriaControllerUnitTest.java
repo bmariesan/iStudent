@@ -104,7 +104,4 @@ public class GradingCriteriaControllerUnitTest {
         mockMvc.perform(get("/grading-criteria/" + expectedCourse.getId().toHexString()))
                 .andExpect(status().is(404));
     }
-
-
-
 }
