@@ -1,14 +1,15 @@
 package exams.domain.statistics;
 
 import exams.repository.StudentRepository;
+import exams.service.Service;
 
 import java.util.Map;
 
 public class CountryStatistic implements IStatistic {
-    private StudentRepository studentRepository;
+    private Service service;
 
-    public CountryStatistic(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
+    public CountryStatistic(Service service) {
+        this.service = service;
     }
 
     @Override

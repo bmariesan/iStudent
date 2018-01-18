@@ -36,6 +36,32 @@ public class Service {
 
     }
 
+    public Optional<Student> getStudentById(int id){
+        return studentRepository.findStudentById(id);
+    }
+
+    public Optional<Exam> getExamById(int id){
+        return examRepository.findExamById(id);
+    }
+
+    public List<Student> getStudentsByAge(int age){
+        return studentRepository.findAllByAge(age);
+    }
+
+    public List<Student> getStudentsBetweenAge(int from, int to){
+        return studentRepository.findByAgeBetween(from,to);
+    }
+
+    public List<Student> getStudentsByGender(Gender gender){
+        return studentRepository.findAllByGender(gender);
+    }
+
+    public List<Student> getStudentsByCountry(String country){
+        return studentRepository.findAllByCountry(country);
+    }
+
+
+
 
     private void createExams(){
         examRepository.save(Arrays.asList(new Exam(1,"Design Patterns"),
