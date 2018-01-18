@@ -1,10 +1,14 @@
 package exams.repository;
 
-import exams.domain.statistics.IStatistic;
+import exams.domain.Exam;
+import exams.domain.Student;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface ExamRepository extends MongoRepository<IStatistic, ObjectId> {
-    
+import java.util.Optional;
 
+//findAll e deja predefinit, l-am folosit
+public interface ExamRepository extends MongoRepository<Exam, ObjectId> {
+
+    Optional<Exam> findExamById(int ExamId);
 }

@@ -10,21 +10,20 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(classes = StartApplication.class)
 @DisplayName("Greeting exams.service integration tests")
-class GreetingServiceTest {
+class ServiceTest {
 
     @Autowired
     private Service service;
 
     @Test
     @DisplayName("Saving a greeting should work")
-    void saveGreeting() {
+    void create() {
         service.createExams();
         service.createStudents();
     }

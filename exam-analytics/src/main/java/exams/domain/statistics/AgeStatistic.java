@@ -1,4 +1,4 @@
-package exams.domain;
+package exams.domain.statistics;
 import exams.repository.StudentRepository;
 
 import java.util.Map;

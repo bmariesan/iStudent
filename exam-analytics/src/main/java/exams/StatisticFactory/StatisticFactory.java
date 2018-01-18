@@ -1,15 +1,15 @@
 package exams.StatisticFactory;
 
 
-import exams.domain.*;
-import exams.repository.CourseRepository;
+import exams.domain.statistics.*;
+import exams.repository.ExamRepository;
 import exams.repository.StudentRepository;
 
 public class StatisticFactory implements IStatisticFactory{
 
-    public IStatistic getStatistic(String criteria, CourseRepository courseRepository, StudentRepository studentRepository){
-        if ( criteria.equals("course"))
-            return new CourseStatistic(courseRepository, studentRepository);
+    public IStatistic getStatistic(String criteria, ExamRepository examRepository, StudentRepository studentRepository){
+        if ( criteria.equals("exam"))
+            return new ExamStatistic(examRepository);
         else if(criteria.equals("age"))
             return new AgeStatistic(studentRepository);
         else if ( criteria.equals("country"))

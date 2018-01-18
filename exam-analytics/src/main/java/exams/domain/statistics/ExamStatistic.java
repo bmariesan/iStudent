@@ -1,20 +1,24 @@
 package exams.domain.statistics;
 
 
-import exams.repository.CourseRepository;
+import exams.repository.ExamRepository;
 import exams.repository.StudentRepository;
 
 import java.util.Map;
 
-public class CourseStatistic implements IStatistic {
+public class ExamStatistic implements IStatistic {
     private Map<String, Integer> studentAverageMap;
+    private final ExamRepository examRepository;
 
-    public CourseStatistic(CourseRepository courseRepository, StudentRepository studentRepository){
-
+    public ExamStatistic(ExamRepository examRepository){
+        this.examRepository=examRepository;
     }
 
     @Override
     public IStatistic generateStatistic() {
+        
+
+
         return null;
     }
 
