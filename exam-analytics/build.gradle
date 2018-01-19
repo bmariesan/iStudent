@@ -52,6 +52,8 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-mongodb')
     compile("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
     compile("org.springframework.boot:spring-boot-devtools")
+    compile 'org.webjars.bower:angular-chart.js:1.1.1'
+    compile group: 'org.webjars', name: 'webjars-locator', version: '0.32-1'
 
     runtime('com.h2database:h2')
     runtime('mysql:mysql-connector-java')
