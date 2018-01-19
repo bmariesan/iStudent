@@ -53,7 +53,7 @@ public class ServiceImpl implements Service {
             case "worker":
                 return new FactoryMethodCompany();
             case "s":
-            case "student":
+            case "fromStudent":
             case "secretary":
             case "t":
             case "teacher":
