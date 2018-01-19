@@ -1,5 +1,6 @@
 package ro.ubb.istudent.grading;
 
+import org.hamcrest.collection.IsIterableContainingInAnyOrder;
 import org.hamcrest.core.Is;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,6 +29,7 @@ import java.util.function.Supplier;
 import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
@@ -43,9 +45,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @TestPropertySource(properties = "spring.data.mongodb.embedded.port=0")
 @ComponentScan(basePackages = {"ro.ubb.istudent.grading"})
 class GradingCriteriaServiceIntegrationTest {
-
-    // Feature#5: When grading criteria has been meet => grade added to grading book
-    // Feature#6: The grading book should not be accessible to a fromStudent after the expiration date.
 
     @Autowired
     private GradingCriteriaService gradingCriteriaService;
@@ -74,7 +73,8 @@ class GradingCriteriaServiceIntegrationTest {
                 .saveGradingCriteriaToCourse(expected, course.getId());
         // then:
         assertThat(courseFromDatabase.gradingCriteria()
-                .orElseThrow(GradingCriteriaNotFound::new), Is.is(expected));
+                        .orElseThrow(GradingCriteriaNotFound::new)
+                        .components(), containsInAnyOrder(expected.components().toArray()));
     }
 
     @Test
@@ -132,6 +132,7 @@ class GradingCriteriaServiceIntegrationTest {
                 .saveGradingCriteriaToCourse(expected, course.getId());
         // then:
         assertThat(courseFromDatabase.gradingCriteria()
-                .orElseThrow(GradingCriteriaNotFound::new), Is.is(expected));
+                .orElseThrow(GradingCriteriaNotFound::new)
+                .components(), containsInAnyOrder(expected.components().toArray()));
     }
 }

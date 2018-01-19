@@ -43,9 +43,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @ComponentScan(basePackages = {"ro.ubb.istudent.grading"})
 class GradingWorkFlowServiceIntegrationTest {
 
-    // Feature#5: When grading criteria has been meet => grade added to grading book
-    // Feature#6: The grading book should not be accessible to a fromStudent after the expiration date.
-
     @Autowired
     private GradingWorkFlowService workFlowService;
 

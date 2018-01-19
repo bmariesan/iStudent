@@ -45,8 +45,5 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @TestPropertySource(properties = "spring.data.mongodb.embedded.port=0")
 @ComponentScan(basePackages = {"ro.ubb.istudent.grading"})
 class GradingServiceIntegrationTest {
-
-    // Feature#5: When grading criteria has been meet => grade added to grading book
-    // Feature#6: The grading book should not be accessible to a student after the expiration date.
-
+    // TODO
 }
