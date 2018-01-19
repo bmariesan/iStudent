@@ -22,6 +22,9 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'war'
 apply plugin: 'org.junit.platform.gradle.plugin'
 
+bootRun {
+    addResources = true
+}
 group = 'ro.ubb'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
@@ -48,6 +51,8 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-data-mongodb')
     compile("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
+    compile("org.springframework.boot:spring-boot-devtools")
+
     runtime('com.h2database:h2')
     runtime('mysql:mysql-connector-java')
     providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
