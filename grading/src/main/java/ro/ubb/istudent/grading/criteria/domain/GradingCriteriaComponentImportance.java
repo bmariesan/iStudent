@@ -1,4 +1,4 @@
-package ro.ubb.istudent.grading.criteria;
+package ro.ubb.istudent.grading.criteria.domain;
 
 import javax.annotation.concurrent.Immutable;
 
@@ -8,6 +8,7 @@ import java.io.Serializable;
  * @author Alexandru Stoica
  */
 
+@Immutable
 public enum GradingCriteriaComponentImportance implements Serializable {
 
     HIGH(4), MEDIUM(2), LOW(1), OPTIONAL(0);

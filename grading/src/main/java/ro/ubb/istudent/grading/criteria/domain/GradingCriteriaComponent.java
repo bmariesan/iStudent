@@ -1,4 +1,4 @@
-package ro.ubb.istudent.grading.criteria;
+package ro.ubb.istudent.grading.criteria.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.annotation.concurrent.Immutable;
@@ -7,11 +7,15 @@ import lombok.ToString;
 
 import java.io.Serializable;
 
+import static ro.ubb.istudent.grading.criteria.domain.GradingCriteriaComponentImportance.HIGH;
+import static ro.ubb.istudent.grading.criteria.domain.GradingCriteriaComponentType.FINAL_EXAM;
+
 /**
  * @author Alexandru Stoica
  */
 
 @ToString
+@Immutable
 @EqualsAndHashCode(of={"type", "percent", "importance"})
 public class GradingCriteriaComponent implements Serializable {
 
@@ -34,7 +38,7 @@ public class GradingCriteriaComponent implements Serializable {
     }
 
     public GradingCriteriaComponent() {
-        this(GradingCriteriaComponentType.FINAL_EXAM, GradingCriteriaComponentImportance.HIGH, 100.0);
+        this(FINAL_EXAM, HIGH, 100.0);
     }
 
     public GradingCriteriaComponentType type() {

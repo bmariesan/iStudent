@@ -1,9 +1,9 @@
-package ro.ubb.istudent.grading.criteria;
+package ro.ubb.istudent.grading.criteria.domain;
 
 import javax.annotation.concurrent.Immutable;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import ro.ubb.istudent.grading.exception.PercentageOverflow;
+import ro.ubb.istudent.grading.criteria.exception.PercentageOverflow;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
  * @author Alexandru Stoica
  */
 
+@Immutable
 @ToString(of = {"gradingCriteria"})
 @EqualsAndHashCode(callSuper = true)
 public class RedistributedGradingCriteria extends GradingCriteria {

@@ -1,10 +1,8 @@
-package ro.ubb.istudent.grading.criteria;
+package ro.ubb.istudent.grading.criteria.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.ImmutableList;
-
 import javax.annotation.concurrent.Immutable;
-
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
@@ -16,6 +14,7 @@ import java.util.List;
  * @author Alexandru Stoica
  */
 
+@Immutable
 @ToString(of = {"gradingCriteriaComponents"})
 @EqualsAndHashCode
 public class GradingCriteria implements Serializable {
@@ -35,12 +34,6 @@ public class GradingCriteria implements Serializable {
     public List<GradingCriteriaComponent> components() {
         return ImmutableList.<GradingCriteriaComponent>builder()
                 .addAll(gradingCriteriaComponents).build();
-    }
-
-    public GradingCriteria addGradingCriteriaComponent(
-            final GradingCriteriaComponent component) {
-        return new GradingCriteria(ImmutableList.<GradingCriteriaComponent>builder()
-                .addAll(gradingCriteriaComponents).add(component).build());
     }
 
     public Double totalPercentage() {

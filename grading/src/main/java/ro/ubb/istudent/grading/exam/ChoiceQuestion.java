@@ -1,22 +1,16 @@
 package ro.ubb.istudent.grading.exam;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import javax.annotation.concurrent.Immutable;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.io.Serializable;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static java.util.Collections.emptyList;
-
-@Immutable
 @EqualsAndHashCode(of = "id")
 @ToString(doNotUseGetters = true)
 @Document(collection = "choice-question")
@@ -39,7 +33,7 @@ public class ChoiceQuestion implements Question {
     private final Double points;
 
     public ChoiceQuestion() {
-        this(ObjectId.get(), "", emptyList(), emptyList(), 0.0);
+        this(ObjectId.get(), "", new ArrayList<>(), new ArrayList<>(), 0.0);
     }
 
     public ChoiceQuestion(
@@ -49,7 +43,6 @@ public class ChoiceQuestion implements Question {
             final Double points) {
         this(ObjectId.get(), text, rightAnswers, possibleAnswers, points);
     }
-
 
     public ChoiceQuestion(
             final ObjectId id,
@@ -89,10 +82,4 @@ public class ChoiceQuestion implements Question {
     public Double points() {
         return points;
     }
-
-    @Override
-    public List<String> allAnswers() {
-        return possibleAnswers;
-    }
-
 }
