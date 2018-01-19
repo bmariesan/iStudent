@@ -2,10 +2,10 @@
     'use strict';
 
     angular.module('mainApp')
-        .factory('MainService', MainService);
+        .factory('ExamService', ExamService);
 
-    MainService.$inject = ['$http'];
-    function MainService($http) {
+    ExamService.$inject = ['$http'];
+    function ExamService($http) {
 
         return {
             // get all exams

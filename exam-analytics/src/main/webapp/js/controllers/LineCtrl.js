@@ -5,8 +5,8 @@
         .controller('LineCtrl', LineController);
     // inject the services into our controller
     console.log('here cont1');
-    LineController.$inject = ['MainService','AlertService', '$scope', '$timeout','$http'];
-    function LineController(MainService, AlertService, $scope, $timeout) {
+    LineController.$inject = ['MainService','AlertService', 'ExamService', '$scope', '$timeout','$http'];
+    function LineController(MainService, AlertService,ExamService, $scope, $timeout) {
         console.log('here cont1.5');
         var vm = this;
         console.log('here cont2');
@@ -56,18 +56,18 @@
             ];
             $scope.series = ['Series C', 'Series D'];
         }, 0);
-        // get all the exams first and bind it to the vm.exams object
-        // use the function we created in our service
-        // GET ALL INTERNSHIPS ==============
-        // MainService.get()
-        //     .then(
-        //         function success(response) {
-        //             vm.statistics = response.data;
-        //         },
-        //         function error(response) {
-        //             vm.serverErrors = response.data;
-        //             AlertService.alertError(response.data);
-        //         });
+        //get all the exams first and bind it to the vm.exams object
+        //use the function we created in our service
+        //GET ALL EXAMS ==============
+        ExamService.get()
+            .then(
+                function success(response) {
+                    vm.exams = response.data;
+                },
+                function error(response) {
+                    vm.serverErrors = response.data;
+                    AlertService.alertError(response.data);
+                });
     }
 })();
 

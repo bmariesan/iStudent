@@ -18,6 +18,7 @@
     <script type="text/javascript" src="/js/app.js"></script>
     <script src ="/js/services/MainService.js"></script>
     <script src ="/js/services/alertService.js"></script>
+    <script src="js/services/ExamService.js"></script>
     <script src ="/js/controllers/mainController.js"></script>
     <script src ="/js/controllers/LineCtrl.js"></script>
 </head>
@@ -26,6 +27,11 @@
 
 <div class="container" ng-controller="LineCtrl as vm">
     <h1>{{vm.sName}}</h1>
+
+    <select>
+        <option ng-repeat="option in vm.exams" value="{{option}}">{{option}}</option>
+    </select>
+    <br/><br/><br/>
     <canvas id="line" class="chart chart-line" chart-data="data"
             chart-labels="labels" chart-series="series" chart-options="options"
             chart-dataset-override="datasetOverride" chart-click="onClick">

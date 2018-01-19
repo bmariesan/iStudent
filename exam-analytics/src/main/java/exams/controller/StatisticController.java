@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.logging.Logger;
-//todo can't include static content from node_modules in my html file, should be easy afterwards
 //maybe load the scripts in the app.js?
 @Controller
 public class StatisticController {
