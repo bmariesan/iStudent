@@ -5,12 +5,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.ubb.istudent.grading.course.Course;
 import ro.ubb.istudent.grading.exam.CompletedUnitOfWork;
+import ro.ubb.istudent.grading.exam.WorkFlow;
 import ro.ubb.istudent.grading.exception.CourseNotFound;
+import ro.ubb.istudent.grading.exception.GradingCriteriaNotFound;
 import ro.ubb.istudent.grading.exception.StudentNotFound;
 import ro.ubb.istudent.grading.gradingbook.Grade;
+import ro.ubb.istudent.grading.gradingbook.User;
 import ro.ubb.istudent.grading.repository.CourseRepository;
 import ro.ubb.istudent.grading.repository.GradeRepository;
 import ro.ubb.istudent.grading.gradingbook.NormalGrade;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class GradingWorkFlowService {
@@ -36,8 +43,18 @@ public class GradingWorkFlowService {
                 .orElseThrow(CourseNotFound::new);
     }
 
-    public Grade gradeUnitOfWork(CompletedUnitOfWork unitOfWork) {
+    public Grade gradeUnitOfWork(final CompletedUnitOfWork unitOfWork) {
         return new NormalGrade(ObjectId.get(), unitOfWork.totalScore(),
                 unitOfWork.fromStudent().orElseThrow(StudentNotFound::new));
+    }
+
+    public List<Grade> gradeCourseForEachStudent(final ObjectId courseId) {
+        Course course = getCourseById(courseId);
+        return course.workFlows().stream()
+                .map(it -> it.grade(course.gradingCriteria()
+                        .orElseThrow(GradingCriteriaNotFound::new)))
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .collect(Collectors.toList());
     }
 }

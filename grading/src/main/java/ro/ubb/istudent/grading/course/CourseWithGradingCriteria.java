@@ -69,6 +69,14 @@ public class CourseWithGradingCriteria implements Course {
         this.teacher = teacher;
     }
 
+    public CourseWithGradingCriteria(
+            final ObjectId id,
+            final GradingCriteria gradingCriteria,
+            final List<WorkFlow> workFlows,
+            final User teacher) {
+        this(id, gradingCriteria, workFlows, null, teacher);
+    }
+
     @Override
     public ObjectId getId() {
         return id;
