@@ -19,4 +19,5 @@ public interface Course {
     Optional<WorkFlow> getWorkFlowForStudent(User student);
     Course replaceGradingCriteriaWith(GradingCriteria gradingCriteria);
     Course addUnitOfWork(CompletedUnitOfWork unitOfWork);
+    Course replaceGradingBookWith(GradingBook gradingBook);
 }

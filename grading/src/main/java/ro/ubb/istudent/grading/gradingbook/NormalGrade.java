@@ -42,6 +42,10 @@ public class NormalGrade implements Grade {
         this.student = student;
     }
 
+    public NormalGrade(final Double value, final User student) {
+        this(ObjectId.get(), value, student);
+    }
+
     @Override
     public ObjectId id() {
         return this.id;

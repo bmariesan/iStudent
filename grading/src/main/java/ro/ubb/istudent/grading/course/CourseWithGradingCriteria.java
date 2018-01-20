@@ -126,6 +126,11 @@ public class CourseWithGradingCriteria implements Course {
                 gradingBook, teacher);
     }
 
+    @Override
+    public Course replaceGradingBookWith(GradingBook gradingBook) {
+        return new CourseWithGradingCriteria(id, criteria, workFlows, gradingBook, teacher);
+    }
+
     private List<WorkFlow> addOrReplaceWorkflow(WorkFlow workFlow) {
         workFlows.add(workFlow);
         workFlows.replaceAll(it -> it.equals(workFlow) ? workFlow : it);

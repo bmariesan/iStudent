@@ -22,14 +22,10 @@ import java.util.stream.Collectors;
 @Service
 public class GradingWorkFlowService {
 
-    private final GradeRepository gradeRepository;
     private final CourseRepository courseRepository;
 
     @Autowired
-    public GradingWorkFlowService(
-            final GradeRepository gradeRepository,
-            final CourseRepository courseRepository) {
-        this.gradeRepository = gradeRepository;
+    public GradingWorkFlowService(final CourseRepository courseRepository) {
         this.courseRepository = courseRepository;
     }
 
