@@ -1,8 +1,8 @@
 package exams.rest;
 
+import exams.service.Service;
 import org.springframework.beans.factory.annotation.Value;
 
-import exams.service.StatisticService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,10 +18,10 @@ import java.util.List;
 @RestController
 public class StatisticResource {
     private static final String GREETING_CONTROLLER_MAPPING = "/examStatistic";
-    private final StatisticService service;
+    private final Service service;
     private final String baseUrl;
 
-    public StatisticResource(StatisticService service, @Value("${application.base-url}") String baseUrl) {
+    public StatisticResource(Service service, @Value("${application.base-url}") String baseUrl) {
         this.service = service;
         this.baseUrl = baseUrl;
     }
