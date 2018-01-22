@@ -1,13 +1,14 @@
 package exams.StatisticFactory;
 
 
-import exams.domain.IStatistic;
-import exams.repository.CourseRepository;
+import exams.domain.statistics.IStatistic;
+import exams.repository.ExamRepository;
 import exams.repository.StudentRepository;
+import exams.service.Service;
 
 /**
  * Created by Teodora on 22/11/2017.
  */
 public interface IStatisticFactory {
-    IStatistic getStatistic(String criteria, CourseRepository courseRepository, StudentRepository studentRepository);
+    IStatistic getStatistic(String criteria, Service service);
 }

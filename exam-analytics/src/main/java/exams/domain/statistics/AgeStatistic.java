@@ -1,14 +1,15 @@
-package exams.domain;
+package exams.domain.statistics;
 import exams.repository.StudentRepository;
+import exams.service.Service;
 
 import java.util.Map;
 
 public class AgeStatistic implements IStatistic {
 
-    private StudentRepository studentRepository;
+    private Service service;
 
-    public AgeStatistic(StudentRepository studentRepository) {
-        this.studentRepository = studentRepository;
+    public AgeStatistic(Service service) {
+        this.service = service;
     }
 
 
