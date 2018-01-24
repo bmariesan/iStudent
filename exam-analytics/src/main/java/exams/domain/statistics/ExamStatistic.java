@@ -8,6 +8,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * For every exam it makes an average of all grades at that exam
+ */
 public class ExamStatistic implements IStatistic {
     private Map<String, Float> studentAverageMap;
     private Service service;

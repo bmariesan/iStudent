@@ -35,10 +35,6 @@ public class Service {
         return examRepository.findExamById(id);
     }
 
-    public List<Student> getStudentsByAge(int age){
-        return studentRepository.findAllByAge(age);
-    }
-
     public List<Student> getStudentsBetweenAge(int from, int to){
         return studentRepository.findByAgeBetween(from,to);
     }

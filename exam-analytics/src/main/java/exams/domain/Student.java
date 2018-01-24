@@ -3,7 +3,6 @@ package exams.domain;
  * Created by Teodora on 17/01/2018.
  */
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
@@ -88,6 +87,15 @@ public class Student implements Serializable {
         }
     }
 
+    public float SumAllGrades(){
+        float sum=0;
+        for(ExamGrade grade:grades){
+            sum+=grade.getGrade();
+        }
+        return sum;
+    }
+
+    //For a given id of an exam returns all grades of the student at that exam
     public List<ExamGrade> gradesForAnExam(int id){
         List<ExamGrade> grades=new ArrayList<>();
         for(ExamGrade grade: grades){
@@ -101,15 +109,16 @@ public class Student implements Serializable {
 
     @Override
     public String toString() {
-        String s="Student{" +
-                "id=" + id +
-                ", Name='" + name + '\''+
-                ", Age='" + age + '\''+
-                ", Gender='" + gender + '\''+
-                ", Country='" + country +'\''+" ";
+        String s="{\"id\":"+ id +
+                ", \"name\":\"" + name +
+                "\",\"age:" + age +
+                ",\"gender\":\"" + gender +
+                "\", \"country\":\"" + country +"\","+
+                "\"grades\":[";
         for(ExamGrade e: grades){
-            s+=e.toString()+" ";
+            s+=e.toString()+" , ";
         }
+        s+="]}";
         return s;
     }
 

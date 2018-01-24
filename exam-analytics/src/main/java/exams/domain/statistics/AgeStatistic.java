@@ -1,5 +1,4 @@
 package exams.domain.statistics;
-import exams.domain.ExamGrade;
 import exams.domain.Student;
 import exams.service.Service;
 
@@ -18,6 +17,9 @@ class AgeGroup {
     }
 }
 
+/**
+ * For every age group it makes an average of all grades of the students that are part of the age group
+ */
 public class AgeStatistic implements IStatistic {
 
     private Service service;
@@ -39,9 +41,7 @@ public class AgeStatistic implements IStatistic {
         for(AgeGroup group:ageGroups){
             float sum=0,nr=0;
             for(Student student: service.getStudentsBetweenAge(group.from,group.to)){
-                for(ExamGrade grade:student.getGrades()){
-                    sum+=grade.getGrade();
-                }
+                sum+=student.SumAllGrades();
                 nr+=student.getGrades().size();
             }
             sum=sum/nr;

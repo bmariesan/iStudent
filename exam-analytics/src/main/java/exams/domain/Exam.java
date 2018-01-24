@@ -47,7 +47,6 @@ public class Exam implements Serializable{
 
     @Override
     public String toString(){
-        String s= "{id:"+id+",title:"+title+"}";
-        return s;
+        return "{\"id\":"+id+",\"title\":\""+title+"\"}";
     }
 }

@@ -3,15 +3,14 @@ package exams.domain;
 /**
  * Created by Teodora on 17/01/2018.
  */
-import org.bson.types.ObjectId;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.Optional;
 
+/***
+ * Contains reference to an exam and the grade for a student that took that exam
+ */
 @Document(collection = "examGrade")
 public class ExamGrade implements Serializable {
 
@@ -41,6 +40,7 @@ public class ExamGrade implements Serializable {
         this.grade = grade;
     }
 
+    //for a given id, check if this id is the same with the exam's id
     public boolean hasExam(int id){
         if(id==exam.getId()){
             return true;
@@ -50,7 +50,7 @@ public class ExamGrade implements Serializable {
 
     @Override
     public String toString(){
-        return exam.getId()+" "+exam.getTitle()+" "+grade;
+        return "{\"examID\":\""+exam.getId()+"\", \"examTitle\":\""+exam.getTitle()+"\", \"grade\":"+grade+"}";
     }
 
     @Override
