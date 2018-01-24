@@ -1,5 +1,6 @@
 package exams.rest;
 
+import exams.domain.Exam;
 import exams.service.Service;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,9 +36,16 @@ public class StatisticResource {
         return "what";
     }
 
-    //todo this is a mock rest service, change it!
+    //todo take the exams(not just titles) and parse it on frontend - I need the ID!
     @GetMapping("/exams")
     public List<String> getExams(){
-        return Arrays.asList("Math", "Chemistry", "Physics", "Whatever", "Science");
+        List<String> examList = new ArrayList<>();
+        service.getExams().forEach(e -> examList.add(e.getTitle()));
+        return examList;
+    }
+
+    @GetMapping("/examsAsEntity")
+    public List<Exam> getExamsAsEntity(){
+        return service.getExams();
     }
 }

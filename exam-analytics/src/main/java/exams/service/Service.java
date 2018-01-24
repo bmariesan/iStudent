@@ -22,7 +22,7 @@ public class Service {
         studentRepository=stdRepo;
         createExams();
         createStudents();
-        createGradesForStudents();
+       // createGradesForStudents();
 
         List<Exam> exams=examRepository.findAll();
         List<Student> students=studentRepository.findAll();
@@ -60,6 +60,9 @@ public class Service {
         return studentRepository.findAllByCountry(country);
     }
 
+    public List<Exam> getExams(){
+        return examRepository.findAll();
+    }
 
 
 
@@ -100,34 +103,34 @@ public class Service {
 
     }
 
-    private void createGradesForStudents(){
-        List<Student> students=studentRepository.findAll();
-        Optional<Exam> exam1=examRepository.findExamById(1);
-        exam1.get().setGrades(Arrays.asList(new StudentGrade(students.get(0),10.00),
-                new StudentGrade(students.get(1),10.00), new StudentGrade(students.get(3),10.00),
-                new StudentGrade(students.get(4),10.00), new StudentGrade(students.get(7),10.00),
-                new StudentGrade(students.get(10),9.00)));
-
-        Optional<Exam> exam2=examRepository.findExamById(2);
-        exam2.get().setGrades(Arrays.asList(new StudentGrade(students.get(1),8.43),
-                new StudentGrade(students.get(2),7.54), new StudentGrade(students.get(4),6.34),
-                new StudentGrade(students.get(5),5.32), new StudentGrade(students.get(7),8.23),
-                new StudentGrade(students.get(9),7.30)));
-
-        Optional<Exam> exam3=examRepository.findExamById(3);
-        exam3.get().setGrades(Arrays.asList(new StudentGrade(students.get(0),8.67),
-                new StudentGrade(students.get(2),7.67), new StudentGrade(students.get(4),8.67),
-                new StudentGrade(students.get(5),6.60), new StudentGrade(students.get(6),8.00),
-                new StudentGrade(students.get(8),7.60), new StudentGrade(students.get(10),8.80)));
-
-        Optional<Exam> exam4=examRepository.findExamById(4);
-        exam4.get().setGrades(Arrays.asList(new StudentGrade(students.get(2),6.78),
-                new StudentGrade(students.get(3),8.77), new StudentGrade(students.get(6),9.00),
-                new StudentGrade(students.get(8),5.37),new StudentGrade(students.get(9),8.50)));
-
-        examRepository.save(exam1.get());
-        examRepository.save(exam2.get());
-        examRepository.save(exam3.get());
-        examRepository.save(exam4.get());
-    }
+//    private void createGradesForStudents(){
+//        List<Student> students=studentRepository.findAll();
+//        Optional<Exam> exam1=examRepository.findExamById(1);
+//        exam1.get().setGrades(Arrays.asList(new StudentGrade(students.get(0),10.00),
+//                new StudentGrade(students.get(1),10.00), new StudentGrade(students.get(3),10.00),
+//                new StudentGrade(students.get(4),10.00), new StudentGrade(students.get(7),10.00),
+//                new StudentGrade(students.get(10),9.00)));
+//
+//        Optional<Exam> exam2=examRepository.findExamById(2);
+//        exam2.get().setGrades(Arrays.asList(new StudentGrade(students.get(1),8.43),
+//                new StudentGrade(students.get(2),7.54), new StudentGrade(students.get(4),6.34),
+//                new StudentGrade(students.get(5),5.32), new StudentGrade(students.get(7),8.23),
+//                new StudentGrade(students.get(9),7.30)));
+//
+//        Optional<Exam> exam3=examRepository.findExamById(3);
+//        exam3.get().setGrades(Arrays.asList(new StudentGrade(students.get(0),8.67),
+//                new StudentGrade(students.get(2),7.67), new StudentGrade(students.get(4),8.67),
+//                new StudentGrade(students.get(5),6.60), new StudentGrade(students.get(6),8.00),
+//                new StudentGrade(students.get(8),7.60), new StudentGrade(students.get(10),8.80)));
+//
+//        Optional<Exam> exam4=examRepository.findExamById(4);
+//        exam4.get().setGrades(Arrays.asList(new StudentGrade(students.get(2),6.78),
+//                new StudentGrade(students.get(3),8.77), new StudentGrade(students.get(6),9.00),
+//                new StudentGrade(students.get(8),5.37),new StudentGrade(students.get(9),8.50)));
+//
+//        examRepository.save(exam1.get());
+//        examRepository.save(exam2.get());
+//        examRepository.save(exam3.get());
+//        examRepository.save(exam4.get());
+//    }
 }

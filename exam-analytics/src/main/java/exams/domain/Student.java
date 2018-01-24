@@ -3,6 +3,7 @@ package exams.domain;
  * Created by Teodora on 17/01/2018.
  */
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
@@ -16,6 +17,7 @@ public class Student implements Serializable {
     private int age;
     private Gender gender;
     private String country;
+//    @DBRef
     private List<ExamGrade> grades=new ArrayList<>();
 
     public Student(){}

@@ -4,6 +4,7 @@ package exams.domain;
  * Created by Teodora on 17/01/2018.
  */
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
@@ -14,7 +15,8 @@ public class Exam implements Serializable{
     @Id
     private int id;
     private String title;
-    private List<StudentGrade> grades=new ArrayList<>();
+//    @DBRef
+//    private List<StudentGrade> grades=new ArrayList<>();
 
     public Exam(){}
     public Exam(int id, String title){
@@ -38,23 +40,23 @@ public class Exam implements Serializable{
         this.title = title;
     }
 
-    public List<StudentGrade> getGrades() {
-        return grades;
-    }
-
-    public void setGrades(List<StudentGrade> grades) {
-        this.grades = grades;
-    }
-
-    public void addGrade(Student student, double grade){
-        StudentGrade studentGrade=new StudentGrade(student,grade);
-        if(grades.contains(studentGrade)){
-            grades.get(grades.indexOf(studentGrade)).setGrade(grade);
-        }
-        else{
-            grades.add(studentGrade);
-        }
-    }
+//    public List<StudentGrade> getGrades() {
+//        return grades;
+//    }
+//
+//    public void setGrades(List<StudentGrade> grades) {
+//        this.grades = grades;
+//    }
+//
+//    public void addGrade(Student student, double grade){
+//        StudentGrade studentGrade=new StudentGrade(student,grade);
+//        if(grades.contains(studentGrade)){
+//            grades.get(grades.indexOf(studentGrade)).setGrade(grade);
+//        }
+//        else{
+//            grades.add(studentGrade);
+//        }
+//    }
 
     @Override
     public boolean equals(Object other){
@@ -66,10 +68,10 @@ public class Exam implements Serializable{
 
     @Override
     public String toString(){
-        String s= id+" "+title+" ";
-        for(StudentGrade g:grades){
-            s+=g.toString()+" ";
-        }
+        String s= "{id:"+id+",title:"+title+"}";
+//        for(StudentGrade g:grades){
+//            s+=g.toString()+" ";
+//        }
         return s;
     }
 
