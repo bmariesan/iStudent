@@ -1,6 +1,5 @@
 package exams.repository;
 
-import exams.domain.ExamGrade;
 import exams.domain.Gender;
 import exams.domain.Student;
 import org.bson.types.ObjectId;
@@ -14,7 +13,6 @@ public interface StudentRepository extends MongoRepository<Student,ObjectId>{
     Optional<Student> findStudentById(int StudentId);
     List<Student> findAllByAge(int age);
     List<Student> findByAgeBetween(int from, int to);
-    List<Student> findAllByGender(Gender gender);
     List<Student> findAllByCountry(String country);
-
+    List<Student> findAllByGender(Gender gender);
 }
