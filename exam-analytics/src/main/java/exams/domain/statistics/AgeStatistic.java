@@ -28,7 +28,7 @@ public class AgeStatistic implements IStatistic {
 
     public AgeStatistic(Service service) {
         this.service = service;
-        ageAverageGrades=new HashMap<>();
+        ageAverageGrades=new TreeMap<>();
         ageGroups=new ArrayList<>();
         ageGroups.addAll(Arrays.asList(new AgeGroup(10,19),new AgeGroup(18,22), new AgeGroup(21,25),new AgeGroup(24,28),
                 new AgeGroup(27,32), new AgeGroup(31,80)));
@@ -36,6 +36,7 @@ public class AgeStatistic implements IStatistic {
     }
 
 
+    //todo sort them at the end
     @Override
     public void generateStatistic() {
         for(AgeGroup group:ageGroups){

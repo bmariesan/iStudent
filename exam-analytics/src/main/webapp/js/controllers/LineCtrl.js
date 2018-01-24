@@ -4,22 +4,18 @@
     angular.module('mainApp')
         .controller('LineCtrl', LineController);
     // inject the services into our controller
-    console.log('here cont1');
     LineController.$inject = ['MainService','AlertService', 'ExamService', 'StatisticService', '$scope', '$timeout','$http'];
     function LineController(MainService, AlertService,ExamService, StatisticService, $scope, $timeout) {
-        console.log('here cont1.5');
         var vm = this;
-        console.log('here cont2');
+        vm.criteria = 'Age Statistics';
+        var criteria = 'age';
+
+        function parseCriteria(criteria) {
+            return criteria.split(" ")[0].toLowerCase();
+        }
+
         vm.statisticOptions = ["Exam Statistics", "Age Statistics",
             "Gender Statistics", "Country Statistics"];
-        vm.sName = 'Exam statistics';//replace with function
-        console.log(vm);
-        vm.labels = ["January", "February", "March", "April", "May", "June", "July"];
-        vm.series = ['Series A', 'Series B'];
-        vm.data = [
-            [65, 59, 80, 81, 56, 55, 40],
-            [28, 48, 40, 19, 86, 27, 90]
-        ];
 
         vm.onClick = function (points, evt) {
             console.log(points, evt);
@@ -43,21 +39,6 @@
                 ]
             }
         };
-        //todo append these to service functions
-        $scope.labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-        $scope.series = ['Series A', 'Series B'];
-        $scope.data = [
-            [65, 59, 80, 81, 56, 55, 40],
-            [28, 48, 40, 19, 86, 27, 90]
-        ];
-        $timeout(function () {
-            $scope.labels = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-            $scope.data = [
-                [28, 48, 40, 19, 86, 27, 90],
-                [65, 59, 80, 81, 56, 55, 40]
-            ];
-            $scope.series = ['Series C', 'Series D'];
-        }, 0);
         //get all the exams first and bind it to the vm.exams object
         //use the function we created in our service
         //GET ALL EXAMS ==============
@@ -71,11 +52,92 @@
                     AlertService.alertError(response.data);
                 });
 
-        //todo take criteria from selected exam
-        StatisticService.get('exam')
+        //todo take criteria from selected option
+        vm.setCriteria = function(){
+            console.log('this works ' + vm.criteria);
+            criteria = parseCriteria(vm.criteria);
+            console.log('criteria: '+criteria);
+            if(criteria === 'age') {
+                StatisticService.get(criteria)
+                    .then(
+                        function success(response) {
+                            var averages = [];
+                            var ageGroups = [];
+                            var jsonResponse = JSON.stringify(response.data.data).split(",");
+                            for (var i = 0; i < jsonResponse.length; i++) {
+                                var average = jsonResponse[i].split(":")[1];
+                                isNaN(average) ? averages.push(0) : averages.push(parseFloat(average));
+                                var ageGroup = jsonResponse[i].split(":")[0];
+                                (i == 0) ? ageGroups.push(ageGroup.substring(1, ageGroup.length)) : ageGroups.push(ageGroup);
+                            }
+                            vm.labels = ageGroups;
+                            vm.data = averages;
+                        });
+            }
+            //todo use service here as well to set labels and data
+            else if(criteria === 'exam'){
+                StatisticService.get(criteria)
+                    .then(
+                        function success(response) {
+                            var exams = ['a','b','c'];
+                            var averages = [6,3.2,8.3];
+                            vm.labels = exams;
+                            vm.data = averages;
+                        });
+            }
+            //todo use service here as well to set labels and data
+            else if(criteria === 'country'){
+                StatisticService.get(criteria)
+                    .then(
+                        function success(response) {
+                            var countries = ['aasd','basdasd','casda'];
+                            var averages = [7.2,3.2,9.3];
+                            vm.labels = countries;
+                            vm.data = averages;
+                        });
+            }
+            //todo use service here as well to set labels and data
+            else if(criteria === 'gender'){
+                StatisticService.get(criteria)
+                    .then(
+                        function success(response) {
+                            var genders = ['h','f','m'];
+                            var averages = [2.1,4.2,9.5];
+                            vm.labels = genders;
+                            vm.data = averages;
+                        });
+            }
+        };
+        StatisticService.get(criteria)
             .then(
                 function success(response) {
-                    vm.labels = response.data
+                    if (criteria === 'age') {
+                        var averages = [];
+                        var ageGroups = [];
+                        var jsonResponse = JSON.stringify(response.data.data).split(",");
+                        for (var i = 0; i < jsonResponse.length; i++) {
+                            var average = jsonResponse[i].split(":")[1];
+                            isNaN(average) ? averages.push(0) : averages.push(parseFloat(average));
+                            var ageGroup = jsonResponse[i].split(":")[0];
+                            (i == 0) ? ageGroups.push(ageGroup.substring(1, ageGroup.length)) : ageGroups.push(ageGroup);
+                        }
+                        vm.labels = ageGroups;
+                        vm.data = averages;
+                }
+                    else if(criteria === 'gender'){
+                        console.log('gender statistics');
+                        var jsonResponse = JSON.stringify(response.data.data);
+                        console.log(jsonResponse);
+                        var genders = [];
+                        var averages = [];
+                        //console.log(jsonResponse.split)
+                    }
+                    else if(criteria === 'exam'){
+                        console.log('exam statistics');
+                    }
+                    else if(criteria === 'country'){
+                        console.log('country statistic');
+                    }
                 },
                 function error(response) {
                     vm.serverErrors = response.data;

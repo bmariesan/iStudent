@@ -27,16 +27,19 @@
 
 
 <div class="container" ng-controller="LineCtrl as vm">
-    <h1>{{vm.sName}}</h1>
+    <h1>{{vm.criteria}}</h1>
 
-    <select>
-        <option ng-repeat="option in vm.statisticOptions" value="{{option}}">{{option}}</option>
+    <select ng-model="vm.criteria"
+            ng-options = "option for option in vm.statisticOptions"
+            ng-change="vm.setCriteria()" >
     </select>
     <br/><br/><br/>
-    <canvas id="line" class="chart chart-line" chart-data="data"
-            chart-labels="labels" chart-series="series" chart-options="options"
-            chart-dataset-override="datasetOverride" chart-click="onClick">
-    </canvas>
+    <div style="height:100px; width:1000px;">
+        <canvas id="line" class="chart chart-line" chart-data="vm.data"
+                chart-labels="vm.labels" chart-series="series" chart-options="vm.options"
+                chart-dataset-override="datasetOverride" chart-click="onClick">
+        </canvas>
+    </div>
 </div>
 
 <script>

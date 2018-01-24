@@ -10,7 +10,7 @@
         return {
             // get all exams
             get: function () {
-                console.log('getting exams');
+                //console.log('getting exams');
                 return $http.get('/api/exams');
             }
         }
