@@ -97,13 +97,13 @@ public class Student implements Serializable {
 
     //For a given id of an exam returns all grades of the student at that exam
     public List<ExamGrade> gradesForAnExam(int id){
-        List<ExamGrade> grades=new ArrayList<>();
+        List<ExamGrade> gradesExam=new ArrayList<>();
         for(ExamGrade grade: grades){
             if(grade.hasExam(id)){
-                grades.add(grade);
+                gradesExam.add(grade);
             }
         }
-        return grades;
+        return gradesExam;
     }
 
 

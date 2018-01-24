@@ -32,7 +32,6 @@ public class ExamStatistic implements IStatistic {
             sum=sum/grades.size();
             studentAverageMap.put(exam.getTitle(),sum);
         }
-
     }
 
     @Override

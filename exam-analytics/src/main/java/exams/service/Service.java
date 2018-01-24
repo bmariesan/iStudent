@@ -25,8 +25,6 @@ public class Service {
         studentRepository=stdRepo;
         createExams();
         createStudents();
-        StatisticFactory f=new StatisticFactory();
-        f.getStatistic("country", this);
     }
 
     public Optional<Student> getStudentById(int id){
@@ -64,8 +62,6 @@ public class Service {
         }
         return  grades;
     }
-
-
 
     private void createExams(){
         examRepository.save(Arrays.asList(new Exam(1,"Design Patterns"),
