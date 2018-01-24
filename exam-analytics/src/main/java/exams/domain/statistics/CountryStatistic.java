@@ -19,6 +19,7 @@ public class CountryStatistic implements IStatistic {
     public CountryStatistic(Service service) {
         this.service = service;
         countryAverageGrades=new HashMap<>();
+        generateStatistic();
     }
 
     @Override

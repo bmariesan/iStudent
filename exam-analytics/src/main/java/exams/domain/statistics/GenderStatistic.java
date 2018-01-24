@@ -17,6 +17,7 @@ public class GenderStatistic implements IStatistic {
     public GenderStatistic(Service service) {
         this.service = service;
         genderAverageGrades=new HashMap<>();
+        generateStatistic();
     }
 
     @Override
@@ -34,6 +35,6 @@ public class GenderStatistic implements IStatistic {
 
     @Override
     public Map<String, Float> getData() {
-        return null;
+        return genderAverageGrades;
     }
 }

@@ -30,8 +30,8 @@ public class AgeStatistic implements IStatistic {
         this.service = service;
         ageAverageGrades=new HashMap<>();
         ageGroups=new ArrayList<>();
-        ageGroups.addAll(Arrays.asList(new AgeGroup(10,18),new AgeGroup(19,21), new AgeGroup(22,24),new AgeGroup(25,27),
-                new AgeGroup(28,31), new AgeGroup(31,80)));
+        ageGroups.addAll(Arrays.asList(new AgeGroup(10,19),new AgeGroup(18,22), new AgeGroup(21,25),new AgeGroup(24,28),
+                new AgeGroup(27,32), new AgeGroup(31,80)));
         generateStatistic();
     }
 
