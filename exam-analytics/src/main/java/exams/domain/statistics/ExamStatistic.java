@@ -1,10 +1,8 @@
 package exams.domain.statistics;
 
-
-import exams.repository.ExamRepository;
-import exams.repository.StudentRepository;
 import exams.service.Service;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class ExamStatistic implements IStatistic {
@@ -13,6 +11,7 @@ public class ExamStatistic implements IStatistic {
 
     public ExamStatistic(Service service){
         this.service=service;
+        studentAverageMap=new HashMap<>();
     }
 
     @Override
