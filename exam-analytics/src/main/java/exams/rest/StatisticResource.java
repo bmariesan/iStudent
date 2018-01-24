@@ -1,6 +1,9 @@
 package exams.rest;
 
+import exams.StatisticFactory.IStatisticFactory;
+import exams.StatisticFactory.StatisticFactory;
 import exams.domain.Exam;
+import exams.domain.statistics.IStatistic;
 import exams.service.Service;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -22,6 +25,7 @@ public class StatisticResource {
     private static final String GREETING_CONTROLLER_MAPPING = "/examStatistic";
     private final Service service;
     private final String baseUrl;
+    private IStatisticFactory factory = new StatisticFactory();
 
     public StatisticResource(Service service, @Value("${application.base-url}") String baseUrl) {
         this.service = service;
@@ -47,5 +51,11 @@ public class StatisticResource {
     @GetMapping("/examsAsEntity")
     public List<Exam> getExamsAsEntity(){
         return service.getExams();
+    }
+
+    //todo statistics by criteria
+    @GetMapping("/statistics/{criteria}")
+    public IStatistic getStatistic(@PathVariable String criteria){
+        return factory.getStatistic(criteria, service);
     }
 }

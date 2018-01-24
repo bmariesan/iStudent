@@ -5,11 +5,13 @@
         .controller('LineCtrl', LineController);
     // inject the services into our controller
     console.log('here cont1');
-    LineController.$inject = ['MainService','AlertService', 'ExamService', '$scope', '$timeout','$http'];
-    function LineController(MainService, AlertService,ExamService, $scope, $timeout) {
+    LineController.$inject = ['MainService','AlertService', 'ExamService', 'StatisticService', '$scope', '$timeout','$http'];
+    function LineController(MainService, AlertService,ExamService, StatisticService, $scope, $timeout) {
         console.log('here cont1.5');
         var vm = this;
         console.log('here cont2');
+        vm.statisticOptions = ["Exam Statistics", "Age Statistics",
+            "Gender Statistics", "Country Statistics"];
         vm.sName = 'Exam statistics';//replace with function
         console.log(vm);
         vm.labels = ["January", "February", "March", "April", "May", "June", "July"];
@@ -22,7 +24,7 @@
         vm.onClick = function (points, evt) {
             console.log(points, evt);
         };
-        vm.datasetOverride = [{ yAxisID: 'y-axis-1' }, { yAxisID: 'y-axis-2' }];
+        vm.datasetOverride = [{yAxisID: 'y-axis-1'}, {yAxisID: 'y-axis-2'}];
         vm.options = {
             scales: {
                 yAxes: [
@@ -41,7 +43,7 @@
                 ]
             }
         };
-        //append these to service functions
+        //todo append these to service functions
         $scope.labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
         $scope.series = ['Series A', 'Series B'];
         $scope.data = [
@@ -63,6 +65,17 @@
             .then(
                 function success(response) {
                     vm.exams = response.data;
+                },
+                function error(response) {
+                    vm.serverErrors = response.data;
+                    AlertService.alertError(response.data);
+                });
+
+        //todo take criteria from selected exam
+        StatisticService.get('exam')
+            .then(
+                function success(response) {
+                    vm.labels = response.data
                 },
                 function error(response) {
                     vm.serverErrors = response.data;
