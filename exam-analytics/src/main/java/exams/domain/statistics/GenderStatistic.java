@@ -1,7 +1,5 @@
 package exams.domain.statistics;
 
-
-import exams.repository.StudentRepository;
 import exams.service.Service;
 
 import java.util.Map;
@@ -14,8 +12,8 @@ public class GenderStatistic implements IStatistic {
     }
 
     @Override
-    public IStatistic generateStatistic() {
-        return null;
+    public void generateStatistic() {
+
     }
 
     @Override

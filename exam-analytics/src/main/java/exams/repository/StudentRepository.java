@@ -1,5 +1,6 @@
 package exams.repository;
 
+import exams.domain.ExamGrade;
 import exams.domain.Gender;
 import exams.domain.Student;
 import org.bson.types.ObjectId;

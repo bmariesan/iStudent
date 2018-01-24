@@ -1,9 +1,12 @@
 package exams.service;
 
+import exams.StatisticFactory.StatisticFactory;
 import exams.domain.*;
+import exams.domain.statistics.IStatistic;
 import exams.repository.ExamRepository;
 import exams.repository.StudentRepository;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -50,6 +53,18 @@ public class Service {
 
     public List<Exam> getExams(){
         return examRepository.findAll();
+    }
+
+    public List<Student> getStudents(){
+        return studentRepository.findAll();
+    }
+
+    public List<ExamGrade> getGradesForAnExam(int id){
+        List<ExamGrade> grades=new ArrayList<>();
+        for(Student s:studentRepository.findAll()){
+            grades.addAll(s.gradesForAnExam(id));
+        }
+        return  grades;
     }
 
 

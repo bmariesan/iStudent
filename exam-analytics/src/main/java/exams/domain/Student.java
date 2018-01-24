@@ -17,7 +17,6 @@ public class Student implements Serializable {
     private int age;
     private Gender gender;
     private String country;
-//    @DBRef
     private List<ExamGrade> grades=new ArrayList<>();
 
     public Student(){}
@@ -87,6 +86,16 @@ public class Student implements Serializable {
         else{
             grades.add(examGrade);
         }
+    }
+
+    public List<ExamGrade> gradesForAnExam(int id){
+        List<ExamGrade> grades=new ArrayList<>();
+        for(ExamGrade grade: grades){
+            if(grade.hasExam(id)){
+                grades.add(grade);
+            }
+        }
+        return grades;
     }
 
 

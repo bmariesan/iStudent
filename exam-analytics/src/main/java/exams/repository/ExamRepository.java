@@ -1,7 +1,6 @@
 package exams.repository;
 
 import exams.domain.Exam;
-import exams.domain.Student;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 

@@ -13,8 +13,8 @@ public class CountryStatistic implements IStatistic {
     }
 
     @Override
-    public IStatistic generateStatistic() {
-        return null;
+    public void generateStatistic() {
+
     }
 
     @Override

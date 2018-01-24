@@ -14,15 +14,13 @@ import java.util.Optional;
 
 @Document(collection = "examGrade")
 public class ExamGrade implements Serializable {
-    @Id
-    private ObjectId id;
+
     @DBRef
     private Exam exam;
     private double grade;
 
     public ExamGrade(){}
     public ExamGrade(Exam exam, double grade){
-        id=new ObjectId();
         this.exam=exam;
         this.grade=grade;
     }
@@ -43,6 +41,13 @@ public class ExamGrade implements Serializable {
         this.grade = grade;
     }
 
+    public boolean hasExam(int id){
+        if(id==exam.getId()){
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public String toString(){
         return exam.getId()+" "+exam.getTitle()+" "+grade;
@@ -57,11 +62,4 @@ public class ExamGrade implements Serializable {
 
     }
 
-    public ObjectId getId() {
-        return id;
-    }
-
-    public void setId(ObjectId id) {
-        this.id = id;
-    }
 }
