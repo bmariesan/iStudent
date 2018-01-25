@@ -1,20 +1,8 @@
 package exams.domain.statistics;
+import exams.domain.AgeGroup;
 import exams.domain.Student;
 import exams.service.Service;
 import java.util.*;
-
-class AgeGroup {
-    public int from;
-    public int to;
-    public AgeGroup(int from, int to){
-        this.from=from;
-        this.to=to;
-    }
-    @Override
-    public String toString(){
-        return from+" - "+to;
-    }
-}
 
 /**
  * For every age group it makes an average of all grades of the students that are part of the age group
