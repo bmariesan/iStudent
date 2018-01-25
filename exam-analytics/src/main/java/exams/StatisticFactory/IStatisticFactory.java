@@ -11,4 +11,5 @@ import exams.service.Service;
  */
 public interface IStatisticFactory {
     IStatistic getStatistic(String criteria, Service service);
+    IStatistic getBayesStatistics(int idExam, String criteria, Service service);
 }

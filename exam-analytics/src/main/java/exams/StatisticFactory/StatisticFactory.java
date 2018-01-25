@@ -2,6 +2,9 @@ package exams.StatisticFactory;
 
 
 import exams.domain.statistics.*;
+import exams.domain.statistics.bayesStatistics.BayesAges;
+import exams.domain.statistics.bayesStatistics.BayesCountries;
+import exams.domain.statistics.bayesStatistics.BayesGender;
 import exams.repository.ExamRepository;
 import exams.repository.StudentRepository;
 import exams.service.Service;
@@ -30,4 +33,24 @@ public class StatisticFactory implements IStatisticFactory{
         logger.severe("Invalid criteria");
         return null;
     }
+
+    @Override
+    public IStatistic getBayesStatistics(int idExam, String criteria, Service service) {
+        if ( criteria.equals("bayesAge")) {
+            logger.info("Bayes Age statistic generation");
+            return new BayesAges(service,idExam);
+        }
+        else if ( criteria.equals("bayesCountry")) {
+            logger.info("Bayes Country statistic generation");
+            return new BayesCountries(service,idExam);
+        }
+        else if ( criteria.equals("bayesGender")){
+            logger.info("Bayes Gender statistic generation");
+            return new BayesGender(service,idExam);
+        }
+        logger.severe("Invalid criteria");
+        return null;
+    }
+
+
 }
