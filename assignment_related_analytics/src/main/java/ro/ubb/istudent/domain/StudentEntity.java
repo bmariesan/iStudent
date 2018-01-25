@@ -24,6 +24,8 @@ public class StudentEntity implements Serializable {
     private String countryOfResidence;
     private long gradeBookId;
 
+    public StudentEntity(){}
+
     public StudentEntity(long id, String firstName, String lastName, String gender, int age, long groupId, int yearOfGraduation, String countryOfResidence, long gradeBookId) {
         this.id = id;
         this.firstName = firstName;
