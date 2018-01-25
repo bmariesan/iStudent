@@ -27,4 +27,9 @@ public class StatisticsAssignmentController {
         return assignmentService.getNumberOfAssignmentsHavingFilesAttached();
     }
 
+    @RequestMapping(value = "/statistics", method = RequestMethod.GET)
+    public String getNrAssignWithFeedbackFromStudent(){
+        return String.valueOf(this.assignmentService.getNrAssignWithFeedbackFromStudent());
+    }
+
 }

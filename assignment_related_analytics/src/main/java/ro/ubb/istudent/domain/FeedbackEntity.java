@@ -9,12 +9,14 @@ public class FeedbackEntity {
     private TeacherEntity teacher;
     private Long studentId;
     private String description;
+    private StudentEntity studentEntity;
 
-    public FeedbackEntity(Long id, TeacherEntity teacher, Long studentId, String description) {
+    public FeedbackEntity(Long id, TeacherEntity teacher, Long studentId, String description, StudentEntity studentEntity) {
         this.id = id;
         this.teacher = teacher;
         this.studentId = studentId;
         this.description = description;
+        this.studentEntity = studentEntity;
     }
 
     public Long getId() {
@@ -49,4 +51,11 @@ public class FeedbackEntity {
         this.description = description;
     }
 
+    public StudentEntity getStudentEntity() {
+        return studentEntity;
+    }
+
+    public void setStudentEntity(StudentEntity studentEntity) {
+        this.studentEntity = studentEntity;
+    }
 }

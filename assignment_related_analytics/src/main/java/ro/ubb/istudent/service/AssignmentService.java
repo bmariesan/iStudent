@@ -37,4 +37,11 @@ public class AssignmentService {
                 .count();
     }
 
+    public long getNrAssignWithFeedbackFromStudent(){
+        return this.assignmentRepository.findAll().stream().filter(
+                assignmentEntity -> !ObjectUtils.isEmpty(assignmentEntity.getFeedback().getStudentEntity()))
+                .count();
+    }
+
+
 }
