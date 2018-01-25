@@ -45,12 +45,12 @@ $(document).ready(function () {
                     var button = document.createElement("button");
                     button.className = "btn btn-primary";
                     button.innerHTML = "Subscribe";
-                    button.setAttribute("data-id", course.name);
+                    button.setAttribute("data-id", course.name.name);
                     button.setAttribute("type", "button");
                     button.setAttribute("id", "course-subscribe-" + course_index);
 
                     li.appendChild(button);
-                    li.appendChild(document.createTextNode(course.name));
+                    li.appendChild(document.createTextNode(course.name.name));
                     li.className = "list-group-item justify-content-between";
                     li.appendChild(span);
                     ul.appendChild(li);

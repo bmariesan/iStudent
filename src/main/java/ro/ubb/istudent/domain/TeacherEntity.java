@@ -5,6 +5,11 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+
 import java.util.List;
 
 @Data
@@ -18,7 +23,9 @@ import java.util.List;
 @ToString(exclude = {"courses"}, callSuper = true)
 public class TeacherEntity extends BaseEntity {
     @Indexed(unique = true)
-    private String name;
+    @Embedded
+    @AttributeOverrides({ @AttributeOverride(name = "name", column = @Column(name = "name")) })
+    private NameEntity name;
 
     @DBRef(lazy = true)
     private List<CourseEntity> courses;

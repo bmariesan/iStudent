@@ -6,6 +6,11 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import ro.ubb.istudent.exception.IllegalOperationException;
 
+
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +27,9 @@ public class StudentEntity extends BaseEntity {
     @Indexed(unique = true)
     private String username;
 
-    private String name;
+    @Embedded
+    @AttributeOverrides({ @AttributeOverride(name = "name", column = @Column(name = "name")) })
+    private NameEntity name;
 
     @DBRef(lazy = true)
     private List<CourseEntity> registeredCourses;

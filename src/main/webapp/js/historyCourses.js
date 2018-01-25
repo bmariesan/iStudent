@@ -3,9 +3,9 @@ var username = "dana";
 
 function compareCourses(a, b) {
     if (a.active === b.active) {
-        if (a.name < b.name) {
+        if (a.name.name < b.name.name) {
             return -1;
-        } else if (a.name === b.name) {
+        } else if (a.name.name === b.name.name) {
             return 0;
         } else {
             return 1;
@@ -54,7 +54,7 @@ $(document).ready(function () {
                     span.className = "badge " + progress_bar + " badge-pill";
                     span.innerHTML = span_text;
 
-                    li.appendChild(document.createTextNode(course.name));
+                    li.appendChild(document.createTextNode(course.name.name));
                     li.className = "list-group-item justify-content-between";
                     li.appendChild(span);
                     ul.appendChild(li);

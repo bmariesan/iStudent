@@ -1,6 +1,7 @@
 package ro.ubb.istudent.dto;
 
 import lombok.*;
+import ro.ubb.istudent.domain.NameEntity;
 import ro.ubb.istudent.domain.StudentEntity;
 
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class StudentDto extends BaseDto {
     private String username;
-    private String name;
+    private NameEntity name;
     private List<CourseDto> registeredCourses;
 
     public static StudentDto createDtoFromEntity(StudentEntity entity) {

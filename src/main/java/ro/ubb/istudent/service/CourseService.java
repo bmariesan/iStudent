@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import ro.ubb.istudent.domain.CourseEntity;
+import ro.ubb.istudent.domain.NameEntity;
 import ro.ubb.istudent.dto.CourseDto;
 import ro.ubb.istudent.exception.EntityNotFoundException;
 import ro.ubb.istudent.repository.CourseRepository;
@@ -34,7 +35,7 @@ public class CourseService {
         return CourseDto.createDtosFromEntities(repository.findAll());
     }
 
-    public CourseEntity getCourseWithName(String name) {
+    public CourseEntity getCourseWithName(NameEntity name) {
         Optional<CourseEntity> courseOptional = repository.findCourseEntityByName(name);
         if (!courseOptional.isPresent()) {
             throw new EntityNotFoundException("A course with the name " + name + " was not found!");

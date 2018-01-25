@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ro.ubb.istudent.domain.NameEntity;
 import ro.ubb.istudent.dto.StudentDto;
 import ro.ubb.istudent.service.StudentService;
 
@@ -22,8 +23,8 @@ public class StudentResource {
     public StudentResource(StudentService studentService, @Value("${application.base-url}") String baseUrl) {
         this.studentService = studentService;
         this.baseUrl = baseUrl;
-        studentService.createStudent(StudentDto.builder().username("dana").name("Dana").build());
-        studentService.createStudent(StudentDto.builder().username("bianca").name("Bianca").build());
+        studentService.createStudent(StudentDto.builder().username("dana").name(new NameEntity("Dana")).build());
+        studentService.createStudent(StudentDto.builder().username("bianca").name(new NameEntity("Bianca")).build());
     }
 
     @GetMapping("/students")

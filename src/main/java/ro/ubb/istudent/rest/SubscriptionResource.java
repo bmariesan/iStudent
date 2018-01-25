@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ro.ubb.istudent.domain.NameEntity;
 import ro.ubb.istudent.dto.CourseDto;
 import ro.ubb.istudent.dto.StudentDto;
 import ro.ubb.istudent.exception.EntityNotFoundException;
@@ -26,7 +27,7 @@ public class SubscriptionResource {
 
     SubscriptionResource(SubscriptionService subscriptionService) {
         this.subscriptionService = subscriptionService;
-        subscriptionService.subscribeStudentToCourse("dana", CourseDto.builder().name("Algebra").studentLimit(10).active(false).build());
+        subscriptionService.subscribeStudentToCourse("dana", CourseDto.builder().name(new NameEntity("Algebra")).studentLimit(10).active(false).build());
     }
 
     @PostMapping("/subscribe/{username}")

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ro.ubb.istudent.domain.NameEntity;
 import ro.ubb.istudent.dto.CourseDto;
 import ro.ubb.istudent.exception.EntityNotFoundException;
 import ro.ubb.istudent.service.CourseService;
@@ -23,10 +24,10 @@ public class CourseResource {
     public CourseResource(CourseService service, @Value("${application.base-url}") String baseUrl) {
         this.service = service;
         this.baseUrl = baseUrl;
-        service.createCourse(CourseDto.builder().name("Design Patterns").studentLimit(1).active(true).build());
-        service.createCourse(CourseDto.builder().name("Algebra").studentLimit(10).active(false).build());
-        service.createCourse(CourseDto.builder().name("Databases").studentLimit(5).active(false).build());
-        service.createCourse(CourseDto.builder().name("Cryptography").studentLimit(5).active(true).build());
+        service.createCourse(CourseDto.builder().name(new NameEntity("Design Patterns")).studentLimit(1).active(true).build());
+        service.createCourse(CourseDto.builder().name(new NameEntity("Algebra")).studentLimit(10).active(false).build());
+        service.createCourse(CourseDto.builder().name(new NameEntity("Databases")).studentLimit(5).active(false).build());
+        service.createCourse(CourseDto.builder().name(new NameEntity("Cryptography")).studentLimit(5).active(true).build());
     }
 
     @GetMapping("/courses")

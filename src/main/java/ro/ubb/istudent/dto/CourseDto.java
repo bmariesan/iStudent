@@ -2,6 +2,7 @@ package ro.ubb.istudent.dto;
 
 import lombok.*;
 import ro.ubb.istudent.domain.CourseEntity;
+import ro.ubb.istudent.domain.NameEntity;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,7 +13,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CourseDto extends BaseDto {
-    private String name;
+    private NameEntity name;
     private Integer numRegisteredStudents;
     private Integer studentLimit;
     private boolean active;

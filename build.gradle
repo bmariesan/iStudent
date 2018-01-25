@@ -51,6 +51,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-mongodb')
     compile("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
     compile group: 'com.rabbitmq', name: 'amqp-client', version: '5.0.0'
+    compile group: 'javax.persistence', name: 'persistence-api', version: '1.0'
 
     runtime('com.h2database:h2')
     runtime('mysql:mysql-connector-java')
