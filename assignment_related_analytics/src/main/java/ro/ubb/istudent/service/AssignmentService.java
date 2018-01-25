@@ -6,7 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
+import ro.ubb.istudent.designpatterns.builder.*;
+import ro.ubb.istudent.domain.AssignmentEntity;
+import ro.ubb.istudent.domain.StudentEntity;
 import ro.ubb.istudent.repository.AssignmentRepository;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @Transactional
@@ -17,7 +23,7 @@ public class  AssignmentService {
     @Autowired
     private AssignmentRepository assignmentRepository;
 
-    public Long getNumberOfAssignmentsHavingFeedbackFromTeachers(){
+    public Long getNumberOfAssignmentsHavingFeedbackFromTeachers() {
         return assignmentRepository.findAll()
                 .stream()
                 .filter(assignmentEntity -> !ObjectUtils.isEmpty(assignmentEntity.getFeedback().getTeacher()))
@@ -30,17 +36,29 @@ public class  AssignmentService {
                 .filter(assignmentEntity -> assignmentEntity.isCompleted())
                 .count();
     }
-    public Long getNumberOfAssignmentsHavingFilesAttached(){
+
+    public Long getNumberOfAssignmentsHavingFilesAttached() {
         return assignmentRepository.findAll()
                 .stream()
                 .filter(assignmentEntity -> !ObjectUtils.isEmpty(!assignmentEntity.getAttachments().isEmpty()))
                 .count();
     }
 
-    public long getNrAssignWithFeedbackFromStudent(){
+    public long getNrAssignWithFeedbackFromStudent() {
         return this.assignmentRepository.findAll().stream().filter(
                 assignmentEntity -> !ObjectUtils.isEmpty(assignmentEntity.getFeedback().getStudentEntity()))
                 .count();
+    }
+
+    public void createMockData() {
+        assignmentRepository.deleteAll();
+        AssignmentBuilder assignmentBuilder = new AssignmentBuildImpl();
+        AssignmentBuildDirector assignmentBuildDirector = new AssignmentBuildDirector(assignmentBuilder);
+        for (int i = 0; i < 10; i++) {
+            AssignmentEntity assignmentEntity = assignmentBuildDirector.construct();
+            assignmentRepository.save(assignmentEntity);
+        }
+
     }
 
 

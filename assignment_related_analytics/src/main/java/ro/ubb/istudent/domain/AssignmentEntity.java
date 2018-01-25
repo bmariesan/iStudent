@@ -23,6 +23,8 @@ public class AssignmentEntity implements Serializable {
     private String description;
     private Boolean isCompleted;
 
+    public AssignmentEntity(){}
+
     public AssignmentEntity(Long id, Long studentId, Long courseId, List<AttachmentEntity> attachments, FeedbackEntity feedback, Date date, Date deadline, String description) {
         this.id = id;
         this.studentId = studentId;

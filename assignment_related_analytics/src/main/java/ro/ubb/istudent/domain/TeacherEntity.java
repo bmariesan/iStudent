@@ -17,6 +17,8 @@ public class TeacherEntity implements Serializable {
 
     private GenderEnum gender;
 
+    public TeacherEntity(){}
+
     public TeacherEntity(Long id, String firstName, String lastName, GenderEnum gender) {
         this.id = id;
         this.firstName = firstName;
