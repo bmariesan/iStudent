@@ -3,21 +3,19 @@ package exams.domain.statistics;
 import exams.domain.Exam;
 import exams.domain.ExamGrade;
 import exams.service.Service;
-
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * For every exam it makes an average of all grades at that exam
  */
 public class ExamStatistic implements IStatistic {
-    private Map<String, Float> studentAverageMap;
     private Service service;
+    List<StringTuple> returnedData;
 
     public ExamStatistic(Service service){
         this.service=service;
-        studentAverageMap=new HashMap<>();
+        returnedData = new ArrayList<>();
         generateStatistic();
     }
 
@@ -30,12 +28,16 @@ public class ExamStatistic implements IStatistic {
                 sum+=grade.getGrade();
             }
             sum=sum/grades.size();
-            studentAverageMap.put(exam.getTitle(),sum);
+            returnedData.add(new StringTuple(exam.getTitle(), String.valueOf(sum)));
         }
     }
 
+//    @Override
+//    public Map<String, Float> getData() {
+//        return studentAverageMap;
+//    }
     @Override
-    public Map<String, Float> getData() {
-        return studentAverageMap;
+    public List<StringTuple> getData(){
+        return returnedData;
     }
 }

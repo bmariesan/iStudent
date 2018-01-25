@@ -1,8 +1,7 @@
 package exams.domain.statistics;
-
-import java.util.Map;
+import java.util.List;
 
 public interface IStatistic {
     void generateStatistic();
-    Map<String,Float> getData();
+    List<StringTuple> getData();
 }

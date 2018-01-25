@@ -4,9 +4,7 @@ import exams.domain.Student;
 import exams.service.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * For every country of residence it makes an average of all grades of all students
@@ -14,11 +12,10 @@ import java.util.Map;
  */
 public class CountryStatistic implements IStatistic {
     private Service service;
-    private Map<String,Float> countryAverageGrades;
-
+    List<StringTuple> returnedData;
     public CountryStatistic(Service service) {
         this.service = service;
-        countryAverageGrades=new HashMap<>();
+        returnedData = new ArrayList<>();
         generateStatistic();
     }
 
@@ -37,7 +34,7 @@ public class CountryStatistic implements IStatistic {
                     nr+=student.getGrades().size();
                 }
                 sum=sum/nr;
-                countryAverageGrades.put(country,sum);
+                returnedData.add(new StringTuple(country, String.valueOf(sum)));
                 total-=service.getStudentsByCountry(country).size();
             }
             i++;
@@ -45,7 +42,8 @@ public class CountryStatistic implements IStatistic {
     }
 
     @Override
-    public Map<String, Float> getData() {
-        return countryAverageGrades;
+    public List<StringTuple> getData(){
+        return returnedData;
     }
+
 }

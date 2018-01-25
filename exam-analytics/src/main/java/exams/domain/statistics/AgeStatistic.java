@@ -1,7 +1,6 @@
 package exams.domain.statistics;
 import exams.domain.Student;
 import exams.service.Service;
-
 import java.util.*;
 
 class AgeGroup {
@@ -23,20 +22,16 @@ class AgeGroup {
 public class AgeStatistic implements IStatistic {
 
     private Service service;
-    private Map<String, Float> ageAverageGrades;
     private List<AgeGroup> ageGroups;
-
+    List<StringTuple> returnedData;
     public AgeStatistic(Service service) {
         this.service = service;
-        ageAverageGrades=new TreeMap<>();
+        returnedData = new ArrayList<>();
         ageGroups=new ArrayList<>();
         ageGroups.addAll(Arrays.asList(new AgeGroup(10,19),new AgeGroup(18,22), new AgeGroup(21,25),new AgeGroup(24,28),
                 new AgeGroup(27,32), new AgeGroup(31,80)));
         generateStatistic();
     }
-
-
-    //todo sort them at the end
     @Override
     public void generateStatistic() {
         for(AgeGroup group:ageGroups){
@@ -46,12 +41,12 @@ public class AgeStatistic implements IStatistic {
                 nr+=student.getGrades().size();
             }
             sum=sum/nr;
-            ageAverageGrades.put(group.toString(),sum);
+            returnedData.add(new StringTuple(group.toString(), String.valueOf(sum)));
         }
     }
 
     @Override
-    public Map<String, Float> getData() {
-        return ageAverageGrades;
+    public List<StringTuple> getData(){
+        return returnedData;
     }
 }

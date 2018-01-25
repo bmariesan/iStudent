@@ -3,20 +3,18 @@ package exams.domain.statistics;
 import exams.domain.Gender;
 import exams.domain.Student;
 import exams.service.Service;
-
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * It makes an average of all grades based on gender
  */
 public class GenderStatistic implements IStatistic {
     private Service service;
-    private Map<String,Float> genderAverageGrades;
-
+    List<StringTuple> returnedData;
     public GenderStatistic(Service service) {
         this.service = service;
-        genderAverageGrades=new HashMap<>();
+        returnedData = new ArrayList<>();
         generateStatistic();
     }
 
@@ -29,12 +27,12 @@ public class GenderStatistic implements IStatistic {
                 nr += student.getGrades().size();
             }
             sum=sum/nr;
-            genderAverageGrades.put(gender.toString(),sum);
+            returnedData.add(new StringTuple(gender.toString(), String.valueOf(sum)));
         }
     }
 
     @Override
-    public Map<String, Float> getData() {
-        return genderAverageGrades;
+    public List<StringTuple> getData(){
+        return returnedData;
     }
 }

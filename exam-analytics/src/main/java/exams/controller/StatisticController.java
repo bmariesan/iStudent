@@ -8,16 +8,10 @@ import java.util.logging.Logger;
 //maybe load the scripts in the app.js?
 @Controller
 public class StatisticController {
-    Logger logger = Logger.getLogger("InfoLogging");
+    Logger logger = Logger.getLogger("INFO");
     @RequestMapping(value = "/statistics", method = RequestMethod.GET)
     public String home() {
-        logger.info("StatisticController");
+        logger.info("StatisticViewController");
         return "statistics";
     }
-
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String home2() {
-        return "statistics";
-    }
-
 }
