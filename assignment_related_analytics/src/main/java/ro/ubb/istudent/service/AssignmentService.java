@@ -6,13 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
-import ro.ubb.istudent.designpatterns.builder.*;
+import ro.ubb.istudent.designpatterns.builder.AssignmentBuildDirector;
+import ro.ubb.istudent.designpatterns.builder.AssignmentBuildImpl;
+import ro.ubb.istudent.designpatterns.builder.AssignmentBuilder;
 import ro.ubb.istudent.domain.AssignmentEntity;
-import ro.ubb.istudent.domain.StudentEntity;
 import ro.ubb.istudent.repository.AssignmentRepository;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @Transactional
@@ -52,10 +50,10 @@ public class  AssignmentService {
 
     public void createMockData() {
         assignmentRepository.deleteAll();
-        AssignmentBuilder assignmentBuilder = new AssignmentBuildImpl();
-        AssignmentBuildDirector assignmentBuildDirector = new AssignmentBuildDirector(assignmentBuilder);
+        final AssignmentBuilder assignmentBuilder = new AssignmentBuildImpl();
+        final AssignmentBuildDirector assignmentBuildDirector = new AssignmentBuildDirector(assignmentBuilder);
+        AssignmentEntity assignmentEntity = assignmentBuildDirector.construct();
         for (int i = 0; i < 10; i++) {
-            AssignmentEntity assignmentEntity = assignmentBuildDirector.construct();
             assignmentRepository.save(assignmentEntity);
         }
 

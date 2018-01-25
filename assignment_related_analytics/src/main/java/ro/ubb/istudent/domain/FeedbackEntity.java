@@ -9,7 +9,6 @@ public class FeedbackEntity implements Serializable {
     @Id
     private Long id;
     private TeacherEntity teacher;
-    private Long studentId;
     private String description;
     private StudentEntity studentEntity;
 
@@ -17,11 +16,10 @@ public class FeedbackEntity implements Serializable {
     @JoinColumn(name = "ASSIGNMENT_ID")
     private AssignmentEntity assignment;
 
-    public FeedbackEntity(Long id, TeacherEntity teacher, Long studentId, String description, StudentEntity studentEntity,
+    public FeedbackEntity(Long id, TeacherEntity teacher, String description, StudentEntity studentEntity,
                           AssignmentEntity assignment) {
         this.id = id;
         this.teacher = teacher;
-        this.studentId = studentId;
         this.description = description;
         this.studentEntity = studentEntity;
         this.assignment = assignment;
@@ -41,14 +39,6 @@ public class FeedbackEntity implements Serializable {
 
     public void setTeacher(TeacherEntity teacher) {
         this.teacher = teacher;
-    }
-
-    public Long getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(Long studentId) {
-        this.studentId = studentId;
     }
 
     public String getDescription() {

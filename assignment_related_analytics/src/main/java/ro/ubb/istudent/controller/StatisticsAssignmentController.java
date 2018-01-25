@@ -1,6 +1,7 @@
 package ro.ubb.istudent.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,15 +13,19 @@ public class StatisticsAssignmentController {
     private Context context;
 
     @Autowired
+    @Qualifier("assignmentsFeedbackTeachersStatistics")
     private AssignmentsFeedbackTeachersStatistics assignmentsFeedbackTeachersStatistics;
 
     @Autowired
+    @Qualifier("assignmentsFeedbackStudentsStatistics")
     private AssignmentsFeedbackStudentsStatistics assignmentsFeedbackStudentsStatistics;
 
     @Autowired
+    @Qualifier("completedAssignmentsCourseStatistics")
     private CompletedAssignmentsCourseStatistics completedAssignmentsCourseStatistics;
 
     @Autowired
+    @Qualifier("assignmentsFilesStatistics")
     private AssignmentsFilesStatistics assignmentsFilesStatistics;
     
 

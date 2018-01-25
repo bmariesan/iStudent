@@ -1,11 +1,11 @@
 package ro.ubb.istudent.designpatterns.strategy;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import ro.ubb.istudent.repository.AssignmentRepository;
 
-@Service
+@Component("completedAssignmentsCourseStatistics")
 @Transactional
 public class CompletedAssignmentsCourseStatistics implements Strategy {
 

@@ -18,7 +18,7 @@ public class AssignmentBuildImpl implements AssignmentBuilder {
 
     @Override
     public AssignmentEntity build() {
-        return null;
+        return assignment;
     }
 
     @Override
