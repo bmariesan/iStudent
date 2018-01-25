@@ -1,25 +1,29 @@
 package ro.ubb.istudent.domain;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.util.ArrayList;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-@Document(collection = "assignment")
-public class AssignmentEntity {
+@Entity
+public class AssignmentEntity implements Serializable {
 
+    @Id
     private Long id;
     private Long studentId;
     private Long courseId;
-    private List<Long> attachments;
+
+    @OneToMany(mappedBy="assignment")
+    private List<AttachmentEntity> attachments;
+
+    @OneToOne(mappedBy="assignment")
     private FeedbackEntity feedback;
     private Date date;
     private Date deadline;
     private String description;
     private Boolean isCompleted;
 
-    public AssignmentEntity(Long id, Long studentId, Long courseId, List<Long> attachments, FeedbackEntity feedback, Date date, Date deadline, String description) {
+    public AssignmentEntity(Long id, Long studentId, Long courseId, List<AttachmentEntity> attachments, FeedbackEntity feedback, Date date, Date deadline, String description) {
         this.id = id;
         this.studentId = studentId;
         this.courseId = courseId;
@@ -71,11 +75,11 @@ public class AssignmentEntity {
         this.date = date;
     }
 
-    public void setAttachments(List<Long> attachments) {
+    public void setAttachments(List<AttachmentEntity> attachments) {
         this.attachments = attachments;
     }
 
-    public List<Long> getAttachments() {
+    public List<AttachmentEntity> getAttachments() {
         return attachments;
     }
 

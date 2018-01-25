@@ -1,10 +1,12 @@
 package ro.ubb.istudent.domain;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "teacher")
-public class TeacherEntity {
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import java.io.Serializable;
+
+@Entity
+public class TeacherEntity implements Serializable {
 
     @Id
     private Long id;

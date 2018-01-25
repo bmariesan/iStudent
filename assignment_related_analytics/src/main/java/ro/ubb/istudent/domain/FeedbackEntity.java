@@ -1,22 +1,30 @@
 package ro.ubb.istudent.domain;
 
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.persistence.*;
+import java.io.Serializable;
 
-@Document(collection = "feedback")
-public class FeedbackEntity {
+@Entity
+public class FeedbackEntity implements Serializable {
 
+    @Id
     private Long id;
     private TeacherEntity teacher;
     private Long studentId;
     private String description;
     private StudentEntity studentEntity;
 
-    public FeedbackEntity(Long id, TeacherEntity teacher, Long studentId, String description, StudentEntity studentEntity) {
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ASSIGNMENT_ID")
+    private AssignmentEntity assignment;
+
+    public FeedbackEntity(Long id, TeacherEntity teacher, Long studentId, String description, StudentEntity studentEntity,
+                          AssignmentEntity assignment) {
         this.id = id;
         this.teacher = teacher;
         this.studentId = studentId;
         this.description = description;
         this.studentEntity = studentEntity;
+        this.assignment = assignment;
     }
 
     public Long getId() {
@@ -57,5 +65,13 @@ public class FeedbackEntity {
 
     public void setStudentEntity(StudentEntity studentEntity) {
         this.studentEntity = studentEntity;
+    }
+
+    public AssignmentEntity getAssignment() {
+        return assignment;
+    }
+
+    public void setAssignment(AssignmentEntity assignment) {
+        this.assignment = assignment;
     }
 }
