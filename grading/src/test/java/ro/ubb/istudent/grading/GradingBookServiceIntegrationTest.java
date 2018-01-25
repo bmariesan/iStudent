@@ -96,7 +96,6 @@ class GradingBookServiceIntegrationTest {
 
     @Test
     void whenTeacherDeletesGradeFromGradingBook_ExpectGradeDeletedFromGradingBook() {
-        // TODO: Solve This Test!
         // given:
         GradingBook gradingBook = new GradingBook(singletonList(
                 new NormalGrade(10.0, new Student("Student"))));
@@ -108,8 +107,6 @@ class GradingBookServiceIntegrationTest {
         GradingBook gradingBookFromDatabase = gradingBookService
                 .deleteGradeFromGradingBook(grade.id(), course.getId())
                 .gradingBook().orElseThrow(GradingBookNotFound::new);
-        System.out.println(gradingBook);
-        System.out.println(gradingBookFromDatabase);
         // then:
         assertThat(gradingBookFromDatabase.grades().size(), Is.is(0));
     }

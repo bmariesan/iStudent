@@ -52,7 +52,7 @@ public class GradingCriteriaController {
     public ResponseEntity<Course> insertWithComponentsRedistribution(
             @RequestParam String courseId,
             @RequestBody GradingCriteria gradingCriteria) {
-        return new ResponseEntity<>(gradingCriteriaService.saveGradingCriteriaWithRidistribution(
+        return new ResponseEntity<>(gradingCriteriaService.saveGradingCriteriaWithRedistribution(
                 gradingCriteria, new ObjectId(courseId)), HttpStatus.ACCEPTED);
     }
 

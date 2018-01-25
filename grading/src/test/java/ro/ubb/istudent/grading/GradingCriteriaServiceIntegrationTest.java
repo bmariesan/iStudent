@@ -1,6 +1,5 @@
 package ro.ubb.istudent.grading;
 
-import org.hamcrest.collection.IsIterableContainingInAnyOrder;
 import org.hamcrest.core.Is;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,10 +13,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ro.ubb.istudent.grading.course.Course;
 import ro.ubb.istudent.grading.course.CourseWithGradingCriteria;
-import ro.ubb.istudent.grading.criteria.GradingCriteria;
-import ro.ubb.istudent.grading.criteria.GradingCriteriaComponent;
-import ro.ubb.istudent.grading.criteria.GradingCriteriaComponentImportance;
-import ro.ubb.istudent.grading.criteria.GradingCriteriaComponentType;
+import ro.ubb.istudent.grading.criteria.*;
 import ro.ubb.istudent.grading.exception.GradingCriteriaNotFound;
 import ro.ubb.istudent.grading.exception.PercentageOverflow;
 import ro.ubb.istudent.grading.repository.CourseRepository;
@@ -55,7 +51,7 @@ class GradingCriteriaServiceIntegrationTest {
     @Autowired
     private CourseRepository courseRepository;
 
-    private final Supplier<GradingCriteria> gradingCriteriaSupplier = () -> new GradingCriteria(asList(
+    private final Supplier<GradingCriteria> gradingCriteriaSupplier = () -> new GradingCriteriaFormula(asList(
             new GradingCriteriaComponent(GradingCriteriaComponentType.FINAL_EXAM,
                     GradingCriteriaComponentImportance.HIGH, 50.0),
             new GradingCriteriaComponent(GradingCriteriaComponentType.PARTIAL_EXAM,
@@ -80,7 +76,7 @@ class GradingCriteriaServiceIntegrationTest {
     @Test
     void whenTeacherSavesInvalidGradingCriteriaIntoCourse_ExpectGradingCriteriaException() {
         // given:
-        GradingCriteria expected = new GradingCriteria(singletonList(
+        GradingCriteria expected = new GradingCriteriaFormula(singletonList(
                 new GradingCriteriaComponent(GradingCriteriaComponentType.PARTIAL_EXAM,
                         GradingCriteriaComponentImportance.MEDIUM, 10.0)));
         Course course = courseRepository.save(new CourseWithGradingCriteria());
@@ -92,13 +88,13 @@ class GradingCriteriaServiceIntegrationTest {
     @Test
     void whenTeacherSavesWithRedistributionGradingCriteriaIntoCourse_ExpectGradingCriteriaInserted() {
         // given:
-        GradingCriteria expected = new GradingCriteria(singletonList(
+        GradingCriteria expected = new GradingCriteriaFormula(singletonList(
                 new GradingCriteriaComponent(GradingCriteriaComponentType.PARTIAL_EXAM,
                         GradingCriteriaComponentImportance.MEDIUM, 10.0)));
         Course course = courseRepository.save(new CourseWithGradingCriteria());
         // when:
         Course courseFromDatabase = gradingCriteriaService
-                .saveGradingCriteriaWithRidistribution(expected, course.getId());
+                .saveGradingCriteriaWithRedistribution(expected, course.getId());
         // then:
         assertThat(courseFromDatabase.gradingCriteria()
                 .orElseThrow(GradingCriteriaNotFound::new)

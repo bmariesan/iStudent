@@ -6,7 +6,6 @@ import lombok.ToString;
 import org.bson.types.ObjectId;
 import ro.ubb.istudent.grading.criteria.GradingCriteria;
 import ro.ubb.istudent.grading.criteria.GradingCriteriaComponent;
-import ro.ubb.istudent.grading.criteria.GradingCriteriaComponentType;
 import ro.ubb.istudent.grading.gradingbook.Grade;
 import ro.ubb.istudent.grading.gradingbook.NormalGrade;
 import ro.ubb.istudent.grading.gradingbook.User;

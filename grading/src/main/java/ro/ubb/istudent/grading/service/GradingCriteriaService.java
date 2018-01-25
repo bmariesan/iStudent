@@ -31,7 +31,7 @@ public class GradingCriteriaService {
                new GradingCriteriaWithValidatedPercentage(gradingCriteria), courseId));
     }
 
-    public Course saveGradingCriteriaWithRidistribution(
+    public Course saveGradingCriteriaWithRedistribution(
             final GradingCriteria gradingCriteria, final ObjectId courseId) {
         return courseRepository.save(getCourseFromDatabaseAndReplaceGradingCriteria(
                 new RedistributedGradingCriteria(gradingCriteria), courseId));
@@ -48,4 +48,5 @@ public class GradingCriteriaService {
                 .orElseThrow(CourseNotFound::new)
                 .replaceGradingCriteriaWith(gradingCriteria);
     }
+
 }

@@ -1,51 +1,22 @@
 package ro.ubb.istudent.grading.criteria;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.collect.ImmutableList;
-
-import javax.annotation.concurrent.Immutable;
-
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import java.io.Serializable;
-import java.util.Collections;
 import java.util.List;
 
-/**
- * @author Alexandru Stoica
- */
-
-@ToString(of = {"gradingCriteriaComponents"})
-@EqualsAndHashCode
-public class GradingCriteria implements Serializable {
-
-    @JsonProperty
-    private final List<GradingCriteriaComponent> gradingCriteriaComponents;
-
-    public GradingCriteria(
-            final List<GradingCriteriaComponent> gradingCriteriaComponents) {
-        this.gradingCriteriaComponents = gradingCriteriaComponents;
-    }
-
-    public GradingCriteria() {
-        this.gradingCriteriaComponents = Collections.emptyList();
-    }
-
-    public List<GradingCriteriaComponent> components() {
-        return ImmutableList.<GradingCriteriaComponent>builder()
-                .addAll(gradingCriteriaComponents).build();
-    }
-
-    public GradingCriteria addGradingCriteriaComponent(
-            final GradingCriteriaComponent component) {
-        return new GradingCriteria(ImmutableList.<GradingCriteriaComponent>builder()
-                .addAll(gradingCriteriaComponents).add(component).build());
-    }
-
-    public Double totalPercentage() {
-        return gradingCriteriaComponents.stream()
-                .mapToDouble(GradingCriteriaComponent::percent)
-                .sum();
-    }
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.WRAPPER_OBJECT,
+        property = "@class")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = GradingCriteriaFormula.class,
+                name = "formula"),
+        @JsonSubTypes.Type(value = GradingCriteriaDecorator.class,
+                name = "decorator")})
+public interface GradingCriteria extends Serializable {
+    List<GradingCriteriaComponent> components();
+    GradingCriteria addGradingCriteriaComponent(
+            GradingCriteriaComponent component);
+    Double totalPercentage();
 }

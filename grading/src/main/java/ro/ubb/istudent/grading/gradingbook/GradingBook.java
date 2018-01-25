@@ -79,7 +79,7 @@ public class GradingBook implements Serializable {
 
     public GradingBook deleteGrade(final ObjectId gradeId) {
         return new GradingBook(grades.stream()
-                .filter(it -> it.id().equals(gradeId))
+                .filter(it -> !it.id().equals(gradeId))
                 .collect(Collectors.toList()));
     }
 }

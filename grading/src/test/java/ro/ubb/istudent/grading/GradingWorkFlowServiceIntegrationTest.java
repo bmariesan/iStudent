@@ -14,10 +14,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ro.ubb.istudent.grading.course.Course;
 import ro.ubb.istudent.grading.course.CourseWithGradingCriteria;
-import ro.ubb.istudent.grading.criteria.GradingCriteria;
-import ro.ubb.istudent.grading.criteria.GradingCriteriaComponent;
-import ro.ubb.istudent.grading.criteria.GradingCriteriaComponentImportance;
-import ro.ubb.istudent.grading.criteria.GradingCriteriaComponentType;
+import ro.ubb.istudent.grading.criteria.*;
 import ro.ubb.istudent.grading.exam.*;
 import ro.ubb.istudent.grading.exception.StudentNotFound;
 import ro.ubb.istudent.grading.gradingbook.Grade;
@@ -28,7 +25,6 @@ import ro.ubb.istudent.grading.repository.CourseRepository;
 import ro.ubb.istudent.grading.service.GradingWorkFlowService;
 import ro.ubb.istudent.grading.exam.WorkFlow;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.function.Supplier;
 
@@ -105,7 +101,7 @@ class GradingWorkFlowServiceIntegrationTest {
                 new GradingCriteriaComponent(GradingCriteriaComponentType.PARTIAL_EXAM,
                         GradingCriteriaComponentImportance.MEDIUM, 40.0);
 
-        GradingCriteria gradingCriteria = new GradingCriteria(
+        GradingCriteria gradingCriteria = new GradingCriteriaFormula(
                 asList(finalExamGradingComponent, partialExamGradingComponent));
 
         List<Exercise> exercises = asList(
