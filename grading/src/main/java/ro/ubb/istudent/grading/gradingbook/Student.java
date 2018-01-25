@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 
 @ToString
-@Document(collection = "fromStudent")
+@Document(collection = "student")
 @EqualsAndHashCode(callSuper = true)
 public class Student extends UserBase {
     public Student(final String name) {

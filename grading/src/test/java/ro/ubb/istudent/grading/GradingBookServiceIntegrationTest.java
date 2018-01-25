@@ -1,6 +1,5 @@
 package ro.ubb.istudent.grading;
 
-import org.bson.types.ObjectId;
 import org.hamcrest.core.Is;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,17 +14,13 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ro.ubb.istudent.grading.course.Course;
 import ro.ubb.istudent.grading.course.CourseWithGradingCriteria;
 import ro.ubb.istudent.grading.exception.GradingBookNotFound;
-import ro.ubb.istudent.grading.gradingbook.Grade;
-import ro.ubb.istudent.grading.gradingbook.GradingBook;
-import ro.ubb.istudent.grading.gradingbook.NormalGrade;
-import ro.ubb.istudent.grading.gradingbook.Student;
+import ro.ubb.istudent.grading.gradingbook.*;
 import ro.ubb.istudent.grading.repository.CourseRepository;
 import ro.ubb.istudent.grading.service.GradingBookService;
 import ro.ubb.istudent.grading.service.GradingCriteriaService;
 
 import static java.util.Collections.singletonList;
 import static java.util.Collections.sort;
-import static org.codehaus.groovy.runtime.InvokerHelper.asList;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertFalse;
 
@@ -52,8 +47,8 @@ class GradingBookServiceIntegrationTest {
     @Test
     void whenTeacherAddsGradingBookToCourse_ExpectGradingBookAddedToCourse() {
         // given:
-        GradingBook gradingBook = new GradingBook(singletonList(
-                new NormalGrade(10.0, new Student("Student"))));
+        GradingBook gradingBook = new SolidGradingBook(singletonList(
+                new SolidGrade(10.0, new Student("Student"))));
         Course course = courseRepository.save(new CourseWithGradingCriteria());
         // when:
         Course courseFromDatabase = gradingBookService
@@ -66,8 +61,8 @@ class GradingBookServiceIntegrationTest {
     @Test
     void whenTeacherDeletesGradingBookFromCourse_ExpectGradingBookDeleted() {
         // given:
-        GradingBook gradingBook = new GradingBook(singletonList(
-                new NormalGrade(10.0, new Student("Student"))));
+        GradingBook gradingBook = new SolidGradingBook(singletonList(
+                new SolidGrade(10.0, new Student("Student"))));
         Course course = courseRepository.save(new CourseWithGradingCriteria()
                 .replaceGradingBookWith(gradingBook));
         // when:
@@ -80,10 +75,10 @@ class GradingBookServiceIntegrationTest {
     @Test
     void whenTeacherAddsGradeToGradingBook_ExpectGradeAddedToGradingBook() {
         // given:
-        GradingBook gradingBook = new GradingBook();
+        GradingBook gradingBook = new SolidGradingBook();
         Course course = courseRepository.save(new CourseWithGradingCriteria()
                 .replaceGradingBookWith(gradingBook));
-        Grade grade = new NormalGrade(10.0, new Student("Student"));
+        Grade grade = new SolidGrade(10.0, new Student("Student"));
         // when:
         GradingBook gradingBookFromDatabase = gradingBookService
                 .storeGradeInGradingBook(grade, course.getId())
@@ -97,8 +92,8 @@ class GradingBookServiceIntegrationTest {
     @Test
     void whenTeacherDeletesGradeFromGradingBook_ExpectGradeDeletedFromGradingBook() {
         // given:
-        GradingBook gradingBook = new GradingBook(singletonList(
-                new NormalGrade(10.0, new Student("Student"))));
+        GradingBook gradingBook = new SolidGradingBook(singletonList(
+                new SolidGrade(10.0, new Student("Student"))));
         Course course = courseRepository.save(new CourseWithGradingCriteria()
                 .replaceGradingBookWith(gradingBook));
         Grade grade = course.gradingBook()

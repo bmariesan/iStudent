@@ -4,24 +4,23 @@ import com.google.common.collect.ImmutableList;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.bson.types.ObjectId;
+import org.omg.SendingContext.RunTime;
 import ro.ubb.istudent.grading.criteria.GradingCriteria;
 import ro.ubb.istudent.grading.criteria.GradingCriteriaComponent;
 import ro.ubb.istudent.grading.gradingbook.Grade;
-import ro.ubb.istudent.grading.gradingbook.NormalGrade;
+import ro.ubb.istudent.grading.gradingbook.GradingBookIsArchivedException;
+import ro.ubb.istudent.grading.gradingbook.SolidGrade;
 import ro.ubb.istudent.grading.gradingbook.User;
 
+import java.text.DecimalFormat;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
-/**
- * @author Alexandru Stoica
- * @version 1.0
- */
-
 @ToString
-@EqualsAndHashCode(of={"student", "unitsOfWork"})
+@EqualsAndHashCode(of = {"student", "unitsOfWork"})
 public class WorkFlow {
 
     private final List<CompletedUnitOfWork> unitsOfWork;
@@ -54,11 +53,15 @@ public class WorkFlow {
     }
 
     private Optional<Grade> calculateFinalGradeForWorkFlow() {
-        Double finalGradeValue = unitsOfWork.stream().mapToDouble(
-                it -> it.totalScore() * it.gradingCriteriaComponent().percent() / 100)
-                .sum();
-        // TODO: Round By Two Digits.
-        return Optional.of(new NormalGrade(ObjectId.get(), finalGradeValue, student));
+        // TODO : Add Exception && More Classes
+        Double finalGradeValue = new ArithmeticAverage()
+                .apply(unitsOfWork,GradingFormulaType.ARITHMETIC_AVERAGE)
+                .orElseThrow(RuntimeException::new);
+        DecimalFormat formatter = new DecimalFormat("#.##");
+        Double roundedFinalGradeValue = Double
+                .valueOf(formatter.format(finalGradeValue));
+        return Optional.of(new SolidGrade(
+                ObjectId.get(), roundedFinalGradeValue, student));
     }
 
     private Boolean isGradingCriteriaMeet(final GradingCriteria gradingCriteria) {

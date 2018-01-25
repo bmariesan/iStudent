@@ -43,11 +43,13 @@ public class CourseWithGradingCriteria implements Course {
     private final User teacher;
 
     public CourseWithGradingCriteria() {
-        this(ObjectId.get(), null, new ArrayList<>(), null, null);
+        this(ObjectId.get(), null,
+                new ArrayList<>(), null, null);
     }
 
     public CourseWithGradingCriteria(final ObjectId id) {
-        this(id, null, new ArrayList<>(), null, null);
+        this(id, null,
+                new ArrayList<>(), null, null);
     }
 
     public CourseWithGradingCriteria(
@@ -103,17 +105,19 @@ public class CourseWithGradingCriteria implements Course {
     }
 
     @Override
-    public Course replaceGradingCriteriaWith(GradingCriteria gradingCriteria) {
+    public Course replaceGradingCriteriaWith(
+            final GradingCriteria gradingCriteria) {
         return new CourseWithGradingCriteria(id, gradingCriteria);
     }
 
     @Override
-    public Optional<WorkFlow> getWorkFlowForStudent(User student) {
+    public Optional<WorkFlow> getWorkFlowForStudent(final User student) {
         return workFlows.stream().filter(it -> it.student()
                 .equals(student)).findFirst();
     }
 
-    private WorkFlow getForCreateWorkFlowForWorkUnit(CompletedUnitOfWork unitOfWork) {
+    private WorkFlow getForCreateWorkFlowForWorkUnit(
+            final CompletedUnitOfWork unitOfWork) {
         return getWorkFlowForStudent(unitOfWork.student()).orElse(
                 new WorkFlow(emptyList(), unitOfWork.student()))
                 .addUnitOfWork(unitOfWork);
@@ -127,15 +131,13 @@ public class CourseWithGradingCriteria implements Course {
     }
 
     @Override
-    public Course replaceGradingBookWith(GradingBook gradingBook) {
+    public Course replaceGradingBookWith(final GradingBook gradingBook) {
         return new CourseWithGradingCriteria(id, criteria, workFlows, gradingBook, teacher);
     }
 
-    private List<WorkFlow> addOrReplaceWorkflow(WorkFlow workFlow) {
+    private List<WorkFlow> addOrReplaceWorkflow(final WorkFlow workFlow) {
         workFlows.add(workFlow);
         workFlows.replaceAll(it -> it.equals(workFlow) ? workFlow : it);
         return workFlows;
     }
-
-
 }

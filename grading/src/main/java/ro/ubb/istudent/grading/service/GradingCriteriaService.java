@@ -8,7 +8,6 @@ import ro.ubb.istudent.grading.criteria.GradingCriteria;
 import ro.ubb.istudent.grading.criteria.GradingCriteriaWithValidatedPercentage;
 import ro.ubb.istudent.grading.criteria.RedistributedGradingCriteria;
 import ro.ubb.istudent.grading.exception.CourseNotFound;
-import ro.ubb.istudent.grading.gradingbook.Teacher;
 import ro.ubb.istudent.grading.repository.CourseRepository;
 
 /**
@@ -48,5 +47,4 @@ public class GradingCriteriaService {
                 .orElseThrow(CourseNotFound::new)
                 .replaceGradingCriteriaWith(gradingCriteria);
     }
-
 }

@@ -19,8 +19,13 @@ import ro.ubb.istudent.grading.service.GradingCriteriaService;
 @RequestMapping("/grading-criteria")
 public class GradingCriteriaController {
 
+    private final GradingCriteriaService gradingCriteriaService;
+
     @Autowired
-    private GradingCriteriaService gradingCriteriaService;
+    public GradingCriteriaController(
+            final GradingCriteriaService gradingCriteriaService) {
+        this.gradingCriteriaService = gradingCriteriaService;
+    }
 
     @ResponseBody
     @PostMapping("")

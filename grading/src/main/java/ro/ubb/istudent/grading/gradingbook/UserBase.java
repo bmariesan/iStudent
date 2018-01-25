@@ -20,7 +20,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
         include = JsonTypeInfo.As.PROPERTY,
         property = "@class")
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = Student.class, name = "@fromStudent"),
+        @JsonSubTypes.Type(value = Student.class, name = "@student"),
         @JsonSubTypes.Type(value = Teacher.class, name = "@teacher")})
 public class UserBase implements User {
 

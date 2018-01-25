@@ -1,6 +1,5 @@
 package ro.ubb.istudent.grading.criteria;
 
-import javax.annotation.concurrent.Immutable;
 import java.io.Serializable;
 
 /**

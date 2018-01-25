@@ -7,10 +7,8 @@ import ro.ubb.istudent.grading.course.Course;
 import ro.ubb.istudent.grading.exception.CourseNotFound;
 import ro.ubb.istudent.grading.exception.GradeNotFound;
 import ro.ubb.istudent.grading.exception.GradingBookNotFound;
-import ro.ubb.istudent.grading.gradingbook.Grade;
-import ro.ubb.istudent.grading.gradingbook.GradingBook;
+import ro.ubb.istudent.grading.gradingbook.*;
 import ro.ubb.istudent.grading.repository.CourseRepository;
-import ro.ubb.istudent.grading.repository.GradeRepository;
 
 /**
  * Created by Marius on 10.12.2017.
@@ -20,14 +18,11 @@ import ro.ubb.istudent.grading.repository.GradeRepository;
 public class GradingBookService {
 
     private final CourseRepository courseRepository;
-    private final GradeRepository gradeRepository;
 
     @Autowired
     public GradingBookService(
-            final CourseRepository courseRepository,
-            final GradeRepository gradeRepository) {
+            final CourseRepository courseRepository) {
         this.courseRepository = courseRepository;
-        this.gradeRepository = gradeRepository;
     }
 
     public Course storeGradeInGradingBook(final Grade grade, final ObjectId courseId) {
@@ -52,5 +47,13 @@ public class GradingBookService {
 
     public Course deleteGradingBookFromCourse(ObjectId courseId) {
         return saveGradingBookToCourse(courseId, null);
+    }
+
+    public GradingBook getGradingBookFromCourse(
+            final ObjectId courseId, final User authenticatedPrincipal) {
+        GradingBook gradingBook = getCourseById(courseId).gradingBook()
+                .orElseThrow(GradeNotFound::new);
+        return authenticatedPrincipal.role().equals(UserRole.STUDENT) ?
+                new ArchivedGradingBook(gradingBook) : gradingBook;
     }
 } 

@@ -7,10 +7,7 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import ro.ubb.istudent.grading.criteria.GradingCriteriaComponent;
-import ro.ubb.istudent.grading.criteria.GradingCriteriaComponentType;
 import ro.ubb.istudent.grading.exception.StudentNotFound;
-import ro.ubb.istudent.grading.gradingbook.Student;
-import ro.ubb.istudent.grading.gradingbook.Teacher;
 import ro.ubb.istudent.grading.gradingbook.User;
 
 import java.util.ArrayList;
