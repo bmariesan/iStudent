@@ -18,8 +18,10 @@
             "Gender Statistics", "Country Statistics"];
 
         vm.onClick = function (points, evt) {
-            console.log(points, evt);
+            //do nothing yet
+            // console.log(points);
         };
+        vm.series = ['Series A'];
         vm.datasetOverride = [{yAxisID: 'y-axis-1'}, {yAxisID: 'y-axis-2'}];
         vm.options = {
             scales: {
@@ -39,7 +41,6 @@
                 ]
             }
         };
-        //todo take criteria from selected option
         vm.setCriteria = function(){
             criteria = parseCriteria(vm.criteria);
             if(criteria === 'age') {
@@ -57,7 +58,6 @@
                             vm.data = averages;
                         });
             }
-            //todo use service here as well to set labels and data
             else if(criteria === 'exam'){
                 StatisticService.get(criteria)
                     .then(
@@ -73,7 +73,6 @@
                             vm.data = averages;
                         });
             }
-            //todo use service here as well to set labels and data
             else if(criteria === 'country'){
                 StatisticService.get(criteria)
                     .then(
@@ -89,7 +88,6 @@
                             vm.data = averages;
                         });
             }
-            //todo use service here as well to set labels and data
             else if(criteria === 'gender'){
                 StatisticService.get(criteria)
                     .then(

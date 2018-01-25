@@ -22,7 +22,7 @@ import java.util.List;
 @RequestMapping("/api")
 @RestController
 public class StatisticResource {
-    private static final String GREETING_CONTROLLER_MAPPING = "/examStatistic";
+    private static final String STATISTICS_CONTROLLER_MAPPING = "/statistics/{criteria}";
     private final Service service;
     private final String baseUrl;
     private IStatisticFactory factory = new StatisticFactory();
@@ -32,29 +32,7 @@ public class StatisticResource {
         this.baseUrl = baseUrl;
     }
 
-    @GetMapping("/statistics")
-    public String getHelloWorldGreeting() {
-        System.out.println("what");
-        //System.out.println(service.findAllGreetings());
-        //return ResponseUtil.wrapOrNotFound(service.findGreetingById(greetingId));
-        return "what";
-    }
-
-    //todo take the exams(not just titles) and parse it on frontend - I need the ID!
-    @GetMapping("/exams")
-    public List<String> getExams(){
-        List<String> examList = new ArrayList<>();
-        service.getExams().forEach(e -> examList.add(e.getTitle()));
-        return examList;
-    }
-
-    @GetMapping("/examsAsEntity")
-    public List<Exam> getExamsAsEntity(){
-        return service.getExams();
-    }
-
-    //todo statistics by criteria
-    @GetMapping("/statistics/{criteria}")
+    @GetMapping(STATISTICS_CONTROLLER_MAPPING)
     public IStatistic getStatistic(@PathVariable String criteria){
         return factory.getStatistic(criteria, service);
     }
