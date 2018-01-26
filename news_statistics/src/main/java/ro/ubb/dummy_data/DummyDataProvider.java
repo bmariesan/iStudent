@@ -1,6 +1,6 @@
-package main.dummy_data;
+package ro.ubb.dummy_data;
 
-import main.model.Pair;
+import ro.ubb.model.Pair;
 
 import java.util.Date;
 import java.util.List;

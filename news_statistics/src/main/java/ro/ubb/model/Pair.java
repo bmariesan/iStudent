@@ -1,4 +1,4 @@
-package main.model;
+package ro.ubb.model;
 
 /**
  * Created by Vali on 10.12.2017.

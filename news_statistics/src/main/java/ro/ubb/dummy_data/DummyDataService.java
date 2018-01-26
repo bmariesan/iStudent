@@ -1,7 +1,7 @@
-package main.dummy_data;
+package ro.ubb.dummy_data;
 
-import main.model.Pair;
-import main.utils.DateFormatterUtil;
+import ro.ubb.model.Pair;
+import ro.ubb.utils.DateFormatterUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

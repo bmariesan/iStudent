@@ -1,8 +1,8 @@
-package main.services;
+package ro.ubb.service;
 
-import main.model.AverageDto;
-import main.model.Pair;
-import main.utils.SortByDateComparator;
+import ro.ubb.model.AverageDto;
+import ro.ubb.model.Pair;
+import ro.ubb.utils.SortByDateComparator;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;

@@ -1,8 +1,8 @@
-package main.controllers;
+package ro.ubb.controller;
 
-import main.dummy_data.DummyDataService;
-import main.model.AverageDto;
-import main.services.AveragesService;
+import ro.ubb.dummy_data.DummyDataService;
+import ro.ubb.model.AverageDto;
+import ro.ubb.service.AveragesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

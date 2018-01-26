@@ -1,4 +1,4 @@
-package main.utils;
+package ro.ubb.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 

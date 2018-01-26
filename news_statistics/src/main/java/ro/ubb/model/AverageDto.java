@@ -1,4 +1,4 @@
-package main.model;
+package ro.ubb.model;
 
 
 import java.util.Date;

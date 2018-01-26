@@ -1,6 +1,6 @@
-package main.utils;
+package ro.ubb.utils;
 
-import main.model.AverageDto;
+import ro.ubb.model.AverageDto;
 
 import java.util.Comparator;
 
