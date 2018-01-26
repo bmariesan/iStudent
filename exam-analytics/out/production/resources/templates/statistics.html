@@ -15,11 +15,8 @@
     <script src="webjars/angular-chart.js/1.1.1/dist/angular-chart.min.js"></script>
 
     <script type="text/javascript" src="/js/app.js"></script>
-    <script src ="/js/services/MainService.js"></script>
     <script src ="/js/services/alertService.js"></script>
-    <script src="js/services/ExamService.js"></script>
     <script src="js/services/StatisticService.js"></script>
-    <script src ="/js/controllers/mainController.js"></script>
     <script src ="/js/controllers/LineCtrl.js"></script>
 
 </head>
@@ -27,16 +24,23 @@
 
 
 <div class="container" ng-controller="LineCtrl as vm">
-    <h1>{{vm.sName}}</h1>
+    <h1>{{vm.criteria}}</h1>
 
-    <select>
-        <option ng-repeat="option in vm.statisticOptions" value="{{option}}">{{option}}</option>
+    <select data-ng-model="vm.criteria"
+            ng-options = "option for option in vm.statisticOptions"
+            ng-change="vm.setCriteria()" >
+    </select>
+    <select ng-model="vm.exam"
+            ng-options="option.title for option in vm.exams"
+            ng-change="vm.setCriteria()">
     </select>
     <br/><br/><br/>
-    <canvas id="line" class="chart chart-line" chart-data="data"
-            chart-labels="labels" chart-series="series" chart-options="options"
-            chart-dataset-override="datasetOverride" chart-click="onClick">
-    </canvas>
+    <div style="height:100px; width:1000px;">
+        <canvas id="line" class="chart chart-line" chart-data="vm.data"
+                chart-labels="vm.labels" chart-series="vm.series" chart-options="vm.options"
+                chart-dataset-override="vm.datasetOverride" chart-click="vm.onClick">
+        </canvas>
+    </div>
 </div>
 
 <script>
