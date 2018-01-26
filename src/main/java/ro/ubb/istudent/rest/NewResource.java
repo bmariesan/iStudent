@@ -70,11 +70,16 @@ public class NewResource {
         }
         return result;
     }
-    @GetMapping("/news/all")
+    @GetMapping("/news/getall")
     public @ResponseBody
     List<NewDto> GetAll(){
+        System.out.println("***************-");
         try{
-            return service.GetAll();
+
+            List<NewDto> ress= service.GetAll();
+
+
+            return ress;
         }catch(Exception e){
             //
         }
