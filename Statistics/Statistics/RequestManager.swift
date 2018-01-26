@@ -48,88 +48,83 @@ class RequestManager: NSObject {
     
     private override init() {
         super.init()
+        
+        self.makeCoursesRequest()
+        self.makeFeedbackStudentsRequest()
+        self.makeFeedbackTeachersRequest()
+        self.makeAllAssigmentsNumberRequest()
+        self.makeMaxAttachementsNumberForFile()
+        self.makeNrAssigmentsThatHaveFileRequest()
     }
     
-    func makeCoursesRequest(completion: @escaping (Bool) -> Void) {
+    func makeCoursesRequest() {
         Alamofire.request(coursesURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
             switch response.result {
             case .success(let json):
                 if let data = json as? [[String: Any]] {
                     self.courses = data
-                    completion(true)
                 }
-            case .failure:
-                completion(false)
+            case .failure: break
             }
         }
     }
     
-    func makeFeedbackTeachersRequest(completion: @escaping (Bool) -> Void) {
+    func makeFeedbackTeachersRequest() {
         Alamofire.request(feedbackTeachersURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
             switch response.result {
             case .success(let json):
-                if let data = json as? [String: Any] {
-                    self.feedbackTeachers = data[Parser.nr] as! Int
-                    completion(true)
+                if let data = json as? Int {
+                    self.feedbackTeachers = data
                 }
-            case .failure:
-                completion(false)
+            case .failure: break
             }
         }
     }
     
-    func makeFeedbackStudentsRequest(completion: @escaping (Bool) -> Void) {
+    func makeFeedbackStudentsRequest() {
         Alamofire.request(feedbackStudentsURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
             switch response.result {
             case .success(let json):
-                if let data = json as? [String: Any] {
-                    self.feedbackStudents = data[Parser.nr] as! Int
-                    completion(true)
+                if let data = json as? Int {
+                    self.feedbackStudents = data
                 }
-            case .failure:
-                completion(false)
+            case .failure: break
             }
         }
     }
     
-    func makeAllAssigmentsNumberRequest(completion: @escaping (Bool) -> Void) {
+    func makeAllAssigmentsNumberRequest() {
         Alamofire.request(assignmentsFileAllURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
             switch response.result {
             case .success(let json):
-                if let data = json as? [String: Any] {
-                    self.totalAttachments = data[Parser.total_attachments] as! Int
-                    completion(true)
+                if let data = json as? Int {
+                    self.totalAttachments = data
                 }
-            case .failure:
-                completion(false)
+            case .failure: break
             }
         }
     }
     
-    func makeMaxAttachementsNumberForFile(completion: @escaping (Bool) -> Void) {
+    func makeMaxAttachementsNumberForFile() {
         Alamofire.request(assignmentsFileMaxURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
             switch response.result {
             case .success(let json):
-                if let data = json as? [String: Any] {
-                    self.maxAttachments = data[Parser.nr_max] as! Int
-                    completion(true)
+                if let data = json as? Int {
+                    self.maxAttachments = data
                 }
-            case .failure:
-                completion(false)
+            case .failure: break
             }
         }
     }
     
-    func makeNrAssigmentsThatHaveFileRequest(completion: @escaping (Bool) -> Void) {
+    func makeNrAssigmentsThatHaveFileRequest() {
         Alamofire.request(assignmentsFileHaveURL, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
             switch response.result {
             case .success(let json):
-                if let data = json as? [String: Any] {
-                    self.assigmentsThatHaveAttachements = data[Parser.nr] as! Int
-                    completion(true)
+                if let data = json as? Int {
+                    self.assigmentsThatHaveAttachements = data
                 }
-            case .failure:
-                completion(false)
+            case .failure: break
             }
         }
     }
