@@ -7,9 +7,13 @@ import ro.ubb.istudent.dto.CountryBasedStatisticsDto;
 import ro.ubb.istudent.dto.CountryDto;
 import ro.ubb.istudent.dto.StudentDto;
 import ro.ubb.istudent.dto.TestDto;
+import ro.ubb.istudent.enums.FileEnum;
+import ro.ubb.istudent.file_utils.FileFactory;
+import ro.ubb.istudent.file_utils.MyFile;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,6 +39,9 @@ public class CountryBasedStatisticsService {
 
         if (graduatedStudents.size() == 0) {
             return Optional.empty();
+        }
+        else{
+            FileFactory.makeAndPersist(graduatedStudents,"Graduates from " + countryDto.getCountryName());
         }
 
         countryBasedStatisticsDto.setGraduatedStudents(graduatedStudents);
