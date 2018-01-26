@@ -50,4 +50,6 @@ public class NewService {
         return newToNewDTO(newRepository.save(newDTOToEntity(newDto)));
     }
 
+    public List<NewDto> GetAll(){return newRepository.findAll().stream().map(this::newToNewDTO).collect(Collectors.toList());}
+
 }

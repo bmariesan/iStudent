@@ -20,6 +20,7 @@ public class NewController {
 //        return "news";
 //    }
 
+    /*
     @RequestMapping(path = "/news", method = RequestMethod.GET)
     public @ResponseBody
     Map<String,String> sayHello() {
@@ -28,5 +29,9 @@ public class NewController {
         stringStringMap.put("Hello","World");
         return stringStringMap;
     }
+    */
+    @RequestMapping(value="/news",method=RequestMethod.GET)
+    public String news() {return "news";}
+
 
 }

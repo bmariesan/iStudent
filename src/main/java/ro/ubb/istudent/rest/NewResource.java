@@ -70,6 +70,17 @@ public class NewResource {
         }
         return result;
     }
+    @GetMapping("/news/all")
+    public @ResponseBody
+    List<NewDto> GetAll(){
+        try{
+            return service.GetAll();
+        }catch(Exception e){
+            //
+        }
+        return null;
+    }
+
 
     @PostMapping("/news")
     public ResponseEntity createGreeting(@RequestBody NewDto newDto) throws URISyntaxException {
