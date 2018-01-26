@@ -8,7 +8,9 @@ import ro.ubb.istudent.repository.NewRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Created by catablack.
@@ -28,6 +30,9 @@ public class NewService {
                 .map(this::newToNewDTO);
     }
 
+    public Optional<List<NewDto>> findAll() {
+        return Optional.of(newRepository.findAll().stream().map(this::newToNewDTO).collect(Collectors.toList()));
+    }
     private NewDto newToNewDTO(New aNew) {
         NewDto newDto = new NewDto();
         newDto.setId(aNew.getId().toHexString());

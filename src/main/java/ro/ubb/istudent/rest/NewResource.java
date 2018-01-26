@@ -15,6 +15,7 @@ import ro.ubb.istudent.util.ResponseUtil;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -33,6 +34,25 @@ public class NewResource {
     public NewResource(NewService service, @Value("${application.base-url}") String baseUrl) {
         this.service = service;
         this.baseUrl = baseUrl;
+    }
+
+
+    @GetMapping("/news")
+    public @ResponseBody
+    Map<String, List<NewDto>> getHelloWorldGreeting()
+    {
+        Map<String, List<NewDto>> result = new HashMap<>();
+
+        try{
+
+            result.put("news",service.findAll().get());
+            return result;
+        } catch (Exception e)
+        {
+            //
+        }
+        return result;
+
     }
 
     @GetMapping("/news/{newsId}")
