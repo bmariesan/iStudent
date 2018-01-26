@@ -67,14 +67,18 @@ public class Service {
         examRepository.save(Arrays.asList(new Exam(1,"Design Patterns"),
                         new Exam(2,"Formal Languages and Compiler Design"),
                         new Exam(3,"Parallel and Distributed Programming"),
-                        new Exam(4,"Mobile Application Programming")));
+                        new Exam(4,"Mobile Application Programming"),
+                        new Exam(5,"Databases"),
+                        new Exam(6,"Software Engineering")));
     }
 
     private void createStudents(){
         List<Exam> exams=examRepository.findAll();
 
         studentRepository.save(Arrays.asList(new Student(1,"Teodora Berende",21, Gender.FEMALE,"Romania",
-                        Arrays.asList(new ExamGrade(exams.get(0),10.00), new ExamGrade(exams.get(2),8.67))),
+                        Arrays.asList(new ExamGrade(exams.get(0),10.00), new ExamGrade(exams.get(1),8.67),
+                                new ExamGrade(exams.get(2),9.00),new ExamGrade(exams.get(3),9.50),
+                                new ExamGrade(exams.get(4),9.65),new ExamGrade(exams.get(5),8.30))),
                 new Student(2,"Aurel Nicolescu",22,Gender.MALE,"Denmark",
                         Arrays.asList(new ExamGrade(exams.get(0),10.00), new ExamGrade(exams.get(1),8.43))),
                 new Student(3,"Andrei Brie", 20, Gender.MALE,"Romania",

@@ -66,6 +66,8 @@ dependencies {
     testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.1")
     testCompile("org.junit.platform:junit-platform-launcher:1.0.0")
     testCompile("com.github.sbrannen:spring-test-junit5:1.0.0")
+
+    testCompile 'org.mockito:mockito-core:2.7.22'
 }
 
 junitPlatform {
