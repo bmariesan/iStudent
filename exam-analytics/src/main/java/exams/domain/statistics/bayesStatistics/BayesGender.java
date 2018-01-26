@@ -11,6 +11,7 @@ import exams.service.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 /**
@@ -22,6 +23,7 @@ public class BayesGender implements IStatistic {
     private Exam theExam;
     List<StringTuple> returnedData;
     BayesUtils bayesUtils;
+    private Logger logger = Logger.getLogger("INFO");
 
     public BayesGender(Service service, int examID) {
         this.service = service;
@@ -54,8 +56,7 @@ public class BayesGender implements IStatistic {
     }
 
     private float getProbGenderPassed(Gender gender){
-        List<Student> allStudents=service.getStudents();
-        List<Student> studentsThatHadExam=allStudents.stream().filter(s->s.getGrades().contains(theExam)).collect(Collectors.toList());
+        List<Student> studentsThatHadExam=bayesUtils.studentsThatHadExam();
         List<Student> studentsThatHavePassedExam=bayesUtils.studentsThatHavePassed(studentsThatHadExam);
 
         List<Student> studentsGender=new ArrayList<>();
@@ -63,12 +64,12 @@ public class BayesGender implements IStatistic {
             if(s.getGender().equals(gender))
                 studentsGender.add(s);
         }
-        return studentsGender.size()/studentsThatHavePassedExam.size();
+        float probGenderPassed=(float)studentsGender.size()/studentsThatHavePassedExam.size();
+        return probGenderPassed;
     }
 
     private float getProbGender(Gender gender){
-        List<Student> allStudents=service.getStudents();
-        List<Student> studentsThatHadExam=allStudents.stream().filter(s->s.getGrades().contains(theExam)).collect(Collectors.toList());
+        List<Student> studentsThatHadExam=bayesUtils.studentsThatHadExam();
 
         List<Student> studentGender=new ArrayList<>();
 
@@ -77,7 +78,8 @@ public class BayesGender implements IStatistic {
                 studentGender.add(s);
             }
         }
-        return studentGender.size()/studentsThatHadExam.size();
+        float probGender=(float)studentGender.size()/studentsThatHadExam.size();
+        return probGender;
     }
 
 
