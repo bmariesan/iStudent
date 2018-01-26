@@ -16,10 +16,14 @@ public class CourseResource {
 
     public CourseResource(CourseService service) {
         this.service = service;
-        service.createCourse(CourseDto.builder().name(new NameEntity("Design Patterns")).studentLimit(1).active(true).build());
-        service.createCourse(CourseDto.builder().name(new NameEntity("Algebra")).studentLimit(10).active(false).build());
-        service.createCourse(CourseDto.builder().name(new NameEntity("Databases")).studentLimit(5).active(false).build());
-        service.createCourse(CourseDto.builder().name(new NameEntity("Cryptography")).studentLimit(5).active(true).build());
+        service.createCourse(
+                CourseDto.builder().name(new NameEntity("Design Patterns")).studentLimit(1).active(true).build());
+        service.createCourse(
+                CourseDto.builder().name(new NameEntity("Algebra")).studentLimit(10).active(false).build());
+        service.createCourse(
+                CourseDto.builder().name(new NameEntity("Databases")).studentLimit(5).active(false).build());
+        service.createCourse(
+                CourseDto.builder().name(new NameEntity("Cryptography")).studentLimit(5).active(true).build());
     }
 
     @GetMapping("/courses")

@@ -8,6 +8,6 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public abstract class BaseDto implements Serializable {
+abstract class BaseDto implements Dto {
     private ObjectId id;
 }

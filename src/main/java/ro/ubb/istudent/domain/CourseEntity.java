@@ -24,6 +24,7 @@ import java.util.List;
 public class CourseEntity extends BaseEntity {
     @Embedded
     @AttributeOverrides({ @AttributeOverride(name = "name", column = @Column(name = "name")) })
+    @Column(unique = true)
     private NameEntity name;
 
     private Integer studentLimit;
