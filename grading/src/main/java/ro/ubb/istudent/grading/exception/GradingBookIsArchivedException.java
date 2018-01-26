@@ -1,4 +1,4 @@
-package ro.ubb.istudent.grading.gradingbook;
+package ro.ubb.istudent.grading.exception;
 
 public class GradingBookIsArchivedException extends RuntimeException {
 

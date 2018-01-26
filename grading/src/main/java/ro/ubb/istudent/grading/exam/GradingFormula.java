@@ -8,14 +8,14 @@ public abstract class GradingFormula implements GradingSystem {
     private final GradingFormula next;
     private final GradingFormulaType type;
 
-    public GradingFormula(
+    private GradingFormula(
             final GradingFormula next,
             final GradingFormulaType type) {
         this.next = next;
         this.type = type;
     }
 
-    public GradingFormula(GradingFormulaType type) {
+    GradingFormula(GradingFormulaType type) {
         this(null, type);
     }
 

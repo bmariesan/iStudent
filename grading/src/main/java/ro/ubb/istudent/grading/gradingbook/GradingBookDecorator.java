@@ -1,16 +1,20 @@
 package ro.ubb.istudent.grading.gradingbook;
 
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.bson.types.ObjectId;
 
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
+@ToString(of = {"gradingBook"})
+@EqualsAndHashCode(of = {"gradingBook"})
 public class GradingBookDecorator implements GradingBook {
 
     private final GradingBook gradingBook;
 
-    public GradingBookDecorator(final GradingBook gradingBook) {
+    GradingBookDecorator(final GradingBook gradingBook) {
         this.gradingBook = gradingBook;
     }
 
@@ -47,5 +51,10 @@ public class GradingBookDecorator implements GradingBook {
     @Override
     public GradingBook deleteGrade(ObjectId gradeId) {
         return gradingBook.deleteGrade(gradeId);
+    }
+
+    @Override
+    public GradingBook changeExpirationDate(Calendar yesterday) {
+        return null;
     }
 }

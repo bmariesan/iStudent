@@ -41,10 +41,18 @@ public class SolidGradingBook implements GradingBook {
     }
 
     public SolidGradingBook(final ObjectId id, final List<Grade> grades) {
+        this(id, grades, Calendar.getInstance());
+        expiration.roll(Calendar.YEAR, 1);
+    }
+
+    public SolidGradingBook(
+            final ObjectId id,
+            final List<Grade> grades,
+            final Calendar expiration) {
         this.id = id;
-        this.created = Calendar.getInstance();
-        this.expiration = Calendar.getInstance();
         this.grades = grades;
+        this.created = Calendar.getInstance();
+        this.expiration = expiration;
     }
 
     public SolidGradingBook(List<Grade> grades) {
@@ -87,5 +95,10 @@ public class SolidGradingBook implements GradingBook {
         return new SolidGradingBook(grades.stream()
                 .filter(it -> !it.id().equals(gradeId))
                 .collect(Collectors.toList()));
+    }
+
+    @Override
+    public GradingBook changeExpirationDate(Calendar yesterday) {
+        return new SolidGradingBook();
     }
 }

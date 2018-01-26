@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ro.ubb.istudent.grading.course.Course;
 import ro.ubb.istudent.grading.exam.CompletedUnitOfWork;
+import ro.ubb.istudent.grading.service.GradingBookService;
 import ro.ubb.istudent.grading.service.GradingWorkFlowService;
 import ro.ubb.istudent.grading.gradingbook.Grade;
 
@@ -21,10 +22,14 @@ import java.util.List;
 public class GradingWorkFlowController {
 
     private final GradingWorkFlowService service;
+    private final GradingBookService gradingBookService;
 
     @Autowired
-    public GradingWorkFlowController(GradingWorkFlowService service) {
-        this.service = service;
+    public GradingWorkFlowController(
+            final GradingWorkFlowService gradingWorkFlowService,
+            final GradingBookService gradingBookService) {
+        this.service = gradingWorkFlowService;
+        this.gradingBookService = gradingBookService;
     }
 
     @ResponseBody
@@ -48,8 +53,9 @@ public class GradingWorkFlowController {
     @PutMapping("/all")
     public ResponseEntity<List<Grade>> gradeCourseForAllStudents(
             @RequestParam String courseId) {
-        // TODO: Save result in database.
-        return new ResponseEntity<>(service.gradeCourseForEachStudent(
-                new ObjectId(courseId)), HttpStatus.OK);
+        ObjectId id = new ObjectId(courseId);
+        List<Grade> grades = service.gradeCourseForEachStudent(id);
+        grades.forEach(it -> gradingBookService.storeGradeInGradingBook(it, id));
+        return new ResponseEntity<>(grades, HttpStatus.OK);
     }
 }

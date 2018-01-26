@@ -47,18 +47,13 @@ public class CourseWithGradingCriteria implements Course {
                 new ArrayList<>(), null, null);
     }
 
-    public CourseWithGradingCriteria(final ObjectId id) {
-        this(id, null,
-                new ArrayList<>(), null, null);
-    }
-
-    public CourseWithGradingCriteria(
+    private CourseWithGradingCriteria(
             final ObjectId id,
             final GradingCriteria gradingCriteria) {
         this(id, gradingCriteria, new ArrayList<>(), null, null);
     }
 
-    public CourseWithGradingCriteria(
+    private CourseWithGradingCriteria(
             final ObjectId id,
             final GradingCriteria gradingCriteria,
             final List<WorkFlow> workFlows,

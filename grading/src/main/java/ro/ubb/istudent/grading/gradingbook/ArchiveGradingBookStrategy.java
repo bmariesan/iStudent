@@ -3,7 +3,7 @@ package ro.ubb.istudent.grading.gradingbook;
 import java.util.Calendar;
 import java.util.Optional;
 
-public class ArchiveGradingBookStrategy {
+class ArchiveGradingBookStrategy {
 
     private final GradingBook gradingBook;
 

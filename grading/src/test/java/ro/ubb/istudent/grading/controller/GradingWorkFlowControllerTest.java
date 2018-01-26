@@ -20,6 +20,7 @@ import ro.ubb.istudent.grading.gradingbook.Grade;
 import ro.ubb.istudent.grading.gradingbook.SolidGrade;
 import ro.ubb.istudent.grading.gradingbook.Student;
 import ro.ubb.istudent.grading.gradingbook.User;
+import ro.ubb.istudent.grading.service.GradingBookService;
 import ro.ubb.istudent.grading.service.GradingWorkFlowService;
 
 import java.util.Collections;
@@ -49,7 +50,10 @@ public class GradingWorkFlowControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private GradingWorkFlowService service;
+    private GradingWorkFlowService gradingWorkFlowService;
+
+    @MockBean
+    private GradingBookService gradingBookService;
 
     @Autowired
     private ObjectMapper mapper;
@@ -75,7 +79,7 @@ public class GradingWorkFlowControllerTest {
                 new UnitOfWorkWithCompletedExercises(exercises, student);
         Grade expectedGrade = new SolidGrade(0.0, student);
         // when:
-        when(service.gradeUnitOfWork(any(CompletedUnitOfWork.class)))
+        when(gradingWorkFlowService.gradeUnitOfWork(any(CompletedUnitOfWork.class)))
                 .thenReturn(expectedGrade);;
         // then:
         mockMvc.perform(get("/work-flow/grade")
@@ -98,7 +102,7 @@ public class GradingWorkFlowControllerTest {
         Course course = new CourseWithGradingCriteria()
                 .addUnitOfWork(unitOfWork);
         // when:
-        when(service.addUnitOfWorkFromStudent(
+        when(gradingWorkFlowService.addUnitOfWorkFromStudent(
                 any(CompletedUnitOfWork.class), any(ObjectId.class)))
                 .thenReturn(course);
         // then:
@@ -129,7 +133,7 @@ public class GradingWorkFlowControllerTest {
                 .map(Optional::get)
                 .collect(Collectors.toList());
         // when:
-        when(service.gradeCourseForEachStudent(any(ObjectId.class)))
+        when(gradingWorkFlowService.gradeCourseForEachStudent(any(ObjectId.class)))
                 .thenReturn(expectedGrades);
         // then:
         mockMvc.perform(put("/work-flow/all")

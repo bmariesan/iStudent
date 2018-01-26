@@ -13,7 +13,7 @@ import java.io.Serializable;
 @JsonSubTypes({@JsonSubTypes.Type(
         value = CompletedUnitOfWork.class,
         name = "unit-of-work")})
-public interface UnitOfWork extends Serializable {
+interface UnitOfWork extends Serializable {
     ObjectId id();
     GradingCriteriaComponent gradingCriteriaComponent();
 }
