@@ -36,15 +36,15 @@ public class StatisticFactory implements IStatisticFactory{
 
     @Override
     public IStatistic getBayesStatistics(int idExam, String criteria, Service service) {
-        if ( criteria.equals("bayesAge")) {
+        if ( criteria.equals("age")) {
             logger.info("Bayes Age statistic generation");
             return new BayesAges(service,idExam);
         }
-        else if ( criteria.equals("bayesCountry")) {
+        else if ( criteria.equals("country")) {
             logger.info("Bayes Country statistic generation");
             return new BayesCountries(service,idExam);
         }
-        else if ( criteria.equals("bayesGender")){
+        else if ( criteria.equals("gender")){
             logger.info("Bayes Gender statistic generation");
             return new BayesGender(service,idExam);
         }
