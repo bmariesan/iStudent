@@ -10,7 +10,7 @@ $(document).ready(function(){
                 //alert("aiki");
                 console.log(data);
                 $.each(data, function (index, value) {
-                    $("#list").append('<tr>'+'<td>' + value.message + '</td>'+'<td>Delete</td><td>Update</td></tr>');
+                    $("#list").append('<tr>'+'<td>' + value.message + '</td>'+'<td><button type="submit" class="btn btn-default">Delete</button></td><td><button type="submit" class="btn btn-default">Update</button></td></tr>');
                     //alert(value);
                 });
             },

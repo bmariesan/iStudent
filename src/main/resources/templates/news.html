@@ -6,10 +6,35 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <style>
+        #bodyy {
+            background-color: beige ;
+        }
+        .container{
+            align-self: center;
+            align-content: center;
+            align-items: center;
+        }
+
+        .hrLine{
+            color: black;
+        }
+
+        .tableDiv{
+            background-color: white;
+        }
+    </style>
 </head>
-<body>
+
+<body id="bodyy">
+
+    <h1 style="text-decoration-style: wavy; text-align: center; align-items: center; "> <i class="glyphicon glyphicon-envelope"/> Welcome to the University blog</h1>
+    <br/>
+    <hr class="hrLine"/>
+
 
 <div class="container">
+
 
     <form id="newsForm">
         <div class="row">
@@ -29,20 +54,23 @@
         </div>
         <button type="submit" class="btn btn-default" id="add-btn">Add news</button>
     </form>
+    
+    <br/><br/>
 
-
-    <table>
+    <div class="tableDiv">
+    <table class="table table-hover">
         <thead>
         <tr>
             <th> News</th>
-            <th> Delete</th>
-            <th> Update</th>
+            <th> <i class="glyphicon glyphicon-remove"/></th>
+            <th> <i class="glyphicon glyphicon-pencil"/></th>
         </tr>
         </thead>
         <tbody id="list">
 
         </tbody>
     </table>
+    </div>
 
 </div>
 
