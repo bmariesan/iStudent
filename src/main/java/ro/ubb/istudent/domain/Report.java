@@ -13,12 +13,26 @@ import java.util.ArrayList;
 public class Report implements Dto {
 
     private ArrayList<Statistics> statistics;
+    private String title;
 
-    public Report(ArrayList<Statistics> statistics) {
+
+    public Report(ArrayList<Statistics> statistics, String title) {
         this.statistics = statistics;
+        this.title = title;
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public Report(){
         this.statistics = new ArrayList<Statistics>();
+        this.title = "";
+
     }
 
     public ArrayList<Statistics> getStatistics() {
@@ -45,11 +59,11 @@ public class Report implements Dto {
     }
 
     public String ToHTML(){
-        String s = "<h3>Report</h3>";
+        String s = "<h3>" + this.title + "</h3><ul>";
         for (Statistics entry : this.statistics) {
-           s+=entry.ToHTML();
+           s+= "<li" + entry.ToHTML() + "</li>";
         }
-        s+="<br/>";
+        s+="</ul><br/>";
         return s;
     }
 }
