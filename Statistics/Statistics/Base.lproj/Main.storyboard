@@ -115,19 +115,19 @@
                                             </cells>
                                         </collectionView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MEh-vm-CtJ">
-                                            <rect key="frame" x="8" y="267.5" width="304" height="275.5"/>
+                                            <rect key="frame" x="10" y="283.5" width="300" height="227.5"/>
                                         </view>
                                     </subviews>
                                 </view>
                                 <constraints>
-                                    <constraint firstAttribute="trailingMargin" secondItem="MEh-vm-CtJ" secondAttribute="trailing" id="8MI-Y6-PoV"/>
                                     <constraint firstItem="sTB-u5-Qal" firstAttribute="height" secondItem="ZJ0-QM-xKT" secondAttribute="height" multiplier="1:2" id="Div-uW-TTT"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="sTB-u5-Qal" secondAttribute="trailing" id="EId-XL-2Vc"/>
                                     <constraint firstItem="sTB-u5-Qal" firstAttribute="top" secondItem="ZJ0-QM-xKT" secondAttribute="topMargin" id="G7i-6C-gPh"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="MEh-vm-CtJ" secondAttribute="bottom" id="RGe-xw-dgd"/>
+                                    <constraint firstItem="MEh-vm-CtJ" firstAttribute="leading" secondItem="ZJ0-QM-xKT" secondAttribute="leading" constant="10" id="MI7-Wi-3Zr"/>
+                                    <constraint firstAttribute="bottom" secondItem="MEh-vm-CtJ" secondAttribute="bottom" constant="40" id="TuO-q8-tkb"/>
                                     <constraint firstItem="sTB-u5-Qal" firstAttribute="leading" secondItem="ZJ0-QM-xKT" secondAttribute="leadingMargin" id="cir-ce-76n"/>
-                                    <constraint firstItem="MEh-vm-CtJ" firstAttribute="leading" secondItem="ZJ0-QM-xKT" secondAttribute="leadingMargin" id="lei-e9-Kcq"/>
-                                    <constraint firstItem="MEh-vm-CtJ" firstAttribute="height" secondItem="sTB-u5-Qal" secondAttribute="height" id="u3I-P8-XPn"/>
+                                    <constraint firstItem="MEh-vm-CtJ" firstAttribute="top" secondItem="sTB-u5-Qal" secondAttribute="bottom" id="mI7-Ue-n55"/>
+                                    <constraint firstAttribute="trailing" secondItem="MEh-vm-CtJ" secondAttribute="trailing" constant="10" id="zu7-5A-8Ak"/>
                                 </constraints>
                                 <size key="customSize" width="320" height="551"/>
                                 <connections>
