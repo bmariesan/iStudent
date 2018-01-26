@@ -26,6 +26,11 @@ public class AssignmentRepositoryImpl implements AssignmentRepository {
     }
 
     @Override
+    public void load(List<AssignmentEntity> l) {
+        assignmentEntities = l;
+    }
+
+    @Override
     public List<AssignmentEntity> findAll() {
         return assignmentEntities;
     }

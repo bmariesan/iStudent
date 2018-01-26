@@ -11,6 +11,7 @@ import ro.ubb.istudent.designpatterns.builder.AssignmentBuildImpl;
 import ro.ubb.istudent.designpatterns.builder.AssignmentBuilder;
 import ro.ubb.istudent.domain.AssignmentEntity;
 import ro.ubb.istudent.repository.AssignmentRepository;
+import ro.ubb.istudent.util.MockBuilder;
 
 @Service
 @Transactional
@@ -49,14 +50,7 @@ public class  AssignmentService {
     }
 
     public void createMockData() {
-        assignmentRepository.deleteAll();
-        final AssignmentBuilder assignmentBuilder = new AssignmentBuildImpl();
-        final AssignmentBuildDirector assignmentBuildDirector = new AssignmentBuildDirector(assignmentBuilder);
-        AssignmentEntity assignmentEntity = assignmentBuildDirector.construct();
-        for (int i = 0; i < 10; i++) {
-            assignmentRepository.save(assignmentEntity);
-        }
-
+        assignmentRepository.load(MockBuilder.sharedInstace().assigns);
     }
 
 

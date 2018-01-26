@@ -8,6 +8,7 @@ import ro.ubb.istudent.domain.CourseEntity;
 import ro.ubb.istudent.dto.CourseDTO;
 import ro.ubb.istudent.repository.AssignmentRepository;
 import ro.ubb.istudent.repository.CourseRepository;
+import ro.ubb.istudent.util.MockBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,7 @@ public class CompletedAssignmentsCourseStatistics{
     private CourseRepository courserRepo;
 
     public List<CourseDTO> computeStatistics() {
+        courserRepo.load(MockBuilder.sharedInstace().courses);
         List<CourseDTO> result = new ArrayList<>();
         for(CourseEntity c: courserRepo.findAll())
         {

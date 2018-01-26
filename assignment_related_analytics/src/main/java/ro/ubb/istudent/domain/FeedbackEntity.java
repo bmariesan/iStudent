@@ -1,19 +1,18 @@
 package ro.ubb.istudent.domain;
 
-import javax.persistence.*;
 import java.io.Serializable;
 
 
 public class FeedbackEntity implements Serializable {
 
-    private Long id;
+    private Integer id;
     private TeacherEntity teacher;
     private String description;
     private StudentEntity studentEntity;
 
     private AssignmentEntity assignment;
 
-    public FeedbackEntity(Long id, TeacherEntity teacher, String description, StudentEntity studentEntity,
+    public FeedbackEntity(Integer id, TeacherEntity teacher, String description, StudentEntity studentEntity,
                           AssignmentEntity assignment) {
         this.id = id;
         this.teacher = teacher;
@@ -22,11 +21,11 @@ public class FeedbackEntity implements Serializable {
         this.assignment = assignment;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
