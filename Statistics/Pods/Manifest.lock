@@ -1,12 +1,18 @@
 PODS:
   - Alamofire (4.6.0)
+  - PNChart (0.8.9):
+    - UICountingLabel (~> 1.2.0)
+  - UICountingLabel (1.2.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.5)
+  - PNChart
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  PNChart: 84774d225c2126ded6c93d4dbe6ae98c3a73c2d2
+  UICountingLabel: 1db4e7d023e1762171eb226d6dff47a7a84f27aa
 
-PODFILE CHECKSUM: 3fd89f2c462d52d755466255a77c2660abcb8699
+PODFILE CHECKSUM: 208f4b353aba8b81671f1a706d4bade9ed36416b
 
 COCOAPODS: 1.2.1

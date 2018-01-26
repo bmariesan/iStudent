@@ -8,5 +8,6 @@ target 'Statistics' do
   # Pods for Statistics
   
     pod 'Alamofire', '~> 4.5'
+    pod 'PNChart'
 
 end

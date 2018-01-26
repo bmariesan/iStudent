@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PNChart
 
 let TopCollectionViewCellIdentifier = "TopCollectionViewCellIdentifier"
 
@@ -23,6 +24,22 @@ class MainCollectionViewCell: UICollectionViewCell {
         
         self.topCollectionView.dataSource = self
         self.topCollectionView.delegate = self
+        
+        self.setupChartsView()
+    }
+
+    fileprivate func setupChartsView() {
+        let items = [PNPieChartDataItem(value: 20, color: .red, description: "None1"),
+                     PNPieChartDataItem(value: 20, color: .blue, description: "None2"),
+                     PNPieChartDataItem(value: 30, color: .green, description: "None3")]
+        
+        let pieChart = PNPieChart.init(frame: self.chartsHolderView.bounds, items: items)!
+        pieChart.descriptionTextColor = .black
+        pieChart.descriptionTextFont = UIFont.init(name: "Avenir-Medium", size: 14)
+        pieChart.stroke()
+        
+        
+        self.chartsHolderView.addSubview(pieChart)
     }
 }
 

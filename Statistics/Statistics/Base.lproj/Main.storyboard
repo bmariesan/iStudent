@@ -42,7 +42,7 @@
                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             </collectionViewFlowLayout>
                                             <cells>
-                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TopCollectionViewCellIdentifier" id="FoF-Ks-5tY">
+                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TopCollectionViewCellIdentifier" id="FoF-Ks-5tY" customClass="TopCollectionViewCell" customModule="Statistics" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="8" width="303" height="260"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -103,23 +103,31 @@
                                                         <constraint firstItem="kNJ-tu-peN" firstAttribute="leading" secondItem="FoF-Ks-5tY" secondAttribute="leadingMargin" constant="10" id="oqA-z5-jZR"/>
                                                         <constraint firstItem="kYy-Ce-IoQ" firstAttribute="leading" secondItem="FoF-Ks-5tY" secondAttribute="leadingMargin" constant="10" id="sdt-WL-LY0"/>
                                                     </constraints>
+                                                    <connections>
+                                                        <outlet property="endsLabel" destination="kNJ-tu-peN" id="e9f-Q8-VFH"/>
+                                                        <outlet property="nameLabel" destination="HUY-jw-eRg" id="sQj-QA-SUz"/>
+                                                        <outlet property="startsLabel" destination="TOB-dB-FXO" id="KAf-ux-Eo8"/>
+                                                        <outlet property="titleLabel" destination="XIg-kp-aHh" id="dgt-aP-4g8"/>
+                                                        <outlet property="titleLabelTopConstraint" destination="6ct-2i-tcE" id="YRv-Do-Jl8"/>
+                                                        <outlet property="yearLabel" destination="kYy-Ce-IoQ" id="SD7-1c-3NS"/>
+                                                    </connections>
                                                 </collectionViewCell>
                                             </cells>
                                         </collectionView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MEh-vm-CtJ">
-                                            <rect key="frame" x="8" y="267.5" width="304" height="275.5"/>
+                                            <rect key="frame" x="10" y="283.5" width="300" height="227.5"/>
                                         </view>
                                     </subviews>
                                 </view>
                                 <constraints>
-                                    <constraint firstAttribute="trailingMargin" secondItem="MEh-vm-CtJ" secondAttribute="trailing" id="8MI-Y6-PoV"/>
                                     <constraint firstItem="sTB-u5-Qal" firstAttribute="height" secondItem="ZJ0-QM-xKT" secondAttribute="height" multiplier="1:2" id="Div-uW-TTT"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="sTB-u5-Qal" secondAttribute="trailing" id="EId-XL-2Vc"/>
                                     <constraint firstItem="sTB-u5-Qal" firstAttribute="top" secondItem="ZJ0-QM-xKT" secondAttribute="topMargin" id="G7i-6C-gPh"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="MEh-vm-CtJ" secondAttribute="bottom" id="RGe-xw-dgd"/>
+                                    <constraint firstItem="MEh-vm-CtJ" firstAttribute="leading" secondItem="ZJ0-QM-xKT" secondAttribute="leading" constant="10" id="MI7-Wi-3Zr"/>
+                                    <constraint firstAttribute="bottom" secondItem="MEh-vm-CtJ" secondAttribute="bottom" constant="40" id="TuO-q8-tkb"/>
                                     <constraint firstItem="sTB-u5-Qal" firstAttribute="leading" secondItem="ZJ0-QM-xKT" secondAttribute="leadingMargin" id="cir-ce-76n"/>
-                                    <constraint firstItem="MEh-vm-CtJ" firstAttribute="leading" secondItem="ZJ0-QM-xKT" secondAttribute="leadingMargin" id="lei-e9-Kcq"/>
-                                    <constraint firstItem="MEh-vm-CtJ" firstAttribute="height" secondItem="sTB-u5-Qal" secondAttribute="height" id="u3I-P8-XPn"/>
+                                    <constraint firstItem="MEh-vm-CtJ" firstAttribute="top" secondItem="sTB-u5-Qal" secondAttribute="bottom" id="mI7-Ue-n55"/>
+                                    <constraint firstAttribute="trailing" secondItem="MEh-vm-CtJ" secondAttribute="trailing" constant="10" id="zu7-5A-8Ak"/>
                                 </constraints>
                                 <size key="customSize" width="320" height="551"/>
                                 <connections>
