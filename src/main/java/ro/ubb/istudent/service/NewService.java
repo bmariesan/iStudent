@@ -34,4 +34,15 @@ public class NewService {
         newDto.setMessage(aNew.getMessage());
         return newDto;
     }
+
+    private New newDTOToEntity(NewDto dto) {
+        New entity = new New();
+        entity.setMessage(dto.getMessage());
+        return entity;
+    }
+
+    public NewDto createNew(NewDto newDto) {
+        return newToNewDTO(newRepository.save(newDTOToEntity(newDto)));
+    }
+
 }
