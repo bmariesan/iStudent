@@ -13,10 +13,13 @@ import java.util.ArrayList;
 public class Report implements Dto {
 
     private ArrayList<Statistics> statistics;
-//
-//    public Report(ArrayList<Statistics> statistics) {
-//        this.statistics = statistics;
-//    }
+
+    public Report(ArrayList<Statistics> statistics) {
+        this.statistics = statistics;
+    }
+    public Report(){
+        this.statistics = new ArrayList<Statistics>();
+    }
 
     public ArrayList<Statistics> getStatistics() {
         return statistics;
@@ -39,5 +42,14 @@ public class Report implements Dto {
     @Override
     public int hashCode() {
         return statistics.hashCode();
+    }
+
+    public String ToHTML(){
+        String s = "<h3>Report</h3>";
+        for (Statistics entry : this.statistics) {
+           s+=entry.ToHTML();
+        }
+        s+="<br/>";
+        return s;
     }
 }
