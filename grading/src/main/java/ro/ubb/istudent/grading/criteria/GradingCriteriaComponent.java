@@ -1,7 +1,6 @@
 package ro.ubb.istudent.grading.criteria;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import javax.annotation.concurrent.Immutable;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
@@ -34,7 +33,8 @@ public class GradingCriteriaComponent implements Serializable {
     }
 
     public GradingCriteriaComponent() {
-        this(GradingCriteriaComponentType.FINAL_EXAM, GradingCriteriaComponentImportance.HIGH, 100.0);
+        this(GradingCriteriaComponentType.ASSIGNMENT,
+                GradingCriteriaComponentImportance.OPTIONAL, 0.0);
     }
 
     public GradingCriteriaComponentType type() {

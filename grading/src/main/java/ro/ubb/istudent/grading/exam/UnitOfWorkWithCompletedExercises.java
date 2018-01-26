@@ -6,10 +6,8 @@ import lombok.ToString;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import ro.ubb.istudent.grading.criteria.GradingCriteriaComponentType;
+import ro.ubb.istudent.grading.criteria.GradingCriteriaComponent;
 import ro.ubb.istudent.grading.exception.StudentNotFound;
-import ro.ubb.istudent.grading.gradingbook.Student;
-import ro.ubb.istudent.grading.gradingbook.Teacher;
 import ro.ubb.istudent.grading.gradingbook.User;
 
 import java.util.ArrayList;
@@ -38,43 +36,49 @@ public class UnitOfWorkWithCompletedExercises implements CompletedUnitOfWork {
     private final User student;
 
     @JsonProperty
-    private final GradingCriteriaComponentType type;
+    private final GradingCriteriaComponent gradingCriteriaComponent;
 
     public UnitOfWorkWithCompletedExercises() {
-        this(ObjectId.get(), new ArrayList<>(), null,
-                GradingCriteriaComponentType.ASSIGNMENT);
+        this(ObjectId.get(), new ArrayList<>(), null, null);
     }
 
     public UnitOfWorkWithCompletedExercises(
             final ObjectId id,
             final List<Exercise> exercises,
             final User student,
-            final GradingCriteriaComponentType type) {
+            final GradingCriteriaComponent gradingCriteriaComponent) {
         this.id = id;
         this.exercises = exercises;
         this.student = student;
-        this.type = type;
+        this.gradingCriteriaComponent = gradingCriteriaComponent;
     }
 
     public UnitOfWorkWithCompletedExercises(
             final ObjectId id, final List<Exercise> exercises) {
-        this(id, exercises,null, GradingCriteriaComponentType.ASSIGNMENT);
+        this(id, exercises, null, new GradingCriteriaComponent());
     }
 
     public UnitOfWorkWithCompletedExercises(
             final List<Exercise> exercises, final User student) {
-        this(ObjectId.get(), exercises, student, GradingCriteriaComponentType.ASSIGNMENT);
+        this(ObjectId.get(), exercises, student, new GradingCriteriaComponent());
     }
 
     public UnitOfWorkWithCompletedExercises(
             final ObjectId id,
             final List<Exercise> exercises,
             final User student) {
-        this(id, exercises, student, GradingCriteriaComponentType.ASSIGNMENT);
+        this(id, exercises, student, new GradingCriteriaComponent());
     }
 
     public UnitOfWorkWithCompletedExercises(final List<Exercise> exercises) {
         this(ObjectId.get(), exercises);
+    }
+
+    public UnitOfWorkWithCompletedExercises(
+            List<Exercise> exercises,
+            User student,
+            GradingCriteriaComponent gradingCriteriaComponent) {
+        this(ObjectId.get(), exercises, student, gradingCriteriaComponent);
     }
 
     @Override
@@ -113,7 +117,7 @@ public class UnitOfWorkWithCompletedExercises implements CompletedUnitOfWork {
     }
 
     @Override
-    public GradingCriteriaComponentType type() {
-        return type;
+    public GradingCriteriaComponent gradingCriteriaComponent() {
+        return gradingCriteriaComponent;
     }
 }

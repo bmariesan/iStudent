@@ -3,21 +3,18 @@ package ro.ubb.istudent.grading.exam;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.bson.types.ObjectId;
-import ro.ubb.istudent.grading.criteria.GradingCriteria;
-import ro.ubb.istudent.grading.criteria.GradingCriteriaComponentType;
-import ro.ubb.istudent.grading.gradingbook.Teacher;
-import ro.ubb.istudent.grading.gradingbook.User;
+import ro.ubb.istudent.grading.criteria.GradingCriteriaComponent;
 
 import java.io.Serializable;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.WRAPPER_OBJECT,
-        property = "exam")
+        property = "unit-of-work")
 @JsonSubTypes({@JsonSubTypes.Type(
-        value = UnitOfWorkWithCompletedExercises.class,
-        name = "completed-exam")})
+        value = CompletedUnitOfWork.class,
+        name = "unit-of-work")})
 public interface UnitOfWork extends Serializable {
     ObjectId id();
-    GradingCriteriaComponentType type();
+    GradingCriteriaComponent gradingCriteriaComponent();
 }
 

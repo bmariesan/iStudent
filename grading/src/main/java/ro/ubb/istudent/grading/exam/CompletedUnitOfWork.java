@@ -9,10 +9,10 @@ import java.util.Optional;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.WRAPPER_OBJECT,
-        property = "completed-exam")
+        property = "@completed-work-unit")
 @JsonSubTypes({@JsonSubTypes.Type(
         value = UnitOfWorkWithCompletedExercises.class,
-        name = "@completed-exam-class")})
+        name = "completed-work-unit")})
 public interface CompletedUnitOfWork extends UnitOfWork {
     Double totalScore();
     List<Exercise> correctExercises();

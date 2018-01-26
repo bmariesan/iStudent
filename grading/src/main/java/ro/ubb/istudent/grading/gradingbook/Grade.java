@@ -16,8 +16,8 @@ import java.util.Optional;
         include = JsonTypeInfo.As.WRAPPER_OBJECT,
         property = "grade")
 @JsonSubTypes({@JsonSubTypes.Type(
-        value = NormalGrade.class,
-        name = "normal-grade")})
+        value = SolidGrade.class,
+        name = "solid-grade")})
 public interface Grade extends Serializable {
     ObjectId id();
     Double value();

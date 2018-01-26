@@ -11,9 +11,9 @@ import java.util.Calendar;
 import java.util.Optional;
 
 @ToString
-@Document(collection = "grade")
 @EqualsAndHashCode(of = {"id"})
-public class NormalGrade implements Grade {
+@Document(collection = "grade")
+public class SolidGrade implements Grade {
 
     @Id
     @JsonProperty
@@ -28,11 +28,11 @@ public class NormalGrade implements Grade {
     @JsonProperty
     public final User student;
 
-    public NormalGrade() {
+    public SolidGrade() {
         this(ObjectId.get(), 0.0, null);
     }
 
-    public NormalGrade(
+    public SolidGrade(
             final ObjectId id,
             final Double value,
             final User student) {
@@ -40,6 +40,10 @@ public class NormalGrade implements Grade {
         this.value = value;
         this.date = Calendar.getInstance();
         this.student = student;
+    }
+
+    public SolidGrade(final Double value, final User student) {
+        this(ObjectId.get(), value, student);
     }
 
     @Override

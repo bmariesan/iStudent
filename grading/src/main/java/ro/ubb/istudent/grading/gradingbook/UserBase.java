@@ -16,11 +16,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @ToString
 @Document(collection = "user")
 @EqualsAndHashCode(of = {"id"})
-@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS,
-        include = JsonTypeInfo.As.PROPERTY,
-        property = "@class")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.WRAPPER_OBJECT,
+        property = "user-base")
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = Student.class, name = "@fromStudent"),
+        @JsonSubTypes.Type(value = Student.class, name = "@student"),
         @JsonSubTypes.Type(value = Teacher.class, name = "@teacher")})
 public class UserBase implements User {
 

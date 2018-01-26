@@ -19,8 +19,13 @@ import ro.ubb.istudent.grading.service.GradingCriteriaService;
 @RequestMapping("/grading-criteria")
 public class GradingCriteriaController {
 
+    private final GradingCriteriaService gradingCriteriaService;
+
     @Autowired
-    private GradingCriteriaService gradingCriteriaService;
+    public GradingCriteriaController(
+            final GradingCriteriaService gradingCriteriaService) {
+        this.gradingCriteriaService = gradingCriteriaService;
+    }
 
     @ResponseBody
     @PostMapping("")
@@ -52,7 +57,7 @@ public class GradingCriteriaController {
     public ResponseEntity<Course> insertWithComponentsRedistribution(
             @RequestParam String courseId,
             @RequestBody GradingCriteria gradingCriteria) {
-        return new ResponseEntity<>(gradingCriteriaService.saveGradingCriteriaWithRidistribution(
+        return new ResponseEntity<>(gradingCriteriaService.saveGradingCriteriaWithRedistribution(
                 gradingCriteria, new ObjectId(courseId)), HttpStatus.ACCEPTED);
     }
 

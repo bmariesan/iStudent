@@ -8,7 +8,6 @@ import ro.ubb.istudent.grading.criteria.GradingCriteria;
 import ro.ubb.istudent.grading.criteria.GradingCriteriaWithValidatedPercentage;
 import ro.ubb.istudent.grading.criteria.RedistributedGradingCriteria;
 import ro.ubb.istudent.grading.exception.CourseNotFound;
-import ro.ubb.istudent.grading.gradingbook.Teacher;
 import ro.ubb.istudent.grading.repository.CourseRepository;
 
 /**
@@ -31,7 +30,7 @@ public class GradingCriteriaService {
                new GradingCriteriaWithValidatedPercentage(gradingCriteria), courseId));
     }
 
-    public Course saveGradingCriteriaWithRidistribution(
+    public Course saveGradingCriteriaWithRedistribution(
             final GradingCriteria gradingCriteria, final ObjectId courseId) {
         return courseRepository.save(getCourseFromDatabaseAndReplaceGradingCriteria(
                 new RedistributedGradingCriteria(gradingCriteria), courseId));
