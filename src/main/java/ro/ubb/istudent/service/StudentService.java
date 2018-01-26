@@ -1,7 +1,5 @@
 package ro.ubb.istudent.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import ro.ubb.istudent.domain.StudentEntity;
 import ro.ubb.istudent.dto.StudentDto;
@@ -13,17 +11,10 @@ import java.util.Optional;
 
 @Service
 public class StudentService {
-    private static final Logger LOG = LoggerFactory.getLogger(StudentService.class);
-
     private final StudentRepository repository;
 
     public StudentService(StudentRepository repository) {
         this.repository = repository;
-    }
-
-    public Optional<StudentDto> findStudentById(String studentId) {
-        return repository.findStudentEntityById(studentId)
-                .map(StudentDto::createDtoFromEntity);
     }
 
     public StudentDto createStudent(StudentDto student) {
@@ -34,7 +25,7 @@ public class StudentService {
         return StudentDto.createDtosFromEntities(repository.findAll());
     }
 
-    public StudentEntity getStudentWithUsername(String username) {
+    StudentEntity getStudentWithUsername(String username) {
         Optional<StudentEntity> studentOptional = repository.findStudentEntityByUsername(username);
         if (!studentOptional.isPresent()) {
             throw new EntityNotFoundException("A student with the username " + username + " was not found!");

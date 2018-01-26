@@ -1,7 +1,5 @@
 package ro.ubb.istudent.rest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +11,6 @@ import ro.ubb.istudent.service.SubscriptionService;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Created on 09.01.2018.
@@ -21,8 +18,6 @@ import java.util.Optional;
 @RequestMapping("/api")
 @RestController
 public class SubscriptionResource {
-    private static final Logger LOG = LoggerFactory.getLogger(CourseResource.class);
-
     private final SubscriptionService subscriptionService;
 
     SubscriptionResource(SubscriptionService subscriptionService) {

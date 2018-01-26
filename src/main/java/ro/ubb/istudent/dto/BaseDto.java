@@ -9,6 +9,5 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public abstract class BaseDto implements Serializable {
-    //TODO is there any reason to send the id?
     private ObjectId id;
 }

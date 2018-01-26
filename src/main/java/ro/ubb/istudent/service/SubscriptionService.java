@@ -1,7 +1,5 @@
 package ro.ubb.istudent.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import ro.ubb.istudent.domain.CourseEntity;
 import ro.ubb.istudent.domain.StudentEntity;
@@ -18,8 +16,6 @@ import java.util.stream.Collectors;
  */
 @Service
 public class SubscriptionService {
-    private static final Logger LOG = LoggerFactory.getLogger(StudentService.class);
-
     private final StudentRepository studentRepository;
     private final CourseRepository courseRepository;
     private final StudentService studentService;

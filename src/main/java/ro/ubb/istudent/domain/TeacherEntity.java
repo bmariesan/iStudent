@@ -21,7 +21,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString(exclude = {"courses"}, callSuper = true)
-public class TeacherEntity extends BaseEntity {
+class TeacherEntity extends BaseEntity {
     @Indexed(unique = true)
     @Embedded
     @AttributeOverrides({ @AttributeOverride(name = "name", column = @Column(name = "name")) })
