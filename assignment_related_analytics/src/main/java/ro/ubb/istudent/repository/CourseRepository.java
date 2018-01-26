@@ -16,6 +16,11 @@ public class CourseRepository {
         return courses;
     }
 
+    public void load(List<CourseEntity> l)
+    {
+        courses = l;
+    }
+
     public void addCourse(CourseEntity c)
     {
         courses.add(c);

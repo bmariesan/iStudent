@@ -42,36 +42,36 @@ public class StatisticsAssignmentController {
     private MaxNrOfAttachementsPerAssignmentStatistics maxNrOfAttachementsPerAssignmentStatistics;
     
 
-    @RequestMapping(value = "/teachers", method = RequestMethod.GET)
+    @RequestMapping(value = "/feedback_teachers", method = RequestMethod.GET)
     public long getStatisticsFeedbackFromTeachers() {
         context = new Context(assignmentsFeedbackTeachersStatistics);
         return context.executeStrategy();
     }
 
-    @RequestMapping(value = "/statistics/assignment/completed", method = RequestMethod.GET)
+    @RequestMapping(value = "/courses", method = RequestMethod.GET)
     public List<CourseDTO> getStatisticsForNumberOfCompletedAssignments() {
         return completedAssignmentsCourseStatistics.computeStatistics();
     }
 
-    @RequestMapping(value = "/statistics/assignment/attachements", method = RequestMethod.GET)
+    @RequestMapping(value = "/assignements_have_files", method = RequestMethod.GET)
     public long getNumberOfAssignmentsWithAttachements() {
         context = new Context(assignmentsFilesStatistics);
         return context.executeStrategy();
     }
 
-    @RequestMapping(value = "/statistics/assignment/attachements/all", method = RequestMethod.GET)
+    @RequestMapping(value = "/assignments_file_all", method = RequestMethod.GET)
     public long getAllAttachmentsNr() {
         context = new Context(allAttachementsStatistics);
         return context.executeStrategy();
     }
 
-    @RequestMapping(value = "/statistics/assignment/attachements/max", method = RequestMethod.GET)
+    @RequestMapping(value = "/assignments_file_max", method = RequestMethod.GET)
     public long getMaxNrOfAttachements() {
         context = new Context(maxNrOfAttachementsPerAssignmentStatistics);
         return context.executeStrategy();
     }
 
-    @RequestMapping(value = "/statistics", method = RequestMethod.GET)
+    @RequestMapping(value = "/feedback_students", method = RequestMethod.GET)
     public long getNrAssignWithFeedbackFromStudent(){
         context = new Context(assignmentsFeedbackStudentsStatistics);
         return context.executeStrategy();

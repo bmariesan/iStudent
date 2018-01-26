@@ -6,7 +6,7 @@ import ro.ubb.istudent.domain.StudentEntity;
  * Created by Cristina on 1/25/2018.
  */
 
-interface StudentBuilder {
+public interface StudentBuilder {
 
     StudentEntity build();
 

@@ -18,7 +18,8 @@ import java.util.stream.LongStream;
 
 public class AssignmentBuildDirector {
     private AssignmentBuilder builder;
-    private static long generator = 0;
+    private static Integer generator = 0;
+    private static Random r = new Random();
 
     public AssignmentBuildDirector(final AssignmentBuilder builder) {
         this.builder = builder;
@@ -35,8 +36,6 @@ public class AssignmentBuildDirector {
     public AssignmentEntity construct() {
         generator++;
 
-        Random r = new Random();
-
         final StudentBuilder studentBuilder = new StudentBuilderImpl();
         final StudentBuildDirector studentBuildDirector = new StudentBuildDirector(studentBuilder);
         StudentEntity studentEntity = studentBuildDirector.construct();
@@ -48,8 +47,8 @@ public class AssignmentBuildDirector {
                 .date(Calendar.getInstance().getTime())
                 .deadline(Calendar.getInstance().getTime())
                 .description("Math Assign")
-                .isCompleted(true)
-                .attachments(generateList(r.nextInt() % 10))
+                .isCompleted(r.nextBoolean())
+                .attachments(generateList(r.nextInt() % 10 + 1))
                 .build();
     }
 }
