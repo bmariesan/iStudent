@@ -5,11 +5,9 @@ import com.google.common.collect.ImmutableList;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.bson.types.ObjectId;
-import org.omg.SendingContext.RunTime;
 import ro.ubb.istudent.grading.criteria.GradingCriteria;
 import ro.ubb.istudent.grading.criteria.GradingCriteriaComponent;
 import ro.ubb.istudent.grading.gradingbook.Grade;
-import ro.ubb.istudent.grading.gradingbook.GradingBookIsArchivedException;
 import ro.ubb.istudent.grading.gradingbook.SolidGrade;
 import ro.ubb.istudent.grading.gradingbook.User;
 
@@ -19,7 +17,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @ToString

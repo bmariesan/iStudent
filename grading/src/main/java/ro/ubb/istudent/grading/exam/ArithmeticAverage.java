@@ -11,10 +11,6 @@ public class ArithmeticAverage extends GradingFormula {
             getFinalGradeValueFromUnitOfWork = (unitOfWork) -> unitOfWork.totalScore() *
             unitOfWork.gradingCriteriaComponent().percent() / 100;
 
-    public ArithmeticAverage(final GradingFormula next) {
-        super(next, GradingFormulaType.ARITHMETIC_AVERAGE);
-    }
-
     public ArithmeticAverage() {
         super(GradingFormulaType.ARITHMETIC_AVERAGE);
     }

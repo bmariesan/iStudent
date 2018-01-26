@@ -1,5 +1,6 @@
 package ro.ubb.istudent.grading;
 
+import org.bson.types.ObjectId;
 import org.hamcrest.core.Is;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,16 +14,20 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ro.ubb.istudent.grading.course.Course;
 import ro.ubb.istudent.grading.course.CourseWithGradingCriteria;
+import ro.ubb.istudent.grading.exception.GradingBookIsArchivedException;
 import ro.ubb.istudent.grading.exception.GradingBookNotFound;
 import ro.ubb.istudent.grading.gradingbook.*;
 import ro.ubb.istudent.grading.repository.CourseRepository;
 import ro.ubb.istudent.grading.service.GradingBookService;
 import ro.ubb.istudent.grading.service.GradingCriteriaService;
 
+import java.util.Calendar;
+
 import static java.util.Collections.singletonList;
 import static java.util.Collections.sort;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * @author Alexandru Stoica
@@ -104,5 +109,43 @@ class GradingBookServiceIntegrationTest {
                 .gradingBook().orElseThrow(GradingBookNotFound::new);
         // then:
         assertThat(gradingBookFromDatabase.grades().size(), Is.is(0));
+    }
+
+    @Test
+    void whenTeacherGetsGradingBook_ExpectGradingBook() {
+        whenGettingGradingBook_withPrinciple(new Teacher("Test"));
+    }
+
+    @Test
+    void whenStudentGetsGradingBook_GradingBookAvailable_ExpectGradingBook() {
+        whenGettingGradingBook_withPrinciple(new Student("Student"));
+    }
+
+    @Test
+    void whenStudentGetsGradingBook_AfterExpirationDate_ExpectGradingBookArchivedException() {
+        // given:
+        Calendar yesterday = Calendar.getInstance();
+        yesterday.roll(Calendar.DAY_OF_WEEK, -1);
+        GradingBook gradingBook = new SolidGradingBook(ObjectId.get(),
+                singletonList(new SolidGrade(10.0, new Student("Student"))), yesterday);
+        User student = new Student("Student");
+        Course course = courseRepository.save(new CourseWithGradingCriteria()
+                .replaceGradingBookWith(gradingBook));
+        // when && then:
+        assertThrows(GradingBookIsArchivedException.class, () ->
+                gradingBookService.getGradingBookFromCourse(course.getId(), student));
+    }
+
+    private void whenGettingGradingBook_withPrinciple(final User user) {
+        // given:
+        GradingBook gradingBook = new SolidGradingBook(singletonList(
+                new SolidGrade(10.0, new Student("Student"))));
+        Course course = courseRepository.save(new CourseWithGradingCriteria()
+                .replaceGradingBookWith(gradingBook));
+        // when:
+        GradingBook gradingBookFromDatabase = gradingBookService
+                .getGradingBookFromCourse(course.getId(), user);
+        // then:
+        assertThat(gradingBookFromDatabase.id(), Is.is(gradingBook.id()));
     }
 }

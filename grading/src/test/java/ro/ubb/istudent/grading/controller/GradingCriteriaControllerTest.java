@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import ro.ubb.istudent.grading.course.Course;
 import ro.ubb.istudent.grading.course.CourseWithGradingCriteria;
 import ro.ubb.istudent.grading.criteria.*;
+import ro.ubb.istudent.grading.exception.GradingCriteriaNotFound;
 import ro.ubb.istudent.grading.service.GradingCriteriaService;
 
 import static java.util.Arrays.asList;
@@ -27,6 +28,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(GradingCriteriaController.class)
@@ -127,5 +129,19 @@ public class GradingCriteriaControllerTest {
                 .content(mapper.writeValueAsString(gradingCriteria)))
                 .andDo(print())
                 .andExpect(content().json(mapper.writeValueAsString(expectedCourse)));
+    }
+
+    @Test
+    public void whenGettingGradingCriteria_GradingCriteriaNotFound_ExpectGradingCriteriaNotFound() throws Exception {
+        // given:
+        Course expectedCourse = new CourseWithGradingCriteria();
+        // when:
+        when(service.deleteGradingCriteriaFromCourse( Matchers.any(ObjectId.class)))
+               .thenThrow(new GradingCriteriaNotFound());
+        // then:
+        mockMvc.perform(delete("/grading-criteria")
+                .param("courseId", expectedCourse.getId().toHexString()))
+                .andDo(print())
+                .andExpect(status().isNotFound());
     }
 }

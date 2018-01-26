@@ -54,24 +54,8 @@ public class UnitOfWorkWithCompletedExercises implements CompletedUnitOfWork {
     }
 
     public UnitOfWorkWithCompletedExercises(
-            final ObjectId id, final List<Exercise> exercises) {
-        this(id, exercises, null, new GradingCriteriaComponent());
-    }
-
-    public UnitOfWorkWithCompletedExercises(
             final List<Exercise> exercises, final User student) {
         this(ObjectId.get(), exercises, student, new GradingCriteriaComponent());
-    }
-
-    public UnitOfWorkWithCompletedExercises(
-            final ObjectId id,
-            final List<Exercise> exercises,
-            final User student) {
-        this(id, exercises, student, new GradingCriteriaComponent());
-    }
-
-    public UnitOfWorkWithCompletedExercises(final List<Exercise> exercises) {
-        this(ObjectId.get(), exercises);
     }
 
     public UnitOfWorkWithCompletedExercises(

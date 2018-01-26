@@ -47,11 +47,6 @@ public class CourseWithGradingCriteria implements Course {
                 new ArrayList<>(), null, null);
     }
 
-    public CourseWithGradingCriteria(final ObjectId id) {
-        this(id, null,
-                new ArrayList<>(), null, null);
-    }
-
     public CourseWithGradingCriteria(
             final ObjectId id,
             final GradingCriteria gradingCriteria) {

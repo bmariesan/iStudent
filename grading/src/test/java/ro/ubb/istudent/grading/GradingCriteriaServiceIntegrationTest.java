@@ -14,6 +14,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ro.ubb.istudent.grading.course.Course;
 import ro.ubb.istudent.grading.course.CourseWithGradingCriteria;
 import ro.ubb.istudent.grading.criteria.*;
+import ro.ubb.istudent.grading.exception.CourseNotFound;
+import ro.ubb.istudent.grading.exception.GradingBookNotFound;
 import ro.ubb.istudent.grading.exception.GradingCriteriaNotFound;
 import ro.ubb.istudent.grading.exception.PercentageOverflow;
 import ro.ubb.istudent.grading.repository.CourseRepository;
@@ -83,6 +85,15 @@ class GradingCriteriaServiceIntegrationTest {
         // when && then:
         assertThrows(PercentageOverflow.class, () -> gradingCriteriaService
                 .saveGradingCriteriaToCourse(expected, course.getId()));
+    }
+
+    @Test
+    void whenTeacherDeletesGradingCriteria_CourseNotFound_ExpectCourseNotFound() {
+        // given:
+        Course course = new CourseWithGradingCriteria();
+        // when && then:
+        assertThrows(CourseNotFound.class, () -> gradingCriteriaService
+                .deleteGradingCriteriaFromCourse(course.getId()));
     }
 
     @Test

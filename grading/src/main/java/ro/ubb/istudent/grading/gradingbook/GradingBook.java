@@ -23,4 +23,5 @@ public interface GradingBook extends Serializable {
     GradingBook storeGrade(Grade grade);
     Optional<Grade> getGradeById(ObjectId id);
     GradingBook deleteGrade(ObjectId gradeId);
+    GradingBook changeExpirationDate(Calendar yesterday);
 }
