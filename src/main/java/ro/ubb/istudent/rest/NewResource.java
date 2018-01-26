@@ -96,4 +96,10 @@ public class NewResource {
     }
 
 
+    @PostMapping("/news/delete/{newsId}")
+    public ResponseEntity<Void> deleteNews(@PathVariable("newsId") String newsId) {
+        service.Delete(newsId);
+        return ResponseEntity.ok().build();
+    }
+
 }

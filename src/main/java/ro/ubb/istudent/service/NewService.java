@@ -58,4 +58,12 @@ public class NewService {
 
     public List<NewDto> GetAll(){return newRepository.findAll().stream().map(this::newToNewDTO).collect(Collectors.toList());}
 
+    public void Delete(String newsId){
+        Optional<New> optionalNewEntity = newRepository.findNewById(newsId);
+        if (optionalNewEntity.isPresent()) {
+            newRepository.delete(optionalNewEntity.get());
+        } else {
+            LOG.error("Greeting with id {} not found", newsId);
+        }
+    }
 }
