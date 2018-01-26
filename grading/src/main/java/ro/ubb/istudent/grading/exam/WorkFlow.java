@@ -1,5 +1,6 @@
 package ro.ubb.istudent.grading.exam;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.ImmutableList;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -12,7 +13,9 @@ import ro.ubb.istudent.grading.gradingbook.GradingBookIsArchivedException;
 import ro.ubb.istudent.grading.gradingbook.SolidGrade;
 import ro.ubb.istudent.grading.gradingbook.User;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -21,10 +24,17 @@ import java.util.stream.Collectors;
 
 @ToString
 @EqualsAndHashCode(of = {"student", "unitsOfWork"})
-public class WorkFlow {
+public class WorkFlow implements Serializable {
 
+    @JsonProperty
     private final List<CompletedUnitOfWork> unitsOfWork;
+
+    @JsonProperty
     private final User student;
+
+    public WorkFlow() {
+        this(new ArrayList<>(), null);
+    }
 
     public WorkFlow(
             final List<CompletedUnitOfWork> unitsOfWork,

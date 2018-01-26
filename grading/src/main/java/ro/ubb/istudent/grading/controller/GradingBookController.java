@@ -26,7 +26,7 @@ public class GradingBookController {
     }
 
     @ResponseBody
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<Course> addGradingBookToCourse(
             @RequestParam String courseId,
             @RequestBody GradingBook gradingBook) {
@@ -35,7 +35,7 @@ public class GradingBookController {
     }
 
     @ResponseBody
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<GradingBook> getGradingBookFromCourse(
             @RequestParam String courseId,
             @RequestBody User user) {
@@ -44,7 +44,7 @@ public class GradingBookController {
     }
 
     @ResponseBody
-    @DeleteMapping("/")
+    @DeleteMapping("")
     public ResponseEntity<Course> deleteGradingBookFromCourse(
             @RequestParam String courseId) {
         return new ResponseEntity<>(service.deleteGradingBookFromCourse(

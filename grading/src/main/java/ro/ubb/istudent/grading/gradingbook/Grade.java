@@ -17,7 +17,7 @@ import java.util.Optional;
         property = "grade")
 @JsonSubTypes({@JsonSubTypes.Type(
         value = SolidGrade.class,
-        name = "grade")})
+        name = "solid-grade")})
 public interface Grade extends Serializable {
     ObjectId id();
     Double value();

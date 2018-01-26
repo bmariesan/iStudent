@@ -36,7 +36,7 @@ public class GradingWorkFlowController {
     }
 
     @ResponseBody
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<Course> addUnitOfWorkForStudent(
             @RequestParam String courseId,
             @RequestBody CompletedUnitOfWork unitOfWork) {

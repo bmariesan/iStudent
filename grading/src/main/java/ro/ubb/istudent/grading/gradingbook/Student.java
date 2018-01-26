@@ -13,6 +13,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "student")
 @EqualsAndHashCode(callSuper = true)
 public class Student extends UserBase {
+
+    public Student() {
+        super();
+    }
+
     public Student(final String name) {
         super(ObjectId.get(), name, UserRole.STUDENT);
     }

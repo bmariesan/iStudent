@@ -1,4 +1,4 @@
-package ro.ubb.istudent.grading.exam;
+package ro.ubb.istudent.grading.exception;
 
 public class UnsupportedGradingFormula extends RuntimeException {
     public UnsupportedGradingFormula() {
