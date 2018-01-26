@@ -14,7 +14,7 @@ public class GradingBookDecorator implements GradingBook {
 
     private final GradingBook gradingBook;
 
-    public GradingBookDecorator(final GradingBook gradingBook) {
+    GradingBookDecorator(final GradingBook gradingBook) {
         this.gradingBook = gradingBook;
     }
 

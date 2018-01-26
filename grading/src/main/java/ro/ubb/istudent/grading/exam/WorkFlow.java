@@ -7,6 +7,7 @@ import lombok.ToString;
 import org.bson.types.ObjectId;
 import ro.ubb.istudent.grading.criteria.GradingCriteria;
 import ro.ubb.istudent.grading.criteria.GradingCriteriaComponent;
+import ro.ubb.istudent.grading.exception.GradingFormulaNotFound;
 import ro.ubb.istudent.grading.gradingbook.Grade;
 import ro.ubb.istudent.grading.gradingbook.SolidGrade;
 import ro.ubb.istudent.grading.gradingbook.User;
@@ -23,12 +24,14 @@ import java.util.stream.Collectors;
 @EqualsAndHashCode(of = {"student", "unitsOfWork"})
 public class WorkFlow implements Serializable {
 
+
     @JsonProperty
     private final List<CompletedUnitOfWork> unitsOfWork;
 
     @JsonProperty
     private final User student;
 
+    @SuppressWarnings("unused")
     public WorkFlow() {
         this(new ArrayList<>(), null);
     }
@@ -52,7 +55,6 @@ public class WorkFlow implements Serializable {
         return new WorkFlow(ImmutableList.<CompletedUnitOfWork>builder()
                 .add(unitOfWork).addAll(unitsOfWork).build(), student);
     }
-
     public Optional<Grade> grade(final GradingCriteria gradingCriteria) {
         return isGradingCriteriaMeet(gradingCriteria) ?
                 calculateFinalGradeForWorkFlow() :
@@ -60,13 +62,17 @@ public class WorkFlow implements Serializable {
     }
 
     private Optional<Grade> calculateFinalGradeForWorkFlow() {
-        // TODO : Add Exception && More Classes
+        return calculateFinalGradeForWorkFlowWithFormulaType(
+                GradingFormulaType.ARITHMETIC_AVERAGE);
+    }
+
+    public Optional<Grade> calculateFinalGradeForWorkFlowWithFormulaType(
+            final GradingFormulaType type) {
         Double finalGradeValue = new ArithmeticAverage()
-                .apply(unitsOfWork,GradingFormulaType.ARITHMETIC_AVERAGE)
-                .orElseThrow(RuntimeException::new);
-        DecimalFormat formatter = new DecimalFormat("#.##");
-        Double roundedFinalGradeValue = Double
-                .valueOf(formatter.format(finalGradeValue));
+                .apply(unitsOfWork, type)
+                .orElseThrow(GradingFormulaNotFound::new);
+        Double roundedFinalGradeValue = Double.valueOf(
+                new DecimalFormat("#.##").format(finalGradeValue));
         return Optional.of(new SolidGrade(
                 ObjectId.get(), roundedFinalGradeValue, student));
     }

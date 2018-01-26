@@ -6,6 +6,6 @@ import java.util.Optional;
  * @author Alexandru Stoica
  */
 
-public interface GradingCriteriaCreatorStrategy {
+interface GradingCriteriaCreatorStrategy {
     Optional<GradingCriteria> createBasedOn(final GradingCriteria gradingCriteria);
 }

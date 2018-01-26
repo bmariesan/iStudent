@@ -18,7 +18,7 @@ import java.util.List;
 public class GradingCriteriaDecorator implements GradingCriteria {
 
     @JsonProperty("criteria")
-    protected final GradingCriteria gradingCriteria;
+    private final GradingCriteria gradingCriteria;
 
     public GradingCriteriaDecorator(
             final GradingCriteria gradingCriteria) {

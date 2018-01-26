@@ -12,7 +12,7 @@ public enum GradingCriteriaComponentImportance implements Serializable {
 
     private final Integer value;
 
-    private GradingCriteriaComponentImportance(final Integer value) {
+    GradingCriteriaComponentImportance(final Integer value) {
         this.value = value;
     }
 

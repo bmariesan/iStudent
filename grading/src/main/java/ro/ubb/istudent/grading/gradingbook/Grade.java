@@ -12,6 +12,7 @@ import java.util.Optional;
  * Created by Marius on 10.12.2017.
  */
 
+@SuppressWarnings("unused")
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.WRAPPER_OBJECT,
         property = "grade")
