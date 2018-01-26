@@ -13,6 +13,9 @@ public class ArithmeticAverage extends GradingFormula {
         super(GradingFormulaType.ARITHMETIC_AVERAGE);
     }
 
+    public ArithmeticAverage(GradingFormula next) {
+        super(next, GradingFormulaType.ARITHMETIC_AVERAGE);
+    }
     @Override
     protected Double calculate(List<CompletedUnitOfWork> unitsOfWork) {
         return unitsOfWork.stream()

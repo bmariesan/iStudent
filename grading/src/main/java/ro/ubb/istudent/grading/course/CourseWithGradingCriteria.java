@@ -7,6 +7,7 @@ import javax.annotation.concurrent.Immutable;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 import ro.ubb.istudent.grading.criteria.GradingCriteria;
+import ro.ubb.istudent.grading.criteria.NullGradingCriteria;
 import ro.ubb.istudent.grading.exam.CompletedUnitOfWork;
 import ro.ubb.istudent.grading.gradingbook.GradingBook;
 import ro.ubb.istudent.grading.gradingbook.User;
@@ -43,7 +44,7 @@ public class CourseWithGradingCriteria implements Course {
     private final User teacher;
 
     public CourseWithGradingCriteria() {
-        this(ObjectId.get(), null,
+        this(ObjectId.get(), new NullGradingCriteria(),
                 new ArrayList<>(), null, null);
     }
 

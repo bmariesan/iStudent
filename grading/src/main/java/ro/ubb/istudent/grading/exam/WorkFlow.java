@@ -55,20 +55,17 @@ public class WorkFlow implements Serializable {
         return new WorkFlow(ImmutableList.<CompletedUnitOfWork>builder()
                 .add(unitOfWork).addAll(unitsOfWork).build(), student);
     }
-    public Optional<Grade> grade(final GradingCriteria gradingCriteria) {
-        return isGradingCriteriaMeet(gradingCriteria) ?
-                calculateFinalGradeForWorkFlow() :
-                Optional.empty();
-    }
 
-    private Optional<Grade> calculateFinalGradeForWorkFlow() {
-        return calculateFinalGradeForWorkFlowWithFormulaType(
-                GradingFormulaType.ARITHMETIC_AVERAGE);
+    public Optional<Grade> grade(
+            final GradingCriteria gradingCriteria, final GradingFormulaType type) {
+        return isGradingCriteriaMeet(gradingCriteria) ?
+                calculateFinalGradeForWorkFlowWithFormulaType(type) :
+                Optional.empty();
     }
 
     public Optional<Grade> calculateFinalGradeForWorkFlowWithFormulaType(
             final GradingFormulaType type) {
-        Double finalGradeValue = new ArithmeticAverage()
+        Double finalGradeValue = new ArithmeticAverage(new HarmonicAverage(new GeometricAverage()))
                 .apply(unitsOfWork, type)
                 .orElseThrow(GradingFormulaNotFound::new);
         Double roundedFinalGradeValue = Double.valueOf(
