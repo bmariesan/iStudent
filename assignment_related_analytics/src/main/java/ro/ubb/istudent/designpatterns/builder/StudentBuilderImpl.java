@@ -6,7 +6,7 @@ import ro.ubb.istudent.domain.StudentEntity;
  * Created by Cristina on 1/25/2018.
  */
 
-public class StudentBuilderImpl implements StudentBuilder {
+public class StudentBuilderImpl implements StudentBuilder{
     private StudentEntity student;
 
     public StudentBuilderImpl() {

@@ -21,34 +21,7 @@ public class  AssignmentService {
 
     @Autowired
     private AssignmentRepository assignmentRepository;
-
-    public Long getNumberOfAssignmentsHavingFeedbackFromTeachers() {
-        return assignmentRepository.findAll()
-                .stream()
-                .filter(assignmentEntity -> !ObjectUtils.isEmpty(assignmentEntity.getFeedback().getTeacher()))
-                .count();
-    }
-
-    public Long getNumberOfCompletedAssignmentsForEachCourse() {
-        return assignmentRepository.findAll()
-                .stream()
-                .filter(assignmentEntity -> assignmentEntity.isCompleted())
-                .count();
-    }
-
-    public Long getNumberOfAssignmentsHavingFilesAttached() {
-        return assignmentRepository.findAll()
-                .stream()
-                .filter(assignmentEntity -> !ObjectUtils.isEmpty(!assignmentEntity.getAttachments().isEmpty()))
-                .count();
-    }
-
-    public long getNrAssignWithFeedbackFromStudent() {
-        return this.assignmentRepository.findAll().stream().filter(
-                assignmentEntity -> !ObjectUtils.isEmpty(assignmentEntity.getFeedback().getStudentEntity()))
-                .count();
-    }
-
+    
     public void createMockData() {
         assignmentRepository.load(MockBuilder.sharedInstace().assigns);
     }
