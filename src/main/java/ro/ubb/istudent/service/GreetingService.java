@@ -27,7 +27,9 @@ public class GreetingService {
     public void updateGreetingWithId(String greetingId, GreetingDto request) {
         Optional<GreetingEntity> optionalGreetingEntity = repository.findGreetingEntityById(greetingId);
         if (optionalGreetingEntity.isPresent()) {
-            optionalGreetingEntity.get().setMessage(request.getMessage());
+            GreetingEntity greetingEntity = optionalGreetingEntity.get();
+            greetingEntity.setMessage(request.getMessage());
+            repository.save(greetingEntity);
         } else {
             LOG.error("Greeting with id {} not found", greetingId);
         }
