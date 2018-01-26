@@ -102,4 +102,11 @@ public class NewResource {
         return ResponseEntity.ok().build();
     }
 
+    @PostMapping("/news/update/{newsId}")
+    public ResponseEntity<Void> updateNews(@PathVariable("greetingId") String newsId, @RequestBody NewDto news) {
+        LOG.debug("Updating greeting with id: " + newsId + " and new greeting value:" + news);
+        service.updateNewsWithId(newsId, news);
+        return ResponseEntity.ok().build();
+    }
+
 }

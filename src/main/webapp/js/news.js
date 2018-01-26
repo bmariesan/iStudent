@@ -66,6 +66,22 @@ $(document).ready(function(){
         });
     }
 
+    function updateNew(newid){
+        var m=$('#message').val();
+        var course = $('#title').val();
+        var title = $('#course').val();
+        var body = {id:newid,message:m,course:course,teacher:"",title:title};
+        $.ajax({
+            type:"POST",
+            url:"http://localhost:8080/api/news/update/"+newid,
+            success:function (data) {
+                getall();
+            },
+            error:function (data,status,xhr) {
+                alert("Error");
+            }
+        });
+    }
 
     }
 );

@@ -66,4 +66,13 @@ public class NewService {
             LOG.error("Greeting with id {} not found", newsId);
         }
     }
+
+    public void updateNewsWithId(String newsId, NewDto request) {
+        Optional<New> optionalNewsEntity = newRepository.findNewById(newsId);
+        if (optionalNewsEntity.isPresent()) {
+            optionalNewsEntity.get().setMessage(request.getMessage());
+        } else {
+            LOG.error("Greeting with id {} not found", newsId);
+        }
+    }
 }
