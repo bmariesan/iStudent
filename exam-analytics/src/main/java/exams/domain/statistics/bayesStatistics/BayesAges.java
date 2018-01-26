@@ -92,6 +92,6 @@ public class BayesAges implements IStatistic {
 
     @Override
     public List<StringTuple> getData() {
-        return null;
+        return returnedData;
     }
 }

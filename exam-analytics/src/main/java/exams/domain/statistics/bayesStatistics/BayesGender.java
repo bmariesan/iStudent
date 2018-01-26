@@ -84,6 +84,6 @@ public class BayesGender implements IStatistic {
 
     @Override
     public List<StringTuple> getData() {
-        return null;
+        return returnedData;
     }
 }

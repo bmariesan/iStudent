@@ -85,7 +85,7 @@ public class BayesCountries implements IStatistic {
 
     @Override
     public List<StringTuple> getData() {
-        return null;
+        return returnedData;
     }
 
 
