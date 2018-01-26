@@ -39,6 +39,7 @@ public class NewResource {
     public @ResponseBody
     Map<String, NewDto> getHelloWorldGreeting(@PathVariable("newsId") String newsId) {
         Map<String, NewDto> result = new HashMap<>();
+
         try{
             NewDto newDto = service.findNewById(newsId).get();
             result.put("new",newDto);
@@ -51,10 +52,12 @@ public class NewResource {
     }
 
     @PostMapping("/news")
-    public ResponseEntity createGreeting(@RequestBody NewDto newDto) throws URISyntaxException {
+    public NewDto createGreeting(@RequestBody NewDto newDto) throws URISyntaxException {
         LOG.debug("Creating greeting with value: " + newDto);
+        System.out.println("--->"+newDto.getMessage());
         NewDto savedNew = service.createNew(newDto);
-        return ResponseEntity.created(new URI(baseUrl + NEWS_CONTROLLER_MAPPING + "/" + savedNew.getId())).build();
+        //return ResponseEntity.created(new URI(baseUrl + NEWS_CONTROLLER_MAPPING + "/" + savedNew.getId())).build();
+        return savedNew;
     }
 
 

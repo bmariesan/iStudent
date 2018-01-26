@@ -30,7 +30,7 @@ public class NewService {
 
     private NewDto newToNewDTO(New aNew) {
         NewDto newDto = new NewDto();
-        newDto.setId(aNew.getId().toString());
+        newDto.setId(aNew.getId().toHexString());
         newDto.setMessage(aNew.getMessage());
         return newDto;
     }

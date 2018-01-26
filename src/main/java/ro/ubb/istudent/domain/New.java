@@ -1,7 +1,7 @@
 package ro.ubb.istudent.domain;
 
 
-import com.sun.corba.se.spi.ior.ObjectId;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -16,6 +16,7 @@ import java.util.Objects;
 public class New implements Serializable {
     @Id
     private ObjectId id;
+
     private String message;
 
     public ObjectId getId() {
