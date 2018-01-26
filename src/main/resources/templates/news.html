@@ -2,6 +2,9 @@
 
 <html xmlns="http://www.w3.org/1999/html">
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/js/news.js"></script>
     <title>News blog</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -37,6 +40,9 @@
 
 
     <form id="newsForm">
+
+            <input type="hidden" class="form-control" id="id-hidden" name="id-hidden"> </input>
+
         <div class="row">
         <div class="form-group col-md-4">
             <label for="title">Title:</label>
@@ -53,6 +59,7 @@
         </div>
         </div>
         <button type="submit" class="btn btn-default" id="add-btn">Add news</button>
+        <button type="submit" class="btn btn-default" id="update-btn">Update</button>
     </form>
     
     <br/><br/>
@@ -77,8 +84,6 @@
 
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="/js/news.js"></script>
+
 </body>
 </html>
