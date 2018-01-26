@@ -2,6 +2,32 @@ $(document).ready(function(){
     var url = "http://localhost:8080/api/news/getall";
     $('#update-btn').hide();
    // alert(url);
+
+    function deleteNews(newid){
+        $.ajax({
+            type:"POST",
+            url:"http://localhost:8080/api/news/delete/"+newid,
+            success:function (data) {
+                getall();
+            },
+            error:function (data,status,xhr) {
+                alert("Error");
+            }
+        });
+    }
+
+    function updateNews(id,title,message,course){
+        $('#add-btn').hide();
+        $('#update-btn').show();
+        $('#message').val(message);
+        $('#title').val(title);
+        $('#course').val(course);
+        $('#id-hidden').val(id);
+        return false;
+    }
+
+    function fml(){alert("plm");}
+
     function getall() {
         $("tbody").empty();
         $.ajax({
@@ -14,8 +40,9 @@ $(document).ready(function(){
                     var msg= '<td>'+value.message + '</td>';
                     var tch= '<td>'+value.teacher + '</td>';
                     var crs= '<td>'+value.course + '</td>';
-                    var delClk = 'onclick=\"deleteNew(\''+value.id+'\');\"';
-                    var updClk= "onclick=\"updateNew('"+value.id+"','"+value.title+"','"+value.message+"','"+value.course+"')\" ";
+                    //var delClk = 'onclick=\"deleteNews(\''+value.id+'\')\"';
+                    var delClk='onclick=\"fml()\"';
+                    var updClk= "onclick=\"updateNews('"+value.id+"','"+value.title+"','"+value.message+"','"+value.course+"')\" ";
                     $("#list").append('<tr>'+'<td>' + value.title + '</td>'+ msg+tch+crs+'<td><button type="submit" class="btn btn-default" '+delClk+'>Delete</button></td><td><button type="submit" class="btn btn-default" '+updClk+'>Update</button></td></tr>');
                     //alert(value);
                 });
@@ -59,28 +86,6 @@ $(document).ready(function(){
 
    
 
-    function deleteNew(newid){
-        $.ajax({
-            type:"POST",
-            url:"http://localhost:8080/api/news/delete/"+newid,
-            success:function (data) {
-                getall();
-            },
-            error:function (data,status,xhr) {
-                alert("Error");
-            }
-        });
-    }
-
-    function updateNew(id,title,message,course){
-        $('#add-btn').hide();
-        $('#update-btn').show();
-        $('#message').val(message);
-        $('#title').val(title);
-        $('#course').val(course);
-        $('#id-hidden').val(id);
-        return false;
-    }
 
     $('#update-btn').click(function(event){
         event.preventDefault();
