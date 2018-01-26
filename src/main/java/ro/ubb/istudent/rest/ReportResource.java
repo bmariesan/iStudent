@@ -20,15 +20,15 @@ public class ReportResource {
 
     IReportService service =  new ReportService();
     @GetMapping("/report")
-    public JSON getHelloWorldGreeting() {
+    public String getHelloWorldGreeting() {
         Report report = new Report();
         Statistics statistics = new Statistics();
         statistics.setYear(2017);
         HashMap<String, Integer> hashMap = new HashMap<>();
         hashMap.put("Design",150);
-        hashMap.put("LFTC",2123213);
+        hashMap.put("LFTC",21);
         statistics.setResult(hashMap);
         report.getStatistics().add(statistics);
-        return service.generateJSONReport(report);
+        return report.ToHTML();
     }
 }

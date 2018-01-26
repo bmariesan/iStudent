@@ -7,11 +7,13 @@ $(document).ready(function (){
     $.ajax({
         type: "GET",
         url: "/api/report",
+        dataType: "text",
+        contentType: "application/json; charset=utf-8",
         success: function (data) {
             $("#report").text(data);
         },
         error: function (e) {
-            console.log("Error");
+            console.log("Eroare la get api/report");
         }
     });
 });
