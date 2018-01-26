@@ -93,7 +93,7 @@ public class Service {
                                 new ExamGrade(exams.get(5),5.00))),
                 new Student(3,"Andrei Brie", 20, Gender.MALE,"Romania",
                         Arrays.asList(
-                                new ExamGrade(exams.get(0),9.00)
+                                new ExamGrade(exams.get(0),9.00),
                                 new ExamGrade(exams.get(1),7.54),
                                 new ExamGrade(exams.get(2),7.67),
                                 new ExamGrade(exams.get(3),6.78),
