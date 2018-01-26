@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.ubb.istudent.grading.course.Course;
 import ro.ubb.istudent.grading.exam.CompletedUnitOfWork;
+import ro.ubb.istudent.grading.exam.GradingFormulaType;
 import ro.ubb.istudent.grading.exception.CourseNotFound;
 import ro.ubb.istudent.grading.exception.GradingCriteriaNotFound;
 import ro.ubb.istudent.grading.exception.StudentNotFound;
@@ -37,10 +38,16 @@ public class GradingWorkFlowService {
     }
 
     public List<Grade> gradeCourseForEachStudent(final ObjectId courseId) {
+        return gradeCourseForEachStudentBasedOnFormula(courseId,
+                GradingFormulaType.ARITHMETIC_AVERAGE);
+    }
+
+    public List<Grade> gradeCourseForEachStudentBasedOnFormula(
+            final ObjectId courseId, final GradingFormulaType type) {
         Course course = getCourseById(courseId);
         return course.workFlows().stream()
                 .map(it -> it.grade(course.gradingCriteria()
-                        .orElseThrow(GradingCriteriaNotFound::new)))
+                        .orElseThrow(GradingCriteriaNotFound::new), type))
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .collect(Collectors.toList());

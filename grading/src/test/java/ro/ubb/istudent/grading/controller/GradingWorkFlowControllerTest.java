@@ -129,7 +129,7 @@ public class GradingWorkFlowControllerTest {
                 .replaceGradingCriteriaWith(gradingCriteria)
                 .addUnitOfWork(unitOfWork);
         List<Grade> expectedGrades = course.workFlows().stream()
-                .map(it -> it.grade(gradingCriteria))
+                .map(it -> it.grade(gradingCriteria, GradingFormulaType.ARITHMETIC_AVERAGE))
                 .map(Optional::get)
                 .collect(Collectors.toList());
         // when:

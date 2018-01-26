@@ -8,7 +8,7 @@ public abstract class GradingFormula implements GradingSystem {
     private final GradingFormula next;
     private final GradingFormulaType type;
 
-    private GradingFormula(
+    public GradingFormula(
             final GradingFormula next,
             final GradingFormulaType type) {
         this.next = next;

@@ -5,13 +5,13 @@ import com.google.common.collect.ImmutableList;
 
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import ro.ubb.istudent.grading.exam.GradingFormula;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * @author Alexandru Stoica
- */
+import static java.util.Collections.singletonList;
 
 @ToString(of = {"gradingCriteriaComponents"})
 @EqualsAndHashCode
