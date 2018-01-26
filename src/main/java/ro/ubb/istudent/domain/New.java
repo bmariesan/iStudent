@@ -19,6 +19,12 @@ public class New implements Serializable {
 
     private String message;
 
+    private String title;
+
+    private String teacher;
+
+    private String course;
+
     public ObjectId getId() {
         return id;
     }
@@ -33,6 +39,30 @@ public class New implements Serializable {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(String teacher) {
+        this.teacher = teacher;
+    }
+
+    public String getCourse() {
+        return course;
+    }
+
+    public void setCourse(String course) {
+        this.course = course;
     }
 
     @Override

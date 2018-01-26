@@ -90,7 +90,7 @@ public class NewResource {
     @PostMapping("/news")
     public ResponseEntity createGreeting(@RequestBody NewDto newDto) throws URISyntaxException {
         LOG.debug("Creating greeting with value: " + newDto);
-        System.out.println("--->"+newDto.getMessage());
+        newDto.setTeacher("Pop Ion");
         NewDto savedNew = service.createNew(newDto);
         return ResponseEntity.created(new URI(baseUrl + NEWS_CONTROLLER_MAPPING + "/" + savedNew.getId())).build();
     }

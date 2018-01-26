@@ -37,12 +37,18 @@ public class NewService {
         NewDto newDto = new NewDto();
         newDto.setId(aNew.getId().toHexString());
         newDto.setMessage(aNew.getMessage());
+        newDto.setTitle(aNew.getTitle());
+        newDto.setTeacher(aNew.getTeacher());
+        newDto.setCourse(aNew.getCourse());
         return newDto;
     }
 
     private New newDTOToEntity(NewDto dto) {
         New entity = new New();
         entity.setMessage(dto.getMessage());
+        entity.setTitle(dto.getTitle());
+        entity.setCourse(dto.getCourse()); //linie scrisa de Tudor
+        entity.setTeacher(dto.getTeacher()); //si asta
         return entity;
     }
 
