@@ -31,7 +31,8 @@
             ng-change="vm.setCriteria()" >
     </select>
     <select ng-model="vm.exam"
-            ng-options="option.title for option in vm.exams">
+            ng-options="option.title for option in vm.exams"
+            ng-change="vm.setCriteria()">
     </select>
     <br/><br/><br/>
     <div style="height:100px; width:1000px;">
