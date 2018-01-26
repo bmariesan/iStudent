@@ -30,6 +30,9 @@
             ng-options = "option for option in vm.statisticOptions"
             ng-change="vm.setCriteria()" >
     </select>
+    <select ng-model="vm.exam"
+            ng-options="option.title for option in vm.exams">
+    </select>
     <br/><br/><br/>
     <div style="height:100px; width:1000px;">
         <canvas id="line" class="chart chart-line" chart-data="vm.data"

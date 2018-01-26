@@ -10,7 +10,13 @@
         vm.criteria = 'Age Statistics';
         var criteria = 'age';
 
-        setLabelsAndData(criteria);
+        getStatistic(criteria);
+
+        StatisticService.getExams().then(
+            function success(response) {
+                vm.exams= angular.copy(response.data);
+                vm.exam = {};
+            });
 
         function parseCriteria(criteria) {
             return criteria.split(" ")[0].toLowerCase();
@@ -46,27 +52,43 @@
         };
         vm.setCriteria = function() {
             criteria = parseCriteria(vm.criteria);
-            setLabelsAndData(criteria);
+            getStatistic(criteria);
         };
 
-        function setLabelsAndData(criteria) {
-            StatisticService.get(criteria)
-                .then(
-                    function success(response) {
-                        var averages = [];
-                        var criteriaList = [];
-                        for(var i = 0; i < response.data.data.length; i++){
-                            var average = response.data.data[i].average;
-                            isNaN(average) ? averages.push(0) : averages.push(parseFloat(average));
-                            criteriaList.push(response.data.data[i].name);
-                        }
-                        vm.labels = criteriaList;
-                        vm.data = averages;
-                    },
-                    function error(response) {
-                        vm.serverErrors = response.data;
-                        AlertService.alertError(response.data);
-                    });
+        function getStatistic(criteria) {
+            if (criteria.indexOf('bayes') !== -1) {
+                StatisticService.getBayesStatistic(criteria,vm.exam.id)
+                    .then(
+                        function success(response) {
+                            setLabelsAndData(response);
+                        },
+                        function error(response) {
+                            vm.serverErrors = response.data;
+                            AlertService.alertError(response.data);
+                        });
+            } else {
+                StatisticService.get(criteria)
+                    .then(
+                        function success(response) {
+                            setLabelsAndData(response);
+                        },
+                        function error(response) {
+                            vm.serverErrors = response.data;
+                            AlertService.alertError(response.data);
+                        });
+            }
+
+        }
+        function setLabelsAndData(response) {
+            var averages = [];
+            var criteriaList = [];
+            for(var i = 0; i < response.data.data.length; i++){
+                var average = response.data.data[i].average;
+                isNaN(average) ? averages.push(0) : averages.push(parseFloat(average));
+                criteriaList.push(response.data.data[i].name);
+            }
+            vm.labels = criteriaList;
+            vm.data = averages;
         }
     }
 })();
