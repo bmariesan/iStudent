@@ -5,18 +5,13 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-@Entity
 public class AssignmentEntity implements Serializable {
 
-    @Id
     private Long id;
     private Long studentId;
     private Long courseId;
+    private List<Long> attachments;
 
-    @OneToMany(mappedBy="assignment")
-    private List<AttachmentEntity> attachments;
-
-    @OneToOne(mappedBy="assignment")
     private FeedbackEntity feedback;
     private Date date;
     private Date deadline;
@@ -25,7 +20,7 @@ public class AssignmentEntity implements Serializable {
 
     public AssignmentEntity(){}
 
-    public AssignmentEntity(Long id, Long studentId, Long courseId, List<AttachmentEntity> attachments, FeedbackEntity feedback, Date date, Date deadline, String description) {
+    public AssignmentEntity(Long id, Long studentId, Long courseId, List<Long> attachments, FeedbackEntity feedback, Date date, Date deadline, String description) {
         this.id = id;
         this.studentId = studentId;
         this.courseId = courseId;
@@ -77,11 +72,11 @@ public class AssignmentEntity implements Serializable {
         this.date = date;
     }
 
-    public void setAttachments(List<AttachmentEntity> attachments) {
+    public void setAttachments(List<Long> attachments) {
         this.attachments = attachments;
     }
 
-    public List<AttachmentEntity> getAttachments() {
+    public List<Long> getAttachments() {
         return attachments;
     }
 

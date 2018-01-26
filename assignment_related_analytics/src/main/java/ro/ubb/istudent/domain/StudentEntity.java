@@ -11,9 +11,7 @@ import java.io.Serializable;
 /**
  * Created by Cristina on 12/12/2017.
  */
-@Entity
 public class StudentEntity implements Serializable {
-    @Id
     private long id;
     private String firstName;
     private String lastName;

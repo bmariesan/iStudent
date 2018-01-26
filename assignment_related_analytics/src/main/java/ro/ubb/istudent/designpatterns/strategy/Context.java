@@ -10,4 +10,5 @@ public class Context {
     public long executeStrategy(){
         return strategy.computeStatistics();
     }
+
 }

@@ -3,17 +3,14 @@ package ro.ubb.istudent.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity
+
 public class FeedbackEntity implements Serializable {
 
-    @Id
     private Long id;
     private TeacherEntity teacher;
     private String description;
     private StudentEntity studentEntity;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ASSIGNMENT_ID")
     private AssignmentEntity assignment;
 
     public FeedbackEntity(Long id, TeacherEntity teacher, String description, StudentEntity studentEntity,

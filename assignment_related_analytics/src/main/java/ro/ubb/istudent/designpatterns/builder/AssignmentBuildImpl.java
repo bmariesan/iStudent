@@ -4,6 +4,7 @@ import ro.ubb.istudent.domain.AssignmentEntity;
 import ro.ubb.istudent.domain.FeedbackEntity;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Cristina on 1/25/2018.
@@ -54,6 +55,12 @@ public class AssignmentBuildImpl implements AssignmentBuilder {
     @Override
     public AssignmentBuilder isCompleted(Boolean isCompleted) {
         assignment.setIsCompleted(isCompleted);
+        return this;
+    }
+
+    @Override
+    public AssignmentBuilder attachments(List<Long> attachments) {
+        assignment.setAttachments(attachments);
         return this;
     }
 }
