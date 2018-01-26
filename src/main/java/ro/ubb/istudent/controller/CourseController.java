@@ -23,4 +23,9 @@ public class CourseController {
     public String historyCourses() {
         return "historyCourses";
     }
+
+    @RequestMapping(value = "/progress", method = RequestMethod.GET)
+    public String progress() {
+        return "progress";
+    }
 }
