@@ -92,11 +92,15 @@ public class Service {
                 new Student(8,"Mihai Matyas",25,Gender.MALE,"Denmark",
                         Arrays.asList(new ExamGrade(exams.get(0),10.00), new ExamGrade(exams.get(1),8.23))),
                 new Student(9,"Radu Cora",26,Gender.MALE,"Spain",
-                        Arrays.asList(new ExamGrade(exams.get(2),7.60), new ExamGrade(exams.get(3),5.37))),
+                        Arrays.asList(new ExamGrade(exams.get(2),1.60), new ExamGrade(exams.get(3),2.37))),
                 new Student(10,"Daniela Bica", 21,Gender.FEMALE,"Romania",
                         Arrays.asList(new ExamGrade(exams.get(1),7.30), new ExamGrade(exams.get(3),8.50))),
                 new Student(11,"Emilia Irimia",22,Gender.FEMALE,"Spain",
-                        Arrays.asList(new ExamGrade(exams.get(0),9.00), new ExamGrade(exams.get(2),8.80)))));
+                        Arrays.asList(new ExamGrade(exams.get(0),3.00), new ExamGrade(exams.get(2),2.80))),
+                new Student(12,"Emilia Eremia",22,Gender.FEMALE,"Spain",
+                        Arrays.asList(new ExamGrade(exams.get(0),9.00), new ExamGrade(exams.get(2),7.80))),
+                new Student(13,"Emilia Arada",22,Gender.FEMALE,"Spain",
+                        Arrays.asList(new ExamGrade(exams.get(0),3.00), new ExamGrade(exams.get(2),2.80)))));
 
     }
 }

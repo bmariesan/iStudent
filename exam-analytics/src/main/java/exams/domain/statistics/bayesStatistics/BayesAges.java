@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 /**
@@ -24,6 +26,7 @@ public class BayesAges implements IStatistic {
     List<StringTuple> returnedData;
     BayesUtils bayesUtils;
     List<AgeGroup> ageGroups;
+    private Logger logger = Logger.getLogger("INFO");
 
 
     public BayesAges(Service service, int examID) {
@@ -62,9 +65,10 @@ public class BayesAges implements IStatistic {
 
 
     private float getProbAgePassed(AgeGroup ageGroup){
-        List<Student> allStudents=service.getStudents();
-        List<Student> studentsThatHadExam=allStudents.stream().filter(s->s.getGrades().contains(theExam)).collect(Collectors.toList());
+        List<Student> studentsThatHadExam=bayesUtils.studentsThatHadExam();
+        logger.log(Level.INFO,"AGE 1 getProbAgePassed studentsHadExam:"+String.valueOf(studentsThatHadExam.size()));
         List<Student> studentsThatHavePassedExam=bayesUtils.studentsThatHavePassed(studentsThatHadExam);
+        logger.log(Level.INFO,"AGE 2 getProbAgePassed studentsPassedExam"+String.valueOf(studentsThatHavePassedExam.size()));
 
         List<Student> studentsAgeGroup=new ArrayList<>();
 
@@ -72,14 +76,15 @@ public class BayesAges implements IStatistic {
             if(s.getAge()>ageGroup.from&&s.getAge()<ageGroup.to)
                 studentsAgeGroup.add(s);
         }
-
-        return studentsAgeGroup.size()/studentsThatHavePassedExam.size();
+        logger.log(Level.INFO,"AGE 3 getProbAgePassed studentsAgeGroup:"+String.valueOf(studentsAgeGroup.size()));
+        float probAgePassed=(float)studentsAgeGroup.size()/studentsThatHavePassedExam.size();
+        return probAgePassed;
 
     }
 
     private float getAge(AgeGroup ageGroup){
-        List<Student> allStudents=service.getStudents();
-        List<Student> studentsThatHadExam=allStudents.stream().filter(s->s.getGrades().contains(theExam)).collect(Collectors.toList());
+
+        List<Student> studentsThatHadExam=bayesUtils.studentsThatHadExam();
 
         List<Student> studentsAge=new ArrayList<>();
 
@@ -87,7 +92,9 @@ public class BayesAges implements IStatistic {
             if(s.getAge()>ageGroup.from&&s.getAge()<ageGroup.to)
                 studentsAge.add(s);
         }
-        return studentsAge.size()/studentsThatHadExam.size();
+        logger.log(Level.INFO,"AGE 4 getAge studentsAge:"+String.valueOf(studentsAge.size()));
+        float getAgeRes=(float)studentsAge.size()/studentsThatHadExam.size();
+        return getAgeRes;
     }
 
     @Override
