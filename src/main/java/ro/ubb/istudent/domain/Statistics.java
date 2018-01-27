@@ -65,4 +65,12 @@ public class Statistics implements Dto {
         s+="<br/>";
         return s;
     }
+
+    public String toPDF(){
+        String s = this.year.toString() + "\n";
+        for(HashMap.Entry<String,Integer> entry : this.result.entrySet()){
+            s = s + entry.getKey() +": " + entry.getValue() + "\n";
+        }
+        return s;
+    }
 }
