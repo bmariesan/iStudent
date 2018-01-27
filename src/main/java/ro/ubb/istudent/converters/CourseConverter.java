@@ -16,7 +16,7 @@ public class CourseConverter extends GenericConverter<CourseEntity, CourseDto> {
     @Override
     public CourseEntity createFromDto(CourseDto dto) {
         CourseEntity courseEntity = CourseEntity.builder()
-                .name(dto.getName())
+                .name(dto.getCourseName())
                 .minimumGrade(dto.getMinimumGrade())
                 .build();
         courseEntity.setId(dto.getId());
@@ -27,7 +27,7 @@ public class CourseConverter extends GenericConverter<CourseEntity, CourseDto> {
     @Override
     public CourseDto createFromEntity(CourseEntity entity) {
         CourseDto courseDto = CourseDto.builder()
-                .name(entity.getName())
+                .courseName(entity.getName())
                 .minimumGrade(entity.getMinimumGrade())
                 .build();
         courseDto.setId(entity.getId());
@@ -37,7 +37,7 @@ public class CourseConverter extends GenericConverter<CourseEntity, CourseDto> {
 
     @Override
     public CourseEntity updateEntity(CourseEntity entity, CourseDto dto) {
-        entity.setName(dto.getName());
+        entity.setName(dto.getCourseName());
         entity.setMinimumGrade(dto.getMinimumGrade());
 
         return entity;

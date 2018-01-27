@@ -12,6 +12,7 @@ import ro.ubb.istudent.enums.GenderEnum;
 import ro.ubb.istudent.service.CountryService;
 import ro.ubb.istudent.service.CourseService;
 import ro.ubb.istudent.service.StudentService;
+import ro.ubb.istudent.service.TestService;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -28,6 +29,9 @@ public class MockData {
 
     @Autowired
     private CountryService countryService;
+
+    @Autowired
+    private TestService testService; // added by Valer
 
     @Autowired
     private MongoConfig mongoConfig;
@@ -53,11 +57,11 @@ public class MockData {
 
         // create courses
         List<CourseDto> courseDtoList = ImmutableList.of(
-                CourseDto.builder().minimumGrade(5).name("Java").build(),
-                CourseDto.builder().minimumGrade(5).name("C#").build(),
-                CourseDto.builder().minimumGrade(6).name("Python").build(),
-                CourseDto.builder().minimumGrade(6).name("C").build(),
-                CourseDto.builder().minimumGrade(7).name("Assembly").build()
+                CourseDto.builder().minimumGrade(5).courseName("Java").build(),
+                CourseDto.builder().minimumGrade(5).courseName("C++").build(),
+                CourseDto.builder().minimumGrade(6).courseName("Python").build(),
+                CourseDto.builder().minimumGrade(6).courseName("C").build(),
+                CourseDto.builder().minimumGrade(7).courseName("Assembly").build()
         );
 
         // save courses
@@ -87,11 +91,11 @@ public class MockData {
 
         // get existing courses which we saved before
         List<CourseDto> existingCourses = ImmutableList.of(
-                courseService.findByName("Java").get(),
-                courseService.findByName("C#").get(),
-                courseService.findByName("Python").get(),
-                courseService.findByName("C").get(),
-                courseService.findByName("Assembly").get()
+                courseService.findByCourseName("Java").get(),
+                courseService.findByCourseName("C++").get(),
+                courseService.findByCourseName("Python").get(),
+                courseService.findByCourseName("C").get(),
+                courseService.findByCourseName("Assembly").get()
         );
 
 
@@ -178,6 +182,9 @@ public class MockData {
                         TestDto.builder().courseDto(existingCourses.get(4)).grade(9).build())
         );
 
+        for(List<TestDto> testdto : testDtoList){ //<-added by Valer
+            testdto.forEach(testService::save);
+        }
 
         // get existing students because we want to add some tests to them
         List<StudentDto> existingStudents = studentService.findAll();

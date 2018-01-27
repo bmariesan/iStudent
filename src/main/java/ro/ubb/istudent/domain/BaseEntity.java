@@ -10,6 +10,7 @@ import java.io.Serializable;
 @Setter
 public abstract class BaseEntity implements Serializable {
     @Id
-    private ObjectId id;
+    private String id; //Added by Valer
+    //private ObjectId id; <-- comment4ed by Valer
 
 }

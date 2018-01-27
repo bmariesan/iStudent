@@ -2,7 +2,6 @@ package ro.ubb.istudent.dto;
 
 import lombok.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -10,9 +9,9 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class CourseDto extends BaseDto {
+public class AllDataBasedStatisticsDto extends BaseDto {
 
-    private String courseName;
+    private Integer totalNumberOfStudents;
 
-    private Integer minimumGrade;
+    private List<StudentDto> allStudents;
 }

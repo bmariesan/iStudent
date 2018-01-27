@@ -19,12 +19,9 @@ public class GenderBasedStatisticsService {
 
     private StudentService studentService;
 
-    /**
-     * @return List of students which passed all their tests.
-     */
     public Optional<GenderBasedStatisticsDto> findGraduatedStudentsByGender(GenderEnum gender) {
         return studentService.findByGender(gender)
-                .flatMap(studentDtos -> buildGenderBasedStatisticDto(studentDtos, gender));
+                .flatMap(studentDto -> buildGenderBasedStatisticDto(studentDto, gender));
     }
 
     private Optional<GenderBasedStatisticsDto> buildGenderBasedStatisticDto(List<StudentDto> studentList, GenderEnum gender) {
@@ -33,7 +30,7 @@ public class GenderBasedStatisticsService {
         genderBasedStatisticsDto.setGender(gender);
 
         List<StudentDto> graduatedStudents = studentList.stream()
-                .filter(studentDto -> checkIfAllTestsArePassed(studentDto.getTests()))
+                .filter(studentDto -> TestService.checkIfAllTestsArePassed((studentDto.getTests())))
                 .collect(Collectors.toList());
 
         if (graduatedStudents.size() == 0) {
@@ -45,8 +42,9 @@ public class GenderBasedStatisticsService {
         return Optional.of(genderBasedStatisticsDto);
     }
 
-    private boolean checkIfAllTestsArePassed(List<TestDto> tests) {
+    /*private boolean checkIfAllTestsArePassed(List<TestDto> tests) { //Moved in TestService to avoid code duplication
         return tests.stream()
-                .anyMatch(testDto -> testDto.getGrade() < testDto.getCourseDto().getMinimumGrade());
-    }
+                //.anyMatch(testDto -> testDto.getGrade() < testDto.getCourseDto().getMinimumGrade()); Commented by Valer
+                .allMatch(testDto -> testDto.getGrade() >= testDto.getCourseDto().getMinimumGrade());
+    } commented by Valer */
 }

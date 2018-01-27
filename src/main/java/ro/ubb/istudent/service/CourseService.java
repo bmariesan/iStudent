@@ -22,8 +22,9 @@ public class CourseService {
         return courseConverter.createFromEntity(repository.save(courseConverter.createFromDto(studentDto)));
     }
 
-    public Optional<CourseDto> findByName(String name) {
+    public Optional<CourseDto> findByCourseName(String name) {
         return repository.findByName(name)
                 .map(courseConverter::createFromEntity);
     }
+
 }

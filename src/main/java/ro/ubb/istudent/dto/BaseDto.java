@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 
 import java.io.Serializable;
 
@@ -12,5 +13,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public abstract class BaseDto implements Serializable {
-    private ObjectId id;
+    @Id // Added by Valer
+    private String id; //Added by Valer
+    //private ObjectId id; Commented by Valer
 }
