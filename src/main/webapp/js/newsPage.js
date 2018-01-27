@@ -1,3 +1,22 @@
+function fillLabels(){
+    var url = window.location + '';
+    var res = url.split("/");
+    var id =res.slice(-1).pop();
+    $.ajax({
+        type:"GET",
+        url:"http://localhost:8080/api/news/"+id,
+        success:function(data){
+            console.log(data.new.title);
+            $('#title').val(data.new.title);
+            $('#message').val(data.new.message);
+            $('#course').val(data.new.course);
+        },
+        error:function (data, status, xhr){
+            alert("Error");
+        }
+    })
+}
+
 function loadAll(){
     var url = window.location + '';
     var res = url.split("/");
@@ -32,7 +51,7 @@ function loadAll(){
 $(document).ready(function () {
 
     loadAll();
-
+    fillLabels();
     $('#add-comm-btn').click(function(event)
     {
         event.preventDefault();
