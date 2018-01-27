@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ro.ubb.istudent.converters.TestConverter;
+import ro.ubb.istudent.converters.strategy2.ConverterStrategy;
+import ro.ubb.istudent.domain.TestEntity;
 import ro.ubb.istudent.dto.TestDto;
 import ro.ubb.istudent.repository.TestRepository;
 
@@ -13,10 +15,10 @@ import ro.ubb.istudent.repository.TestRepository;
 public class TestService {
 
     private TestRepository repository;
-
-    private TestConverter testConverter;
+    private ConverterStrategy converterStrategy;
 
     public TestDto save(TestDto studentDto) {
-        return testConverter.createFromEntity(repository.save(testConverter.createFromDto(studentDto)));
+        return (TestDto) converterStrategy
+                .createFromEntity(repository.save((TestEntity) converterStrategy.createFromDto(studentDto)));
     }
 }
