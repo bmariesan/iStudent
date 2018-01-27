@@ -36,6 +36,7 @@ public class SubscriptionServiceTest {
     public void testSubscribeToCourse() {
         StudentEntity student = StudentEntity.builder()
                 .name(new NameEntity(STUDENT))
+                .username(STUDENT)
                 .build();
         studentRepository.save(student);
         CourseEntity courseEntity = CourseEntity.builder()
