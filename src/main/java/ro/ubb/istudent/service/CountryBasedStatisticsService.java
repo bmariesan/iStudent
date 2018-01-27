@@ -7,10 +7,13 @@ import ro.ubb.istudent.dto.CountryBasedStatisticsDto;
 import ro.ubb.istudent.dto.CountryDto;
 import ro.ubb.istudent.dto.StudentDto;
 import ro.ubb.istudent.dto.TestDto;
-import ro.ubb.istudent.dto.*;
+import ro.ubb.istudent.enums.FileEnum;
+import ro.ubb.istudent.file_utils.FileFactory;
+import ro.ubb.istudent.file_utils.MyFile;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,7 +25,7 @@ public class CountryBasedStatisticsService {
 
     public Optional<CountryBasedStatisticsDto> findGraduatedStudentsByCountry(CountryDto countryDto) {
         return studentService.findByCountry(countryDto)
-                .flatMap(studentDto -> buildCountryBasedStatisticsDto(studentDto, countryDto));
+                .flatMap(studentDtos -> buildCountryBasedStatisticsDto(studentDtos, countryDto));
     }
 
     private Optional<CountryBasedStatisticsDto> buildCountryBasedStatisticsDto(List<StudentDto> studentList, CountryDto countryDto) {
@@ -31,15 +34,22 @@ public class CountryBasedStatisticsService {
         countryBasedStatisticsDto.setCountry(countryDto);
 
         List<StudentDto> graduatedStudents = studentList.stream()
-                .filter(studentDto -> TestService.checkIfAllTestsArePassed(studentDto.getTests()))
+                .filter(studentDto -> checkIfAllTestsArePassed(studentDto.getTests()))
                 .collect(Collectors.toList());
 
         if (graduatedStudents.size() == 0) {
             return Optional.empty();
+        } else {
+            FileFactory.makeAndPersist(graduatedStudents, "Graduates from " + countryDto.getCountryName());
         }
 
         countryBasedStatisticsDto.setGraduatedStudents(graduatedStudents);
 
         return Optional.of(countryBasedStatisticsDto);
+    }
+
+    private boolean checkIfAllTestsArePassed(List<TestDto> tests) {
+        return tests.stream()
+                .anyMatch(testDto -> testDto.getGrade() < testDto.getCourseDto().getMinimumGrade());
     }
 }

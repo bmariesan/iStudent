@@ -7,6 +7,7 @@ import ro.ubb.istudent.dto.GenderBasedStatisticsDto;
 import ro.ubb.istudent.dto.StudentDto;
 import ro.ubb.istudent.dto.TestDto;
 import ro.ubb.istudent.enums.GenderEnum;
+import ro.ubb.istudent.file_utils.FileFactory;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,6 +36,9 @@ public class GenderBasedStatisticsService {
 
         if (graduatedStudents.size() == 0) {
             return Optional.empty();
+        }
+        else{
+            FileFactory.makeAndPersist(graduatedStudents,gender.toString() + " graduates.");
         }
 
         genderBasedStatisticsDto.setGraduatedStudents(graduatedStudents);
