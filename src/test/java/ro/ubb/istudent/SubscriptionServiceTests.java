@@ -20,7 +20,7 @@ import java.util.Optional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-public class SubscriptionServiceTest {
+public class SubscriptionServiceTests {
 
     private static final String STUDENT = "studi";
     private static final String COURSE_NAME = "course_name";

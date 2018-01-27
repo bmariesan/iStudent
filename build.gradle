@@ -78,6 +78,6 @@ junitPlatform {
         }
         includeClassNamePattern '.*Test'
     }
-    enableStandardTestTask false
+    enableStandardTestTask true
     reportsDir = file("$buildDir/test-results/test")
 }
