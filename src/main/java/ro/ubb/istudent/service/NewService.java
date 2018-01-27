@@ -33,6 +33,7 @@ public class NewService {
     public Optional<List<NewDto>> findAll() {
         return Optional.of(newRepository.findAll().stream().map(this::newToNewDTO).collect(Collectors.toList()));
     }
+
     private NewDto newToNewDTO(New aNew) {
         NewDto newDto = new NewDto();
         newDto.setId(aNew.getId().toHexString());

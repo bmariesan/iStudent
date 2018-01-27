@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+
+    <title>News </title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <style>
+        #bodyy {
+            background-color: beige ;
+        }
+        .container{
+            align-self: center;
+            align-content: center;
+            align-items: center;
+        }
+
+        .hrLine{
+            color: black;
+        }
+
+        .tableDiv{
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body id="bodyy">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/newsPage.js"></script>
+<h1 style="text-decoration-style: wavy; text-align: center; align-items: center; "> <i class="glyphicon glyphicon-envelope"/> Welcome to the University blog</h1>
+<br/>
+<hr class="hrLine"/>
+
+
+<div class="container">
+
+
+    <form id="newsForm">
+
+        <input type="hidden" class="form-control" id="id-hidden" name="id-hidden"> </input>
+
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="title">Title:</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Title"> </input>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="message">News:</label>
+                <input type="text" class="form-control" id="message" name="message" placeholder="message"> </input>
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="course">Course:</label>
+                <input type="text" class="form-control" id="course" name="course" placeholder="Course"> </input>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-default" id="add-btn">Add news</button>
+        <button type="submit" class="btn btn-default" id="update-btn">Update</button>
+    </form>
+
+    <br/><br/>
+
+    <div class="tableDiv">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th> Title</th>
+                <th> Description</th>
+                <th> Teacher</th>
+                <th> Course</th>
+                <th> <i class="glyphicon glyphicon-remove"/></th>
+                <th> <i class="glyphicon glyphicon-pencil"/></th>
+            </tr>
+            </thead>
+            <tbody id="list">
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+</body>
+</html>
