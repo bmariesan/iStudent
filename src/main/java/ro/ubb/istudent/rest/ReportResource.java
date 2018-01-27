@@ -59,6 +59,11 @@ public class ReportResource {
 
     @RequestMapping("/json")
     public Report getStatisticsJson() {
+
+        return generateReport();
+    }
+
+    private Report generateReport() {
         Report report = new Report();
 
         Statistics statistics = new Statistics();
