@@ -36,9 +36,8 @@ public class GenderBasedStatisticsService {
 
         if (graduatedStudents.size() == 0) {
             return Optional.empty();
-        }
-        else{
-            FileFactory.makeAndPersist(graduatedStudents,gender.toString() + " graduates.");
+        } else {
+            FileFactory.makeAndPersist(graduatedStudents, gender.toString() + " graduates.");
         }
 
         genderBasedStatisticsDto.setGraduatedStudents(graduatedStudents);

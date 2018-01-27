@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JSONFile extends MyFile{
+public class JSONFile extends MyFile {
 
     public JSONFile() {
     }
@@ -48,7 +48,7 @@ public class JSONFile extends MyFile{
                     "\",\n\t\t\"age\" : " + String.valueOf(s.getAge()) + ",\n\t\t\"tests\" : [\n"; //tests => 3\t
 
             for (TestDto t : s.getTests()) {
-                json += "\n\t\t\t{\n\t\t\t\t\"course\" : { \n\t\t\t\t\t\"name\" : \"" +t.getCourseDto().getName()
+                json += "\n\t\t\t{\n\t\t\t\t\"course\" : { \n\t\t\t\t\t\"name\" : \"" + t.getCourseDto().getCourseName()
                         + "\",\n\t\t\t\t\t\"minGrade\" : " + String.valueOf(t.getCourseDto().getMinimumGrade()) +
                         "\n\t\t\t\t},\n\t\t\t\t\"grade\" : " + t.getGrade().toString() + "\n\t\t},";
             }

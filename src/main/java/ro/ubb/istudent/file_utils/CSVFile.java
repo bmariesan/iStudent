@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CSVFile extends MyFile{
+public class CSVFile extends MyFile {
 
     public CSVFile() {
     }
@@ -44,7 +44,7 @@ public class CSVFile extends MyFile{
             String tests = "";
 
             for (TestDto t : s.getTests()) {
-                tests += t.getCourseDto().getName() + "," + String.valueOf(t.getCourseDto().getMinimumGrade()) + "," +
+                tests += t.getCourseDto().getCourseName() + "," + String.valueOf(t.getCourseDto().getMinimumGrade()) + "," +
                         String.valueOf(t.getGrade()) + ",";
             }
 

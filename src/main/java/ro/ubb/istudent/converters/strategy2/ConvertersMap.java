@@ -1,5 +1,6 @@
 package ro.ubb.istudent.converters.strategy2;
 
+import com.google.common.collect.ImmutableMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -30,7 +31,7 @@ public class ConvertersMap {
 
     @Bean
     public Map<Class, GenericConverter> getConverters(){
-        Map<Class, GenericConverter> map = new HashMap<Class, GenericConverter>(){{
+        return new HashMap<Class, GenericConverter>(){{
             put(CountryDto.class, countryConverter);
             put(CourseDto.class, courseConverter);
             put(StudentDto.class, studentConverter);
@@ -40,6 +41,5 @@ public class ConvertersMap {
             put(StudentEntity.class, studentConverter);
             put(TestEntity.class, testConverter);
         }};
-        return map;
     }
 }

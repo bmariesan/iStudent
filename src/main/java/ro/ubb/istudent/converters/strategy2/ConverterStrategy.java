@@ -15,14 +15,14 @@ public class ConverterStrategy {
 
     private Map<Class, GenericConverter> map;
 
-    private ConverterStrategy(Map<Class, GenericConverter> map){
+    private ConverterStrategy(Map<Class, GenericConverter> map) {
         this.map = map;
     }
 
     public BaseEntity createFromDto(BaseDto dto) {
         try {
             return (BaseEntity) map.get(dto.getClass()).createFromDto(dto);
-        } catch (Throwable t){
+        } catch (Throwable t) {
             return null;
         }
     }
@@ -30,7 +30,7 @@ public class ConverterStrategy {
     public BaseDto createFromEntity(BaseEntity entity) {
         try {
             return (BaseDto) map.get(entity.getClass()).createFromEntity(entity);
-        } catch (Throwable t){
+        } catch (Throwable t) {
             return null;
         }
     }
@@ -38,7 +38,7 @@ public class ConverterStrategy {
     public BaseEntity updateEntity(BaseEntity entity, BaseDto dto) {
         try {
             return (BaseEntity) map.get(entity.getClass()).updateEntity(entity, dto);
-        } catch (Throwable t){
+        } catch (Throwable t) {
             return null;
         }
     }
