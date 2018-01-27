@@ -4,6 +4,11 @@
 
 $(document).ready(function (){
 
+    $("#reportHtmlCode").hide();
+    $("#reportHtml").hide();
+    $("#report").hide();
+    $("#see-more-button").hide();
+
     $.ajax({
         type: "GET",
         url: "/api/report/html",
@@ -21,9 +26,7 @@ $(document).ready(function (){
     $("#see-more-button").click(function(){
         Module.publicMethod();
     })
-});
 
-$(document).ready(function (){
 
     $.ajax({
         type: "GET",
@@ -37,6 +40,32 @@ $(document).ready(function (){
             console.log("Eroare la get api/report");
         }
     });
+
+    $('#htmlBtn').click(function() {
+        $("#reportHtmlCode").show();
+        $("#reportHtml").show();
+        $("#report").hide();
+        $("#see-more-button").show();
+    });
+    $('#jsonBtn').click(function() {
+        $("#reportHtmlCode").hide();
+        $("#reportHtml").hide();
+        $("#report").show();
+        $("#see-more-button").hide();
+    });
+    $('#pdfBtn').click(function() {
+        $("#reportHtmlCode").hide();
+        $("#reportHtml").hide();
+        $("#report").hide();
+        $("#see-more-button").hide();
+
+        window.location.href = "/api/report/pdf";
+
+    });
+
+
+
+
 });
 var Module = (function () {
     var privateMethod = function () {
