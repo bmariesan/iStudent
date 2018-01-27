@@ -23,6 +23,21 @@ $(document).ready(function (){
     })
 });
 
+$(document).ready(function (){
+
+    $.ajax({
+        type: "GET",
+        url: "/api/json",
+        dataType: "text",
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            $("#report").text(data);
+        },
+        error: function (e) {
+            console.log("Eroare la get api/report");
+        }
+    });
+});
 var Module = (function () {
     var privateMethod = function () {
         var report = "<h3> Studenti picati </h3><br/>" +
