@@ -15,7 +15,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(EntityNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public void processEntityNotFoundException(EntityNotFoundException ex) {
-        LOG.error("Entity not found {}", ex);
+        LOG.error("BaseEntity not found {}", ex);
     }
 
     @ExceptionHandler(Exception.class)

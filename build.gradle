@@ -14,9 +14,11 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0'
+        classpath "io.franzbecker:gradle-lombok:1.11"
     }
 }
 
+apply plugin: "io.franzbecker.gradle-lombok"
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'war'
@@ -37,21 +39,33 @@ repositories {
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     maven { url 'http://repo.maven.apache.org/maven2' }
     maven { url 'https://jitpack.io' }
+    maven { url 'https://repo.spring.io/libs-release' }
 }
 
 configurations {
     providedRuntime
 }
 
+
+
+//compile group: 'com.querydsl', name: 'querydsl-mongodb', version: '4.0.0'//+Valer
+
 dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web','org.apache.tomcat.embed:tomcat-embed-jasper'
+            ,'javax.servlet:jstl') //+Valer
+    //compile "org.springframework.data:spring-data-mongodb:1.9.1.RELEASE" //+Valer
+    compile group: 'com.querydsl', name: 'querydsl-mongodb', version: '4.1.3' //+Valer
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-data-mongodb')
     compile("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
     compile group: 'com.rabbitmq', name: 'amqp-client', version: '5.0.0'
+    compile 'org.mongodb:mongodb-driver:3.5.0'
+    // https://mvnrepository.com/artifact/com.google.guava/guava
+    compile group: 'com.google.guava', name: 'guava', version: '23.5-jre'
 
-    runtime('com.h2database:h2')
-    runtime('mysql:mysql-connector-java')
     providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 
