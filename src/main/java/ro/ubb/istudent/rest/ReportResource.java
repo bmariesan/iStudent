@@ -19,16 +19,28 @@ import java.util.HashMap;
 public class ReportResource {
 
     IReportService service =  new ReportService();
-    @GetMapping("/report")
-    public JSON getHelloWorldGreeting() {
+    @GetMapping("/report/html")
+    public String getHelloWorldGreeting() {
         Report report = new Report();
+        report.setTitle("Studenti promovati");
+
         Statistics statistics = new Statistics();
         statistics.setYear(2017);
+        Statistics statistics2 = new Statistics();
+        statistics.setYear(2018);
+
         HashMap<String, Integer> hashMap = new HashMap<>();
-        hashMap.put("Design",150);
-        hashMap.put("LFTC",2123213);
+        hashMap.put("Design Patterns",150);
+        hashMap.put("LFTC",21);
         statistics.setResult(hashMap);
         report.getStatistics().add(statistics);
-        return service.generateJSONReport(report);
+
+        hashMap = new HashMap<>();
+        hashMap.put("Design Patterns",88);
+        hashMap.put("LFTC",45);
+        statistics2.setResult(hashMap);
+        report.getStatistics().add(statistics2);
+
+        return report.ToHTML();
     }
 }

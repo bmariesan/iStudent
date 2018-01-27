@@ -11,12 +11,16 @@ public class Statistics implements Dto {
 
     private HashMap<String,Integer> result;
     private Integer year;
-//
-//    public Statistics(HashMap<String, Integer> result, Integer year) {
-//        this.result = result;
-//        this.year = year;
-//    }
 
+    public Statistics(HashMap<String, Integer> result, Integer year) {
+        this.result = result;
+        this.year = year;
+    }
+
+    public Statistics(){
+        this.result = new HashMap<String,Integer>();
+        this.year = 2018;
+    }
     public HashMap<String, Integer> getResult() {
         return result;
     }
@@ -49,5 +53,16 @@ public class Statistics implements Dto {
         int result1 = result.hashCode();
         result1 = 31 * result1 + year.hashCode();
         return result1;
+    }
+
+    public String ToHTML(){
+        String s = "<h3>" + this.year + "</h3>";
+        for (HashMap.Entry<String, Integer> entry : this.result.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+            s = s + "<h4>"  + entry.getKey() +": " + entry.getValue() + "</h4>";
+        }
+        s+="<br/>";
+        return s;
     }
 }
