@@ -73,7 +73,7 @@ public class NewService {
             optionalNewsEntity.get().setMessage(request.getMessage());
             optionalNewsEntity.get().setCourse(request.getCourse());
             optionalNewsEntity.get().setTitle(request.getTitle());
-            newRepository.sa
+            newRepository.save(optionalNewsEntity.get());
         } else {
             LOG.error("News with id {} not found", newsId);
         }
