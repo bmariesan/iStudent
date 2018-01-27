@@ -20,11 +20,11 @@ public class AssignmentEntity implements Serializable {
 
     private Integer points;
 
-    private String type;
-
     private List<String> attachmentPaths;
 
     private List<String> tips;
 
     private Integer idFeedback;
+
+    private List<Task> tasks;
 }

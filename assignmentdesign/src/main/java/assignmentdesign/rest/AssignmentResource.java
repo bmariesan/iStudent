@@ -1,7 +1,11 @@
 package assignmentdesign.rest;
 
 import assignmentdesign.dto.AssignmentDto;
+import assignmentdesign.dto.SubmittedAssignmentDto;
 import assignmentdesign.service.assignment.AssignmentService;
+import assignmentdesign.service.submittedassignment.SubmittedAssignmentService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +24,9 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
-@RequestMapping("/api")
+@RequestMapping("/assignment")
 @RestController
+@Api(value = "assignment", description = "Endpoint for assignment management.")
 public class AssignmentResource {
 
     private static final Logger log = LoggerFactory.getLogger(AssignmentResource.class);
@@ -31,13 +36,18 @@ public class AssignmentResource {
 
     private static final String PATH_ASSIGNMENT = "/assignment";
     private static final String PATH_ATTACHMENT_UPLOAD = "/attachment-upload";
+    private static final String PATH_SUBMIT_ASSIGNMENT = "/submit";
 
     private static final String PATH_PARAM_ASSIGNMENT_ID = "/{assignmentId}";
 
     @Autowired
     private AssignmentService assignmentService;
 
-    @PostMapping(PATH_ASSIGNMENT)
+    @Autowired
+    private SubmittedAssignmentService submittedAssignmentService;
+
+    @PostMapping
+    @ApiOperation(value = "Add a new assignment")
     public ResponseEntity postAssignment(@RequestBody AssignmentDto assignment) throws URISyntaxException {
 
         log.info("Storing assignment with value: " + assignment);
@@ -45,7 +55,8 @@ public class AssignmentResource {
         return ResponseEntity.created(new URI(baseUrl + PATH_ASSIGNMENT + "/" + storedAssignment.getId())).build();
     }
 
-    @GetMapping(PATH_ASSIGNMENT)
+    @GetMapping
+    @ApiOperation(value = "Get all assignments")
     public ResponseEntity getAssignments() {
 
         log.info("Fetching assignments.");
@@ -53,12 +64,24 @@ public class AssignmentResource {
         return ResponseEntity.ok(assignments);
     }
 
-    @PostMapping(value = PATH_ASSIGNMENT + PATH_ATTACHMENT_UPLOAD + PATH_PARAM_ASSIGNMENT_ID)
+    @PostMapping(value = PATH_ATTACHMENT_UPLOAD + PATH_PARAM_ASSIGNMENT_ID)
+    @ApiOperation(value = "Upload a file with the given file path to the assignment identified by the given id")
     public ResponseEntity postAssignmentAttachment(@PathVariable(value = "assignmentId") Long assignmentId,
                                                    @RequestBody String attachmentFilePath) throws IOException {
 
         log.info("Uploading attachment " + attachmentFilePath);
         String uploadedAttachmentFileName = assignmentService.uploadAttachment(assignmentId, attachmentFilePath);
         return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @PostMapping(value = PATH_SUBMIT_ASSIGNMENT + PATH_PARAM_ASSIGNMENT_ID)
+    @ApiOperation(value = "Submits a student's answers for an assignment")
+    public ResponseEntity submitAssignment(@PathVariable(value = "assignmentId") Integer assignmentId,
+                                           @RequestBody SubmittedAssignmentDto submittedAssignment) throws URISyntaxException {
+
+        log.info("Submitting assignment");
+        SubmittedAssignmentDto storedSubmittedAssignment = submittedAssignmentService.submitAssignment(submittedAssignment, assignmentId);
+        return ResponseEntity.created(new URI(baseUrl + PATH_ASSIGNMENT + "/" + storedSubmittedAssignment.getId())).build();
+
     }
 }

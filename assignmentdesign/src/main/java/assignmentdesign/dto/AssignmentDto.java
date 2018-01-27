@@ -1,5 +1,6 @@
 package assignmentdesign.dto;
 
+import assignmentdesign.domain.Task;
 import lombok.Data;
 
 import java.util.List;
@@ -13,11 +14,11 @@ public class AssignmentDto {
 
     private Integer points;
 
-    private String type;
-
     private List<String> attachmentPaths;
 
     private List<String> tips;
 
     private Integer idFeedback;
+
+    private List<Task> tasks;
 }
