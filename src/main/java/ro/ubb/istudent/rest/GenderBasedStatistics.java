@@ -30,6 +30,6 @@ public class GenderBasedStatistics {
 
     @GetMapping(STATISTICS_URL + "/gender/{gender}")
     public ResponseEntity getGraduatedStudentsByGender(@PathVariable("gender") String gender) {
-        return ResponseUtil.wrapOrNotFound(genderBasedStatisticsService.findGraduatedStudentsByGender(EnumUtils.getEnum(GenderEnum.class, gender.toLowerCase())));
+        return ResponseUtil.wrapOrNotFound(genderBasedStatisticsService.findGraduatedStudentsByGender(GenderEnum.fromString(gender)));
     }
 }
