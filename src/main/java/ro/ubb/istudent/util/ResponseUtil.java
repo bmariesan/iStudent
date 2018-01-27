@@ -2,8 +2,8 @@ package ro.ubb.istudent.util;
 
 import org.springframework.http.ResponseEntity;
 import ro.ubb.istudent.dto.Dto;
+import ro.ubb.istudent.exception.EntityNotFoundException;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 public class ResponseUtil {

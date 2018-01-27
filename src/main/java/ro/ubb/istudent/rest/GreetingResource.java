@@ -27,19 +27,19 @@ public class GreetingResource {
     }
 
     @GetMapping("/greeting/{greetingId}")
-    public ResponseEntity getHelloWorldGreeting(@PathVariable("greetingId") Long greetingId) {
+    public ResponseEntity getHelloWorldGreeting(@PathVariable("greetingId") String greetingId) {
         return ResponseUtil.wrapOrNotFound(service.findGreetingById(greetingId));
     }
 
     @PutMapping("/greeting/{greetingId}")
-    public ResponseEntity<Void> updateHelloWorldGreeting(@PathVariable("greetingId") Long greetingId, @RequestBody GreetingDto greeting) {
+    public ResponseEntity<Void> updateHelloWorldGreeting(@PathVariable("greetingId") String greetingId, @RequestBody GreetingDto greeting) {
         LOG.debug("Updating greeting with id: " + greetingId + " and new greeting value:" + greeting);
         service.updateGreetingWithId(greetingId, greeting);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping(GREETING_CONTROLLER_MAPPING + "/{greetingId}")
-    public ResponseEntity<Void> deleteGreeting(@PathVariable("greetingId") Long greetingId) {
+    public ResponseEntity<Void> deleteGreeting(@PathVariable("greetingId") String greetingId) {
         LOG.debug("Deleting greeting with id: " + greetingId);
         service.deleteGreetingById(greetingId);
         return ResponseEntity.ok().build();

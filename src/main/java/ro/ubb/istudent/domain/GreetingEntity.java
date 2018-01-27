@@ -1,27 +1,25 @@
 package ro.ubb.istudent.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.io.Serializable;
 import java.util.Objects;
 
-@Entity(name = "greeting")
+@Document(collection = "greeting")
 public class GreetingEntity implements Serializable {
 
     @Id
-    @GeneratedValue
-    private Long id;
+    private ObjectId id;
 
-    @Column
     private String message;
 
-    public Long getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
