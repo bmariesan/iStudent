@@ -92,14 +92,15 @@ $(document).ready(function(){
         event.preventDefault();
 
         var id=$('#id-hidden').val();
-        alert(id);
         var m=$('#message').val();
         var course = $('#title').val();
-        var title = $('#course').val();
+        var title = $('#title').val();
         var body = {id:id,message:m,course:course,teacher:"Pop Ion",title:title};
         $.ajax({
             type:"POST",
             url:"http://localhost:8080/api/news/update/"+id,
+            data:JSON.stringify(body),
+            contentType: "application/json; charset=utf-8",
             success:function (data) {
                 getall();
                 $('#update-btn').hide();

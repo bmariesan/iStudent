@@ -63,7 +63,7 @@ public class NewService {
         if (optionalNewEntity.isPresent()) {
             newRepository.delete(optionalNewEntity.get());
         } else {
-            LOG.error("Greeting with id {} not found", newsId);
+            LOG.error("News with id {} not found", newsId);
         }
     }
 
@@ -71,8 +71,11 @@ public class NewService {
         Optional<New> optionalNewsEntity = newRepository.findNewById(newsId);
         if (optionalNewsEntity.isPresent()) {
             optionalNewsEntity.get().setMessage(request.getMessage());
+            optionalNewsEntity.get().setCourse(request.getCourse());
+            optionalNewsEntity.get().setTitle(request.getTitle());
+            newRepository.sa
         } else {
-            LOG.error("Greeting with id {} not found", newsId);
+            LOG.error("News with id {} not found", newsId);
         }
     }
 }
