@@ -137,5 +137,5 @@ Exam will be given across multiple rows of students to prevent fraud.
 
 # Programare examene
 - Colocviu, sambata, 27 ian, 8:00 - 14:00 (cu posibilitate de prelungire dupa 14:00, daca sunt oameni) (__[Programare](https://docs.google.com/spreadsheets/d/16gnOL0lQRFnXmxHOGag_XkTWqVXekKKYTLMFK_mtWec/edit?usp=sharing)__) 
-- Examen, duminica, 11 feb, 10:00 - 13:00
-- Restanta, duminica, 18 feb, 10:00 - 13:00 (cu posibilitate de schimbare pe 20 feb, care va fi anuntata)
+- Examen, duminica, 11 feb, 10:00 - 13:00, sala C335
+- Restanta, duminica, 20 feb, 8:00 - 10:00, sala C310
