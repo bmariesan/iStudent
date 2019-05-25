@@ -17,7 +17,7 @@ public class FactorySimple {
 
         switch (s.toLowerCase()) {
             case "st":
-            case "student":
+            case "fromStudent":
                 return new Student();
 
             case "sec":

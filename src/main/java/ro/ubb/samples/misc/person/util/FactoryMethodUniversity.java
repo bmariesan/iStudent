@@ -19,7 +19,7 @@ public class FactoryMethodUniversity extends FactoryMethodAbstr {
          */
         switch (personType.toLowerCase()) {
             case "st":
-            case "student":
+            case "fromStudent":
                 return new Student();
 
             case "sec":
