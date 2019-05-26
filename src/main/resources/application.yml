@@ -1,2 +1,14 @@
 application:
     base-url: "http://localhost:8080/api"
+
+security:
+    token:
+        secretKey: "superSecretKey"
+        header: "X-Auth-Token"
+        expiration: 3600
+
+
+spring:
+  thymeleaf:
+    mode: LEGACYHTML5
+    cache: false
