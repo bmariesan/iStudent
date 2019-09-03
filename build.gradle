@@ -14,9 +14,11 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0'
+        classpath "io.franzbecker:gradle-lombok:1.11"
     }
 }
 
+apply plugin: "io.franzbecker.gradle-lombok"
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'war'
@@ -49,6 +51,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-mongodb')
     compile("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
     compile group: 'com.rabbitmq', name: 'amqp-client', version: '5.0.0'
+    compile group: 'javax.persistence', name: 'persistence-api', version: '1.0'
 
     runtime('com.h2database:h2')
     runtime('mysql:mysql-connector-java')
@@ -75,6 +78,6 @@ junitPlatform {
         }
         includeClassNamePattern '.*Test'
     }
-    enableStandardTestTask false
+    enableStandardTestTask true
     reportsDir = file("$buildDir/test-results/test")
 }
