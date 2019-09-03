@@ -17,6 +17,8 @@ buildscript {
     }
 }
 
+//plugins { id "io.spring.dependency-management" version "1.0.0.RELEASE" }
+
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'war'
@@ -39,17 +41,13 @@ repositories {
     maven { url 'https://jitpack.io' }
 }
 
-configurations {
-    providedRuntime
-}
-
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
     compile('org.springframework.boot:spring-boot-starter-web')
+    compileOnly 'org.projectlombok:lombok:1.16.18'
     compile('org.springframework.boot:spring-boot-starter-data-mongodb')
     compile("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
     compile group: 'com.rabbitmq', name: 'amqp-client', version: '5.0.0'
-
     runtime('com.h2database:h2')
     runtime('mysql:mysql-connector-java')
     providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
@@ -60,6 +58,10 @@ dependencies {
     testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.1")
     testCompile("org.junit.platform:junit-platform-launcher:1.0.0")
     testCompile("com.github.sbrannen:spring-test-junit5:1.0.0")
+}
+
+configurations {
+    providedRuntime
 }
 
 junitPlatform {
