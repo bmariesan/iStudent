@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Exam Related Statistics</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="webjars/chart.js/2.7.1/dist/Chart.min.js"></script>
+    <script src="webjars/angular-chart.js/1.1.1/dist/angular-chart.min.js"></script>
+
+    <script type="text/javascript" src="/js/app.js"></script>
+    <script src ="/js/services/alertService.js"></script>
+    <script src="js/services/StatisticService.js"></script>
+    <script src ="/js/controllers/LineCtrl.js"></script>
+
+</head>
+<body ng-app="mainApp">
+
+
+<div class="container" ng-controller="LineCtrl as vm">
+    <h1>{{vm.criteria}}</h1>
+
+    <select data-ng-model="vm.criteria"
+            ng-options = "option for option in vm.statisticOptions"
+            ng-change="vm.setCriteria()" >
+    </select>
+    <select ng-model="vm.exam"
+            ng-options="option.title for option in vm.exams"
+            ng-change="vm.setCriteria()">
+    </select>
+    <br/><br/><br/>
+    <div style="height:100px; width:1000px;">
+        <canvas id="line" class="chart chart-line" chart-data="vm.data"
+                chart-labels="vm.labels" chart-series="vm.series" chart-options="vm.options"
+                chart-dataset-override="vm.datasetOverride" chart-click="vm.onClick">
+        </canvas>
+    </div>
+</div>
+
+<script>
+
+</script>
+</body>
+</html>

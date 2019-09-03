@@ -7,6 +7,7 @@ import ro.ubb.istudent.domain.GreetingEntity;
 import ro.ubb.istudent.dto.GreetingDto;
 import ro.ubb.istudent.repository.GreetingRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,6 +23,9 @@ public class GreetingService {
     public Optional<GreetingDto> findGreetingById(String greetingId) {
         return repository.findGreetingEntityById(greetingId)
                 .map(this::greetingToGreetingDTO);
+    }
+    public List<GreetingEntity> findAllGreetings(){
+        return repository.findAll();
     }
 
     public void updateGreetingWithId(String greetingId, GreetingDto request) {

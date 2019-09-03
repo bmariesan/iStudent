@@ -21,6 +21,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public void processAllOtherExceptions(Exception ex) {
-        LOG.error("Unexpected exception. Please add a custom exception handler for ex: {}", ex);
+        LOG.error("Unexpected exams.exception. Please add a custom exams.exception handler for ex: {}", ex);
     }
 }
